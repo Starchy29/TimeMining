@@ -26,14 +26,14 @@ public class UIManager : MonoBehaviour
     void keyCheck()
     {
         // Inventory is pressed
-        if(Input.GetKeyDown(KeyCode.I))
+        if(Input.GetKeyDown(KeyCode.Escape))
         {
             closeAllWindows(windows[0]);
             windows[0].SetActive(!windows[0].activeSelf);
         }
 
-        // Inventory is pressed
-        if (Input.GetKeyDown(KeyCode.O))
+        // Shop is pressed
+        if (Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift))
         {
             closeAllWindows(windows[1]);
             windows[1].SetActive(!windows[1].activeSelf);

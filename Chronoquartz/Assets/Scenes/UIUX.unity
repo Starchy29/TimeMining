@@ -600,6 +600,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5607855101277816131, guid: 81c58cd2c35955b4f9fd3d332e981280, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -5.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607855101471794210, guid: 81c58cd2c35955b4f9fd3d332e981280, type: 3}
+      propertyPath: m_margin.w
+      value: 12.4202
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607855101662282905, guid: 81c58cd2c35955b4f9fd3d332e981280, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -17.299929
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607855101662282906, guid: 81c58cd2c35955b4f9fd3d332e981280, type: 3}
+      propertyPath: m_margin.w
+      value: 19.931065
+      objectReference: {fileID: 0}
     - target: {fileID: 5607855101708159953, guid: 81c58cd2c35955b4f9fd3d332e981280, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -663,6 +679,10 @@ PrefabInstance:
     - target: {fileID: 5607855101710376273, guid: 81c58cd2c35955b4f9fd3d332e981280, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5607855102104807799, guid: 81c58cd2c35955b4f9fd3d332e981280, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 275.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81c58cd2c35955b4f9fd3d332e981280, type: 3}
