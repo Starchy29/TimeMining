@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,22 +29,24 @@ public class UIManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.I))
         {
             closeAllWindows(windows[0]);
-            windows[0].SetActive(!windows[0].active);
+            windows[0].SetActive(!windows[0].activeSelf);
         }
 
         // Inventory is pressed
         if (Input.GetKeyDown(KeyCode.O))
         {
             closeAllWindows(windows[1]);
-            windows[1].SetActive(!windows[1].active);
+            windows[1].SetActive(!windows[1].activeSelf);
         }
     }
 
     /// <summary>
     /// Closes all the windows open. Can choose to not ignore a set window.
     /// </summary>
-    void closeAllWindows(GameObject ignoreThis = null)
+    public void closeAllWindows(GameObject ignoreThis = null)
     {
+        Console.WriteLine(windows);
+
         foreach(GameObject window in windows)
         {
             if(window.Equals(ignoreThis))
@@ -55,6 +58,5 @@ public class UIManager : MonoBehaviour
                 window.SetActive(false);
             }
         }
-
     }
 }
