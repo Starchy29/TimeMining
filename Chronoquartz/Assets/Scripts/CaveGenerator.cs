@@ -3,21 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
+public enum WallType {
+    None,
+    Rock,
+    SpeedCrystal,
+    ReverseCrystal
+}
+
 // attaches the grid object with a floor child and a wall child
 public class CaveGenerator : MonoBehaviour
 {
     [SerializeField] private int baseWidth;
     [SerializeField] private int baseHeight;
-    [SerializeField] private TileBase groundTile;
-    [SerializeField] private TileBase wallTile;
-    [SerializeField] private TileBase speedCrystalTile;
-    [SerializeField] private TileBase reverseCrystalTile;
+    [SerializeField] private Tile groundTile;
+    [SerializeField] private Tile wallTile;
+    [SerializeField] private Tile speedCrystalTile;
+    [SerializeField] private Tile reverseCrystalTile;
 
     private Tilemap floorTiles;
     private Tilemap wallTiles;
+    private Dictionary<Sprite, WallType> spriteToWallType;
 
     void Start()
     {
+        spriteToWallType = new Dictionary<Sprite, WallType>();
+        spriteToWallType[wallTile.sprite] = WallType.Rock;
+        spriteToWallType[speedCrystalTile.sprite] = WallType.SpeedCrystal;
+        spriteToWallType[reverseCrystalTile.sprite] = WallType.ReverseCrystal;
+
         floorTiles = transform.GetChild(0).GetComponent<Tilemap>();
         wallTiles = transform.GetChild(1).GetComponent<Tilemap>();
 
@@ -47,8 +60,19 @@ public class CaveGenerator : MonoBehaviour
             && y >= -baseHeight / 2 && y <= baseHeight / 2;
     }
 
-    void Update()
-    {
-        
+    // determines which type of wall is located at the input tilemap coordinate. Returns WallType.None if there is no wall
+    public WallType GetWallType(int x, int y) {
+        Tile tile = wallTiles.GetTile<Tile>(new Vector3Int(x, y, 0));
+        if(tile == null) {
+            return WallType.None;
+        }
+
+        return spriteToWallType[tile.sprite];
+    }
+
+    // returns the tilemap coordinate based on the transform position
+    public Vector2Int GetTilemapPos(Vector3 worldPosition) {
+        Vector3Int cell = floorTiles.LocalToCell(worldPosition);
+        return new Vector2Int(cell.x, cell.y);
     }
 }
