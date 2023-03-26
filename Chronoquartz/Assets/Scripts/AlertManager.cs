@@ -25,7 +25,27 @@ public class AlertManager : MonoBehaviour
             addAlert("Test message");
         }
     }
-
+    /// <summary>
+    /// Returns a sprite from the array if it exists, otherwise returns default
+    /// </summary>
+    /// <param name="name">Name of icon</param>
+    /// <returns></returns>
+    public Sprite ReturnSprite(string name)
+    {
+        foreach(Sprite icon in icons)
+        {
+            if(icon.name.ToLower() == name.ToLower())
+            {
+                return icon;
+            }
+        }
+        return defaultIcon;
+    }
+    /// <summary>
+    /// Adds an alert to the alert container
+    /// </summary>
+    /// <param name="alertMessage">Message for the alert</param>
+    /// <param name="icon">Optional icon, use ReturnSprite to grab from the grid or leave null for default</param>
     void addAlert(string alertMessage, Sprite icon = null)
     {
         if(icon == null)
@@ -41,7 +61,5 @@ public class AlertManager : MonoBehaviour
 
         alert.transform.Find("Exclamation").GetComponent<Image>().sprite = icon;
         alert.transform.Find("Text (TMP)").GetComponent<TMP_Text>().text = alertMessage;
-
-
     }
 }
