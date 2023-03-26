@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour
     // Player inventory must be Element 0, and Shop must be Element 1.
     public GameObject[] windows;
 
+    /// <summary>
+    /// On start, close all scenes unless titlescreen
+    /// </summary>
     void Start()
     {
         if(SceneManager.GetActiveScene().name != "Titlescreen")
@@ -51,6 +54,7 @@ public class UIManager : MonoBehaviour
     /// <summary>
     /// Closes all the windows open. Can choose to not ignore a set window.
     /// </summary>
+    /// <param name="ignoreThis">A scene to ignore closing of (used for the pop up purchases)</param>
     public void closeAllWindows(GameObject ignoreThis = null)
     {
         Console.WriteLine(windows);
@@ -68,6 +72,10 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Does everything for the titlescreen
+    /// </summary>
+    /// <param name="clicked">Pass in with words what you want the scene to do</param>
     public void TitlescreenSwitcher(string clicked)
     {
         switch(clicked)
