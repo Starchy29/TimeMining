@@ -15,6 +15,7 @@ public class AlertManager : MonoBehaviour
 
     void Start()
     {
+        AddAlert("Started your mining journey!", ReturnSprite("checkmarkCircle"));
     }
 
     // Update is called once per frame
