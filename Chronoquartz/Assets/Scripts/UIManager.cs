@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -11,19 +12,26 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        closeAllWindows();
+        if(SceneManager.GetActiveScene().name != "Titlescreen")
+        {
+            closeAllWindows();
+        } else
+        {
+            windows[1].SetActive(false);
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        keyCheck();
+        KeyCheck();
     }
 
     /// <summary>
     /// When keys are pressed, showcase the proper UI screen.
     /// </summary>
-    void keyCheck()
+    void KeyCheck()
     {
         // Inventory is pressed
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -57,6 +65,29 @@ public class UIManager : MonoBehaviour
             {
                 window.SetActive(false);
             }
+        }
+    }
+
+    public void TitlescreenSwitcher(string clicked)
+    {
+        switch(clicked)
+        {
+            case "Play":
+                SceneManager.LoadScene("Gameplay");
+            break;
+
+            case "TitlescreenToSettings":
+                windows[0].SetActive(false);
+                windows[1].SetActive(true);
+            break;
+
+            case "SettingsToTitlescreen":
+                windows[0].SetActive(true);
+                windows[1].SetActive(false);
+                break;
+            case "Quit":
+                Application.Quit();
+                break;
         }
     }
 }
