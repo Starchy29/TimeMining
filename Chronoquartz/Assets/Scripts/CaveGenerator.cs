@@ -3,13 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public enum WallType {
-    None,
-    Rock,
-    SpeedCrystal,
-    ReverseCrystal
-}
-
 // attaches the grid object with a floor child and a wall child
 public class CaveGenerator : MonoBehaviour
 {
@@ -22,35 +15,42 @@ public class CaveGenerator : MonoBehaviour
 
     private Tilemap floorTiles;
     private Tilemap wallTiles;
-    private Dictionary<Sprite, WallType> spriteToWallType;
+    private WallData[,] dataGrid;
 
     void Start()
     {
-        spriteToWallType = new Dictionary<Sprite, WallType>();
+        Dictionary<Sprite, WallType> spriteToWallType = new Dictionary<Sprite, WallType>();
         spriteToWallType[wallTile.sprite] = WallType.Rock;
         spriteToWallType[speedCrystalTile.sprite] = WallType.SpeedCrystal;
         spriteToWallType[reverseCrystalTile.sprite] = WallType.ReverseCrystal;
+        // add bedrock
 
         floorTiles = transform.GetChild(0).GetComponent<Tilemap>();
         wallTiles = transform.GetChild(1).GetComponent<Tilemap>();
 
         const int REACH = 30; // distance that is generated outward from the center
+        dataGrid = new WallData[2 * REACH + 1, 2 * REACH + 1];
         for(int y = -REACH; y <= REACH; y++) {
             for(int x = -REACH; x <= REACH; x++) {
                 floorTiles.SetTile(new Vector3Int(x, y), groundTile);
 
                 if(IsInBase(x, y)) {
+                    //dataGrid[x, y] = new WallData(WallType.None);
                     continue;
                 }
 
                 // choose wall or crystal
+                Tile chosenTile = null;
                 if(Random.value < 0.1f) {
                     // crystal
-                    wallTiles.SetTile(new Vector3Int(x, y), Random.value < 0.5f ? speedCrystalTile : reverseCrystalTile);
+                    chosenTile = (Random.value < 0.5f ? speedCrystalTile : reverseCrystalTile);
                 } else {
-                    // wall
-                    wallTiles.SetTile(new Vector3Int(x, y), wallTile);
+                    // rock wall
+                    chosenTile = wallTile;
                 }
+
+                wallTiles.SetTile(new Vector3Int(x, y), chosenTile);
+                //dataGrid[x, y] = new WallData(spriteToWallType[chosenTile.sprite]);
             }
         }
     }
@@ -62,12 +62,7 @@ public class CaveGenerator : MonoBehaviour
 
     // determines which type of wall is located at the input tilemap coordinate. Returns WallType.None if there is no wall
     public WallType GetWallType(int x, int y) {
-        Tile tile = wallTiles.GetTile<Tile>(new Vector3Int(x, y, 0));
-        if(tile == null) {
-            return WallType.None;
-        }
-
-        return spriteToWallType[tile.sprite];
+        return dataGrid[x, y].Type;
     }
 
     // returns the tilemap coordinate based on the transform position
