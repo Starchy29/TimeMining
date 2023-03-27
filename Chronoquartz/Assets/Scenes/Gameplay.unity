@@ -189,6 +189,7 @@ MonoBehaviour:
   wallTile: {fileID: 11400000, guid: a78f7ac06852d99499fa5d98a3a95a9a, type: 2}
   speedCrystalTile: {fileID: 11400000, guid: 01c86565e092fa84ca80d9732fb6c7c3, type: 2}
   reverseCrystalTile: {fileID: 11400000, guid: b8fe4c1ff89a9de4b928a59e3cc7d506, type: 2}
+  bedrockTile: {fileID: 11400000, guid: 3033258cedefdee4c95e422ae07732c7, type: 2}
   lightCracks: {fileID: 2327840451920673087, guid: 23742eac53dbb154b9fa0e7cf6dba4e3, type: 3}
   heavyCracks: {fileID: 3534761598737168589, guid: e5633f91f2954164cbf95de0f3337802, type: 3}
 --- !u!1 &385162071

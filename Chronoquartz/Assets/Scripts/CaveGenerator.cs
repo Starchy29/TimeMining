@@ -13,6 +13,7 @@ public class CaveGenerator : MonoBehaviour
     [SerializeField] private Tile wallTile;
     [SerializeField] private Tile speedCrystalTile;
     [SerializeField] private Tile reverseCrystalTile;
+    [SerializeField] private Tile bedrockTile;
     [SerializeField] private GameObject lightCracks;
     [SerializeField] private GameObject heavyCracks;
 
@@ -28,7 +29,7 @@ public class CaveGenerator : MonoBehaviour
         spriteToWallType[wallTile.sprite] = WallType.Rock;
         spriteToWallType[speedCrystalTile.sprite] = WallType.SpeedCrystal;
         spriteToWallType[reverseCrystalTile.sprite] = WallType.ReverseCrystal;
-        // add bedrock
+        spriteToWallType[bedrockTile.sprite] = WallType.Bedrock;
 
         floorTiles = transform.GetChild(0).GetComponent<Tilemap>();
         wallTiles = transform.GetChild(1).GetComponent<Tilemap>();
@@ -43,20 +44,23 @@ public class CaveGenerator : MonoBehaviour
                     continue;
                 }
 
-                // choose wall or crystal
+                // choose wall type
                 Tile chosenTile = null;
-                if(Random.value < 0.1f) {
+                if(x == 0 || y == 0 || x == caveWidth - 1 || y == caveWidth - 1) {
+                    // bedrock border
+                    chosenTile = bedrockTile;
+                }
+                else if(Random.value < 0.1f) {
                     // crystal
                     chosenTile = (Random.value < 0.5f ? speedCrystalTile : reverseCrystalTile);
-                } else {
+                } 
+                else {
                     // rock wall
                     chosenTile = wallTile;
                 }
 
                 wallTiles.SetTile(new Vector3Int(x, y), chosenTile);
                 dataGrid[x, y] = new WallData(spriteToWallType[chosenTile.sprite]);
-
-                DamageTile(x, y, Random.Range(0, 15));
             }
         }
     }

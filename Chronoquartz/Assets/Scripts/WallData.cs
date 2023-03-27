@@ -26,6 +26,7 @@ public class WallData
         Cracks = null;
         this.type = type;
         
+        // define starting health values
         switch(type)
         {
             case WallType.Rock:
