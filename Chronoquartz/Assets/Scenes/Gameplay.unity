@@ -182,12 +182,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 269292e8a35a23146909bda976c3651d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  caveWidth: 60
   baseWidth: 11
   baseHeight: 7
   groundTile: {fileID: 11400000, guid: 1c00d4e827676ab4bab56a67319952c0, type: 2}
   wallTile: {fileID: 11400000, guid: a78f7ac06852d99499fa5d98a3a95a9a, type: 2}
   speedCrystalTile: {fileID: 11400000, guid: 01c86565e092fa84ca80d9732fb6c7c3, type: 2}
   reverseCrystalTile: {fileID: 11400000, guid: b8fe4c1ff89a9de4b928a59e3cc7d506, type: 2}
+  lightCracks: {fileID: 2327840451920673087, guid: 23742eac53dbb154b9fa0e7cf6dba4e3, type: 3}
+  heavyCracks: {fileID: 3534761598737168589, guid: e5633f91f2954164cbf95de0f3337802, type: 3}
 --- !u!1 &385162071
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +549,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 649186219}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

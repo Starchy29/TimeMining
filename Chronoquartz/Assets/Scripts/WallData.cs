@@ -11,10 +11,11 @@ public enum WallType {
 }
 
 // a container for information about each wall tile
-public struct WallData
+public class WallData
 {
     public int Health;
     public GameObject Cracks;
+    public readonly int MaxHealth;
 
     private WallType type;
     public WallType Type { get { return type; } }
@@ -35,5 +36,6 @@ public struct WallData
                 Health = 20;
                 break;
         }
+        MaxHealth = Health;
     }
 }
