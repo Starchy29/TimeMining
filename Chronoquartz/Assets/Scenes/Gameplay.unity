@@ -123,6 +123,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &20159212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7881213277170985809, guid: 342df339ab7a9f44da7cfa9b2c1038b2, type: 3}
+  m_PrefabInstance: {fileID: 1783137081}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &112164355 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7881213278603442907, guid: 342df339ab7a9f44da7cfa9b2c1038b2, type: 3}
+  m_PrefabInstance: {fileID: 1783137081}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &147232028
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,6 +657,11 @@ TilemapCollider2D:
 --- !u!1 &410772285 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7881213278702004030, guid: 342df339ab7a9f44da7cfa9b2c1038b2, type: 3}
+  m_PrefabInstance: {fileID: 1783137081}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &457854724 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7881213277853839525, guid: 342df339ab7a9f44da7cfa9b2c1038b2, type: 3}
   m_PrefabInstance: {fileID: 1783137081}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &490575763 stripped
@@ -1647,6 +1662,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1109670160 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7881213277705850627, guid: 342df339ab7a9f44da7cfa9b2c1038b2, type: 3}
+  m_PrefabInstance: {fileID: 1783137081}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1704786052 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7881213278672899257, guid: 342df339ab7a9f44da7cfa9b2c1038b2, type: 3}
+  m_PrefabInstance: {fileID: 1783137081}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1739059083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1722,12 +1747,49 @@ PrefabInstance:
       propertyPath: camera
       value: 
       objectReference: {fileID: 649186221}
+    - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
+      propertyPath: shopShard.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
+      propertyPath: shopShard.Array.data[0]
+      value: 
+      objectReference: {fileID: 1776448319}
+    - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
+      propertyPath: shopShard.Array.data[1]
+      value: 
+      objectReference: {fileID: 20159212}
+    - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
+      propertyPath: shopShard.Array.data[2]
+      value: 
+      objectReference: {fileID: 1704786052}
+    - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
+      propertyPath: inventoryShard.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
+      propertyPath: inventoryShard.Array.data[0]
+      value: 
+      objectReference: {fileID: 112164355}
+    - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
+      propertyPath: inventoryShard.Array.data[1]
+      value: 
+      objectReference: {fileID: 1109670160}
+    - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
+      propertyPath: inventoryShard.Array.data[2]
+      value: 
+      objectReference: {fileID: 457854724}
     - target: {fileID: 6772654921725462017, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
       propertyPath: m_IsTrigger
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
+--- !u!1 &1776448319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7881213278314116482, guid: 342df339ab7a9f44da7cfa9b2c1038b2, type: 3}
+  m_PrefabInstance: {fileID: 1783137081}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1783137081
 PrefabInstance:
   m_ObjectHideFlags: 0
