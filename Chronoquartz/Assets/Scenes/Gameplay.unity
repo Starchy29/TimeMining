@@ -1754,15 +1754,15 @@ PrefabInstance:
     - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
       propertyPath: shopShard.Array.data[0]
       value: 
-      objectReference: {fileID: 1776448319}
+      objectReference: {fileID: 20159212}
     - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
       propertyPath: shopShard.Array.data[1]
       value: 
-      objectReference: {fileID: 20159212}
+      objectReference: {fileID: 1704786052}
     - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
       propertyPath: shopShard.Array.data[2]
       value: 
-      objectReference: {fileID: 1704786052}
+      objectReference: {fileID: 1776448319}
     - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
       propertyPath: inventoryShard.Array.size
       value: 3
@@ -1770,15 +1770,15 @@ PrefabInstance:
     - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
       propertyPath: inventoryShard.Array.data[0]
       value: 
-      objectReference: {fileID: 112164355}
+      objectReference: {fileID: 1109670160}
     - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
       propertyPath: inventoryShard.Array.data[1]
       value: 
-      objectReference: {fileID: 1109670160}
+      objectReference: {fileID: 457854724}
     - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
       propertyPath: inventoryShard.Array.data[2]
       value: 
-      objectReference: {fileID: 457854724}
+      objectReference: {fileID: 112164355}
     - target: {fileID: 6772654921725462017, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
       propertyPath: m_IsTrigger
       value: 0
