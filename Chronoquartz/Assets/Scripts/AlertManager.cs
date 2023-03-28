@@ -47,7 +47,7 @@ public class AlertManager : MonoBehaviour
     /// </summary>
     /// <param name="alertMessage">Message for the alert</param>
     /// <param name="icon">Optional icon, use ReturnSprite to grab from the grid or leave null for default</param>
-    void AddAlert(string alertMessage, Sprite icon = null)
+    public void AddAlert(string alertMessage, Sprite icon = null)
     {
         if(icon == null)
         {

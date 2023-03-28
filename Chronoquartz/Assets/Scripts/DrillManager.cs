@@ -13,7 +13,8 @@ public class DrillManager : MonoBehaviour
     public CaveGenerator grid;
     [SerializeField] float defaultDrillingTimes;
     [SerializeField] float defaultMiningTimes;
-    CharacterController player; 
+    CharacterController player;
+    AlertManager alerts;
     [field: SerializeField]
     public int DrillsAvailable { get; set; }
 
@@ -22,6 +23,7 @@ public class DrillManager : MonoBehaviour
     {
         activeDrills= new List<DrillBehavior>();
         player = GameObject.Find("Player").GetComponent<CharacterController>();
+        alerts = GameObject.Find("UIManager").GetComponent<AlertManager>();
     }
 
     // Update is called once per frame
@@ -32,21 +34,25 @@ public class DrillManager : MonoBehaviour
         {
             Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x + 1.0f), RoundToNearestHalf(player.transform.position.y), player.transform.position.z);
             SummonDrill(drillSpawn, -90);
+            alerts.AddAlert("Drill created going right!");
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
             Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x -1.0f) , RoundToNearestHalf(player.transform.position.y), player.transform.position.z);
             SummonDrill(drillSpawn, 90);
+            alerts.AddAlert("Drill created going left!");
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
             Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x), RoundToNearestHalf(player.transform.position.y- 1.0f), player.transform.position.z);
             SummonDrill(drillSpawn, -180);
+            alerts.AddAlert("Drill created going downward!");
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
             Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x), RoundToNearestHalf(player.transform.position.y + 1.0f), player.transform.position.z);
             SummonDrill(drillSpawn, 0);
+            alerts.AddAlert("Drill created going upward!");
         }
 
         MoveActiveDrills();
@@ -78,6 +84,7 @@ public class DrillManager : MonoBehaviour
         int[] ores = { drill.OresGathered,drill.OresGathered, drill.OresGathered}; 
         player.UpdateShards(ores);
         activeDrills.Remove(drill);
+        alerts.AddAlert("Drill removed!");
         Destroy(drill.gameObject);
     }
 
