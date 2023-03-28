@@ -39,8 +39,9 @@ public class UIManager : MonoBehaviour
         // Inventory is pressed
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            closeAllWindows(windows[0]);
-            windows[0].SetActive(!windows[0].activeSelf);
+            //closeAllWindows(windows[0]);
+            closeAllWindows();
+            //windows[0].SetActive(!windows[0].activeSelf);
         }
 
         // Shop is pressed

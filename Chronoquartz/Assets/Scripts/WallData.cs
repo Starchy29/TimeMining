@@ -13,9 +13,11 @@ public enum WallType {
 // a container for information about each wall tile
 public class WallData
 {
-    public int Health;
+    public float Health;
     public GameObject Cracks;
-    public readonly int MaxHealth;
+    public readonly float MaxHealth;
+    public Vector3 Position;
+    public Vector2 arrayIndex;
 
     private WallType type;
     public WallType Type { get { return type; } }
@@ -30,11 +32,11 @@ public class WallData
         switch(type)
         {
             case WallType.Rock:
-                Health = 10;
+                Health = 1.0f;
                 break;
             case WallType.SpeedCrystal:
             case WallType.ReverseCrystal:
-                Health = 20;
+                Health = 2.0f;
                 break;
         }
         MaxHealth = Health;

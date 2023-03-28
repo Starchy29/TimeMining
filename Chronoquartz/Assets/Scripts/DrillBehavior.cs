@@ -20,6 +20,7 @@ public class DrillBehavior : MonoBehaviour
     public DrillState drillState;   // Drills current behavior
     public Transform movePoint;     // Space in front
     private float currentTimer;
+    private Vector2Int currentWallIndex;
     [HideInInspector] public Animator Animator { get; private set; }
 
     [SerializeField] private float moveSpeed;
@@ -66,8 +67,8 @@ public class DrillBehavior : MonoBehaviour
     // Helper Function for detecting the wall closes to the player
     public void WallDetection()
     {
-        Vector2Int upcomingTile = GridRef.GetTilemapPos(movePoint.position);
-        WallType upcomingWall = GridRef.GetWallType(upcomingTile.x, upcomingTile.y);
+        currentWallIndex = GridRef.WallIndex(movePoint.position);
+        WallType upcomingWall = GridRef.GetWallType(currentWallIndex);
         switch (upcomingWall)
         {
 
@@ -78,14 +79,17 @@ public class DrillBehavior : MonoBehaviour
 
             // Mine the ore
             case WallType.SpeedCrystal:
-                drillState = DrillState.Mining;
-                movePoint.position = transform.position;
-                break;
             case WallType.ReverseCrystal:
                 drillState = DrillState.Mining;
                 movePoint.position = transform.position;
+           
+
                 break;
 
+            case WallType.Bedrock:
+                Animator.SetBool("IsDrilling", false);
+                drillState = DrillState.Idle;
+                break;
             // Keep moving
             case WallType.None:
                 drillState = DrillState.Moving;
@@ -96,12 +100,15 @@ public class DrillBehavior : MonoBehaviour
     public void DrillingWall()
     {
         currentTimer += Time.deltaTime;
+        GridRef.DamageTile(currentWallIndex.x, currentWallIndex.y, DrillingTime * Time.deltaTime);
+
         if (currentTimer >= DrillingTime)
         {
             // Destroy the grid
             currentTimer = 0;
+            
             // Continue Moving 
-            drillState= DrillState.Moving;
+            drillState = DrillState.Moving;
             Animator.SetBool("IsDrilling", true);
         }
     }
@@ -109,11 +116,12 @@ public class DrillBehavior : MonoBehaviour
     public void MiningOre()
     {
         currentTimer += Time.deltaTime;
+        GridRef.DamageTile(currentWallIndex.x, currentWallIndex.y, MiningTime * Time.deltaTime);
         if (currentTimer >= DrillingTime)
         {
             // Destroy the grid
             OresGathered = Random.Range(oreRange.x, oreRange.y);
-
+            
             currentTimer = 0;
             drillState = DrillState.Idle;
             Animator.SetBool("IsDrilling", false);
@@ -123,7 +131,11 @@ public class DrillBehavior : MonoBehaviour
     // Collide with another robot
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(collision);
+        if (collision.gameObject.name == "Player" && drillState == DrillState.Idle)
+        {
+            movePoint.parent = this.gameObject.transform;
+            GameObject.Find("DrillManager").GetComponent<DrillManager>().removeDrill(this);
+        }
         if (collision.gameObject.tag == "Robot")
         {
             drillState = DrillState.Idle;

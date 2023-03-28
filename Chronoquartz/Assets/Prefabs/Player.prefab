@@ -101,6 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   charSpeed: 6
   decelRate: 0.75
+  speedIncrease: 0
+  shardCapacity: 100
+  gemCapacity: 100
 --- !u!50 &636886701828528030
 Rigidbody2D:
   serializedVersion: 4

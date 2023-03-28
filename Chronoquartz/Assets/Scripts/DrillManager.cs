@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class DrillManager : MonoBehaviour
     public CaveGenerator grid;
     [SerializeField] float defaultDrillingTimes;
     [SerializeField] float defaultMiningTimes;
+    CharacterController player; 
     [field: SerializeField]
     public int DrillsAvailable { get; set; }
 
@@ -19,27 +21,32 @@ public class DrillManager : MonoBehaviour
     void Start()
     {
         activeDrills= new List<DrillBehavior>();
+        player = GameObject.Find("Player").GetComponent<CharacterController>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector2 defaultPos = new Vector2(-0.5f, 0.5f);
-        if (Input.GetKeyDown(KeyCode.D) )
+        
+        if (Input.GetKeyDown(KeyCode.L) )
         {
-            SummonDrill(defaultPos, -90);
+            Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x + 1.0f), RoundToNearestHalf(player.transform.position.y), player.transform.position.z);
+            SummonDrill(drillSpawn, -90);
         }
-        if (Input.GetKeyDown(KeyCode.A))
+        if (Input.GetKeyDown(KeyCode.J))
         {
-            SummonDrill(defaultPos, 90);
+            Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x -1.0f) , RoundToNearestHalf(player.transform.position.y), player.transform.position.z);
+            SummonDrill(drillSpawn, 90);
         }
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.K))
         {
-            SummonDrill(defaultPos, -180);
+            Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x), RoundToNearestHalf(player.transform.position.y- 1.0f), player.transform.position.z);
+            SummonDrill(drillSpawn, -180);
         }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.I))
         {
-            SummonDrill(defaultPos, 0);
+            Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x), RoundToNearestHalf(player.transform.position.y + 1.0f), player.transform.position.z);
+            SummonDrill(drillSpawn, 0);
         }
 
         MoveActiveDrills();
@@ -65,6 +72,15 @@ public class DrillManager : MonoBehaviour
         activeDrills.Add(drill.GetComponent<DrillBehavior>());
     }
 
+    public void removeDrill(DrillBehavior drill)
+    {
+        DrillsAvailable++;
+        int[] ores = { drill.OresGathered,drill.OresGathered, drill.OresGathered}; 
+        player.UpdateShards(ores);
+        activeDrills.Remove(drill);
+        Destroy(drill.gameObject);
+    }
+
     void MoveActiveDrills()
     {
         foreach (var drill in activeDrills)
@@ -86,6 +102,24 @@ public class DrillManager : MonoBehaviour
                 case DrillBehavior.DrillState.Idle:
                     break;
             }
+        }
+    }
+
+    // From ChatGPT
+    public static float RoundToNearestHalf(float num)
+    {
+        if (Math.Abs(num % 1) >= 0.25 && Math.Abs(num % 1) < 0.75) // Check if num is close to a half
+        {
+            float roundedNum = (float)(Math.Round(Math.Abs(num) * 2) / 2.0); // Round to nearest half decimal point
+            if (num < 0) // Check if num is negative
+            {
+                roundedNum *= -1; // If num is negative, make the roundedNum negative as well
+            }
+            return roundedNum;
+        }
+        else // Otherwise, round to the nearest integer
+        {
+            return (float)Math.Round(num) + 0.5f;
         }
     }
 }

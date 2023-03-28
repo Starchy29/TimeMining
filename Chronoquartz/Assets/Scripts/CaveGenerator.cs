@@ -41,6 +41,7 @@ public class CaveGenerator : MonoBehaviour
 
                 if(IsInBase(x, y)) {
                     dataGrid[x, y] = new WallData(WallType.None);
+                    dataGrid[x, y].Position = floorTiles.GetCellCenterWorld(new Vector3Int(x, y, 1));
                     continue;
                 }
 
@@ -61,6 +62,7 @@ public class CaveGenerator : MonoBehaviour
 
                 wallTiles.SetTile(new Vector3Int(x, y), chosenTile);
                 dataGrid[x, y] = new WallData(spriteToWallType[chosenTile.sprite]);
+                dataGrid[x, y].Position = floorTiles.GetCellCenterWorld(new Vector3Int(x,y,1));
             }
         }
     }
@@ -70,7 +72,7 @@ public class CaveGenerator : MonoBehaviour
             && y >= (caveWidth - baseHeight) / 2 && y <= (caveWidth + baseHeight) / 2;
     }
 
-    public void DamageTile(int x, int y, int damage) {
+    public void DamageTile(int x, int y, float damage) {
         WallData data = dataGrid[x, y];
 
         if(damage <= 0 || data.Health <= 0) {
@@ -89,6 +91,7 @@ public class CaveGenerator : MonoBehaviour
                 Destroy(data.Cracks);
             }
             dataGrid[x, y] = new WallData(WallType.None);
+            dataGrid[x, y].Position = floorTiles.GetCellCenterWorld(new Vector3Int(x, y, 1));
             return;
         }
 
@@ -122,9 +125,25 @@ public class CaveGenerator : MonoBehaviour
 
     }
 
+    public Vector2Int WallIndex(Vector3 worldPos)
+    {
+        for (int x = 0; x < dataGrid.GetLength(0); x++)
+        {
+            for (int y = 0; y < dataGrid.GetLength(1); y++)
+            {
+                if (dataGrid[x,y].Position == worldPos)
+                {
+                    return new Vector2Int(x,y);
+                }
+            }
+        }
+        return Vector2Int.zero;
+    }
+
     // determines which type of wall is located at the input tilemap coordinate. Returns WallType.None if there is no wall
-    public WallType GetWallType(int x, int y) {
-        return dataGrid[x, y].Type;
+    public WallType GetWallType(Vector2Int tilePos) {
+        
+        return dataGrid[tilePos.x, tilePos.y].Type;
     }
 
     // returns the tilemap coordinate based on the transform position

@@ -6,6 +6,7 @@ using TMPro;
 public class CharacterController : MonoBehaviour
 {
     // Start is called before the first frame update
+
     [SerializeField]
     private float charSpeed;
     [SerializeField]
@@ -15,13 +16,14 @@ public class CharacterController : MonoBehaviour
     private float speedIncrease;
     private int[] shards = new int[3];
     private int[] gems = new int[3];
-    private int shardCapacity;
-    private int gemCapacity;
+    [SerializeField] private int shardCapacity;
+    [SerializeField] private int gemCapacity;
     private int gemCount = 3;
 
     void Start()
     {
         rgb = gameObject.GetComponent<Rigidbody2D>();
+
     }
 
     // Update is called once per frame
@@ -35,6 +37,7 @@ public class CharacterController : MonoBehaviour
         {
             rgb.velocity = new Vector2(charSpeed * Input.GetAxis("Horizontal"), charSpeed * Input.GetAxis("Vertical"));
         }
+
     }
 
     void IncreaseSpeed()
@@ -83,12 +86,13 @@ public class CharacterController : MonoBehaviour
 
     void UpdateInventoryUI()
     {
-        GameObject.Find("PlayerInventory").transform.Find("RedShardNumber").gameObject.GetComponent<TextMeshProUGUI>().text = shards[0].ToString();
-        GameObject.Find("PlayerInventory").transform.Find("BlueShardNumber").gameObject.GetComponent<TextMeshProUGUI>().text = shards[1].ToString();
-        GameObject.Find("PlayerInventory").transform.Find("GreenShardNumber").gameObject.GetComponent<TextMeshProUGUI>().text = shards[2].ToString();
+        Debug.Log(GameObject.Find("Player Inventory").transform.Find("Red"));
+        GameObject.Find("Player Inventory").transform.Find("Red").transform.Find("RedShardNumber").gameObject.GetComponent<TextMeshProUGUI>().text = shards[0].ToString();
+        GameObject.Find("Player Inventory").transform.Find("Blue").transform.Find("BlueShardNumber").gameObject.GetComponent<TextMeshProUGUI>().text = shards[1].ToString();
+        GameObject.Find("Player Inventory").transform.Find("Green").transform.Find("GreenShardNumber").gameObject.GetComponent<TextMeshProUGUI>().text = shards[2].ToString();
 
-        GameObject.Find("PlayerInventory").transform.Find("RedCrystalNumber").gameObject.GetComponent<TextMeshProUGUI>().text = gems[0].ToString();
-        GameObject.Find("PlayerInventory").transform.Find("BlueCrystalNumber").gameObject.GetComponent<TextMeshProUGUI>().text = gems[1].ToString();
-        GameObject.Find("PlayerInventory").transform.Find("GreenCrystalNumber").gameObject.GetComponent<TextMeshProUGUI>().text = gems[2].ToString();
+        GameObject.Find("Player Inventory").transform.Find("Red").transform.Find("RedCrystalNumber").gameObject.GetComponent<TextMeshProUGUI>().text = gems[0].ToString();
+        GameObject.Find("Player Inventory").transform.Find("Blue").transform.Find("BlueCrystalNumber").gameObject.GetComponent<TextMeshProUGUI>().text = gems[1].ToString();
+        GameObject.Find("Player Inventory").transform.Find("Green").transform.Find("GreenCrystalNumber").gameObject.GetComponent<TextMeshProUGUI>().text = gems[2].ToString();
     }
 }
