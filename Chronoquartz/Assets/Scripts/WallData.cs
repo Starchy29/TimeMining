@@ -16,8 +16,6 @@ public class WallData
     public float Health;
     public GameObject Cracks;
     public readonly float MaxHealth;
-    public Vector3 Position;
-    public Vector2 arrayIndex;
 
     private WallType type;
     public WallType Type { get { return type; } }

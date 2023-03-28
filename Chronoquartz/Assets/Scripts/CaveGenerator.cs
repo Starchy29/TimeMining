@@ -41,7 +41,6 @@ public class CaveGenerator : MonoBehaviour
 
                 if(IsInBase(x, y)) {
                     dataGrid[x, y] = new WallData(WallType.None);
-                    dataGrid[x, y].Position = floorTiles.GetCellCenterWorld(new Vector3Int(x, y, 1));
                     continue;
                 }
 
@@ -62,7 +61,6 @@ public class CaveGenerator : MonoBehaviour
 
                 wallTiles.SetTile(new Vector3Int(x, y), chosenTile);
                 dataGrid[x, y] = new WallData(spriteToWallType[chosenTile.sprite]);
-                dataGrid[x, y].Position = floorTiles.GetCellCenterWorld(new Vector3Int(x,y,1));
             }
         }
     }
@@ -91,7 +89,6 @@ public class CaveGenerator : MonoBehaviour
                 Destroy(data.Cracks);
             }
             dataGrid[x, y] = new WallData(WallType.None);
-            dataGrid[x, y].Position = floorTiles.GetCellCenterWorld(new Vector3Int(x, y, 1));
             return;
         }
 
@@ -125,21 +122,6 @@ public class CaveGenerator : MonoBehaviour
 
     }
 
-    public Vector2Int WallIndex(Vector3 worldPos)
-    {
-        for (int x = 0; x < dataGrid.GetLength(0); x++)
-        {
-            for (int y = 0; y < dataGrid.GetLength(1); y++)
-            {
-                if (dataGrid[x,y].Position == worldPos)
-                {
-                    return new Vector2Int(x,y);
-                }
-            }
-        }
-        return Vector2Int.zero;
-    }
-
     // determines which type of wall is located at the input tilemap coordinate. Returns WallType.None if there is no wall
     public WallType GetWallType(Vector2Int tilePos) {
         
@@ -148,7 +130,7 @@ public class CaveGenerator : MonoBehaviour
 
     // returns the tilemap coordinate based on the transform position
     public Vector2Int GetTilemapPos(Vector3 worldPosition) {
-        Vector3Int cell = floorTiles.LocalToCell(worldPosition);
+        Vector3Int cell = floorTiles.WorldToCell(worldPosition);
         return new Vector2Int(cell.x, cell.y);
     }
 }

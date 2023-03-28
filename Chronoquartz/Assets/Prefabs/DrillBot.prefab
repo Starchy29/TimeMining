@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5376575316013141852}
   - component: {fileID: 3012902811997443089}
   - component: {fileID: 7962065081204363866}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: DrillBot
   m_TagString: Robot
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7973441476187857768}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MovePos
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}

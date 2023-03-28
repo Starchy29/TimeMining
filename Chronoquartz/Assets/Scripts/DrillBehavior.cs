@@ -67,7 +67,7 @@ public class DrillBehavior : MonoBehaviour
     // Helper Function for detecting the wall closes to the player
     public void WallDetection()
     {
-        currentWallIndex = GridRef.WallIndex(movePoint.position);
+        currentWallIndex = GridRef.GetTilemapPos(movePoint.position);
         WallType upcomingWall = GridRef.GetWallType(currentWallIndex);
         switch (upcomingWall)
         {
@@ -131,11 +131,6 @@ public class DrillBehavior : MonoBehaviour
     // Collide with another robot
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Player" && drillState == DrillState.Idle)
-        {
-            movePoint.parent = this.gameObject.transform;
-            GameObject.Find("DrillManager").GetComponent<DrillManager>().removeDrill(this);
-        }
         if (collision.gameObject.tag == "Robot")
         {
             drillState = DrillState.Idle;
@@ -175,6 +170,15 @@ public class DrillBehavior : MonoBehaviour
             }
             
             
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player" && drillState == DrillState.Idle)
+        {
+            movePoint.parent = this.gameObject.transform;
+            GameObject.Find("DrillManager").GetComponent<DrillManager>().removeDrill(this);
         }
     }
 
