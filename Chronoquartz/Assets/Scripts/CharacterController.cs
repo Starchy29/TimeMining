@@ -20,6 +20,9 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private int gemCapacity;
     private int gemCount = 3;
 
+    public GameObject[] shopShard;
+    public GameObject[] inventoryShard;
+
     void Start()
     {
         rgb = gameObject.GetComponent<Rigidbody2D>();
@@ -86,13 +89,13 @@ public class CharacterController : MonoBehaviour
 
     void UpdateInventoryUI()
     {
-        Debug.Log(GameObject.Find("Player Inventory").transform.Find("Red"));
-        GameObject.Find("Player Inventory").transform.Find("Red").transform.Find("RedShardNumber").gameObject.GetComponent<TextMeshProUGUI>().text = shards[0].ToString();
-        GameObject.Find("Player Inventory").transform.Find("Blue").transform.Find("BlueShardNumber").gameObject.GetComponent<TextMeshProUGUI>().text = shards[1].ToString();
-        GameObject.Find("Player Inventory").transform.Find("Green").transform.Find("GreenShardNumber").gameObject.GetComponent<TextMeshProUGUI>().text = shards[2].ToString();
+        //Debug.Log(GameObject.Find("Player Inventory").transform.Find("Red"));
+        shopShard[2].gameObject.GetComponent<TextMeshProUGUI>().text = shards[0].ToString();
+        shopShard[0].gameObject.GetComponent<TextMeshProUGUI>().text = shards[1].ToString();
+        shopShard[1].gameObject.GetComponent<TextMeshProUGUI>().text = shards[2].ToString();
 
-        GameObject.Find("Player Inventory").transform.Find("Red").transform.Find("RedCrystalNumber").gameObject.GetComponent<TextMeshProUGUI>().text = gems[0].ToString();
-        GameObject.Find("Player Inventory").transform.Find("Blue").transform.Find("BlueCrystalNumber").gameObject.GetComponent<TextMeshProUGUI>().text = gems[1].ToString();
-        GameObject.Find("Player Inventory").transform.Find("Green").transform.Find("GreenCrystalNumber").gameObject.GetComponent<TextMeshProUGUI>().text = gems[2].ToString();
+        inventoryShard[2].gameObject.GetComponent<TextMeshProUGUI>().text = gems[0].ToString();
+        inventoryShard[0].gameObject.GetComponent<TextMeshProUGUI>().text = gems[1].ToString();
+        inventoryShard[1].gameObject.GetComponent<TextMeshProUGUI>().text = gems[2].ToString();
     }
 }
