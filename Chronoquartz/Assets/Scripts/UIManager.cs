@@ -41,7 +41,7 @@ public class UIManager : MonoBehaviour
         {
             //closeAllWindows(windows[0]);
             closeAllWindows();
-            //windows[0].SetActive(!windows[0].activeSelf);
+            windows[0].SetActive(!windows[0].activeSelf);
         }
 
         // Shop is pressed
