@@ -29,30 +29,43 @@ public class DrillManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        /*
         if (Input.GetKeyDown(KeyCode.L) )
         {
-            Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x + 1.0f), RoundToNearestHalf(player.transform.position.y), player.transform.position.z);
+            //Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x + 1.0f), RoundToNearestHalf(player.transform.position.y), player.transform.position.z);
+            Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x), RoundToNearestHalf(player.transform.position.y), player.transform.position.z);
+            
             SummonDrill(drillSpawn, -90);
             alerts.AddAlert("Drill created going right!");
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
-            Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x -1.0f) , RoundToNearestHalf(player.transform.position.y), player.transform.position.z);
+            // Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x -1.0f) , RoundToNearestHalf(player.transform.position.y), player.transform.position.z);
+            Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x) , RoundToNearestHalf(player.transform.position.y), player.transform.position.z);
             SummonDrill(drillSpawn, 90);
             alerts.AddAlert("Drill created going left!");
         }
         if (Input.GetKeyDown(KeyCode.K))
         {
-            Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x), RoundToNearestHalf(player.transform.position.y- 1.0f), player.transform.position.z);
+            //Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x), RoundToNearestHalf(player.transform.position.y- 1.0f), player.transform.position.z);
+            Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x), RoundToNearestHalf(player.transform.position.y), player.transform.position.z);
             SummonDrill(drillSpawn, -180);
             alerts.AddAlert("Drill created going downward!");
         }
         if (Input.GetKeyDown(KeyCode.I))
         {
-            Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x), RoundToNearestHalf(player.transform.position.y + 1.0f), player.transform.position.z);
+            //Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x), RoundToNearestHalf(player.transform.position.y + 1.0f), player.transform.position.z);
+            Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x), RoundToNearestHalf(player.transform.position.y), player.transform.position.z);
             SummonDrill(drillSpawn, 0);
             alerts.AddAlert("Drill created going upward!");
+        }
+        */
+
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x), RoundToNearestHalf(player.transform.position.y), player.transform.position.z);
+            SummonDrill(drillSpawn, (Mathf.Round(player.transform.eulerAngles.z / 90) * 90));
+            alerts.AddAlert("Deploying Drill!");
         }
 
         MoveActiveDrills();

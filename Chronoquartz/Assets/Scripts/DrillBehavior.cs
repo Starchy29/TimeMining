@@ -128,9 +128,17 @@ public class DrillBehavior : MonoBehaviour
         }
     }
 
-    // Collide with another robot
-    private void OnCollisionEnter2D(Collision2D collision)
+   
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        if (collision.gameObject.tag == "Player" && drillState == DrillState.Idle)
+        {
+            movePoint.parent = this.gameObject.transform;
+            GameObject.Find("DrillManager").GetComponent<DrillManager>().removeDrill(this);
+        }
+        
         if (collision.gameObject.tag == "Robot")
         {
             drillState = DrillState.Idle;
@@ -140,22 +148,22 @@ public class DrillBehavior : MonoBehaviour
             otherRobot.drillState = DrillState.Idle;
             otherRobot.Animator.SetBool("IsDrilling", false);
 
-            Vector2 roundedRobot1 = new Vector2(movePoint.position.x, movePoint.position.y); //new Vector2(RoundToNearestHalf(transform.position.x), RoundToNearestHalf(transform.position.y));
-            Vector2 roundedRobot2 = new Vector2(otherRobot.movePoint.position.x, otherRobot.movePoint.position.y); //new Vector2(RoundToNearestHalf(otherRobot.transform.position.x), RoundToNearestHalf(otherRobot.transform.position.y));
+            Vector2 roundedRobot1 = new Vector2(RoundToNearestHalf(transform.position.x), RoundToNearestHalf(transform.position.y));
+            Vector2 roundedRobot2 = new Vector2(RoundToNearestHalf(otherRobot.transform.position.x), RoundToNearestHalf(otherRobot.transform.position.y));
 
             if (Vector2.Distance(roundedRobot1, roundedRobot2) == 0)
             {
                 Vector2 absolutePos1 = new Vector2(Mathf.Abs(transform.position.x), Mathf.Abs(transform.position.y));
                 Vector2 absolutePos2 = new Vector2(Mathf.Abs(collision.transform.position.x), Mathf.Abs(collision.transform.position.y));
-                
+
                 // if point 1 is futher  
-                if (absolutePos1.sqrMagnitude>absolutePos2.sqrMagnitude)
+                if (absolutePos1.sqrMagnitude > absolutePos2.sqrMagnitude)
                 {
                     movePoint.position += transform.up;
                     Debug.Log(transform.up);
-                    
+
                 }
-                else 
+                else
                 {
                     otherRobot.movePoint.position += otherRobot.transform.up;
                     Debug.Log(otherRobot.transform.up);
@@ -168,29 +176,27 @@ public class DrillBehavior : MonoBehaviour
                 transform.position = roundedRobot1;
                 collision.gameObject.transform.position = roundedRobot2;
             }
-            
-            
+
+
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    // From ChatGPT
+    public static float RoundToNearestHalf(float num)
     {
-        if (collision.gameObject.tag == "Player" && drillState == DrillState.Idle)
+        if (Math.Abs(num % 1) >= 0.25 && Math.Abs(num % 1) < 0.75) // Check if num is close to a half
         {
-            movePoint.parent = this.gameObject.transform;
-            GameObject.Find("DrillManager").GetComponent<DrillManager>().removeDrill(this);
+            float roundedNum = (float)(Math.Round(Math.Abs(num) * 2) / 2.0); // Round to nearest half decimal point
+            if (num < 0) // Check if num is negative
+            {
+                roundedNum *= -1; // If num is negative, make the roundedNum negative as well
+            }
+            return roundedNum;
+        }
+        else // Otherwise, round to the nearest integer
+        {
+            return (float)Math.Round(num) + 0.5f;
         }
     }
-
-    public static float RoundToNearestHalf(float number)
-    {
-        float roundedNumber = (float)Math.Round(number * 2, MidpointRounding.AwayFromZero) / 2;
-        if (number % 1 == 0.5f)
-        {
-            roundedNumber = number;
-        }
-        return roundedNumber;
-    }
-
 
 }
