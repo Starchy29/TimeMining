@@ -63,7 +63,10 @@ public class DrillManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.F))
         {
+            // Summon it to the player's closest grid tile
             Vector3 drillSpawn = new Vector3(RoundToNearestHalf(player.transform.position.x), RoundToNearestHalf(player.transform.position.y), player.transform.position.z);
+            
+            // Summon it to the nearest 90% angle
             SummonDrill(drillSpawn, (Mathf.Round(player.transform.eulerAngles.z / 90) * 90));
             alerts.AddAlert("Deploying Drill!");
         }
