@@ -15,11 +15,9 @@ public class CharacterController : MonoBehaviour
     private Rigidbody2D rgb;
     [SerializeField]
     private float speedIncrease;
-    private int[] shards = new int[3];
-    private int[] gems = new int[3];
-    [SerializeField] private int shardCapacity;
-    [SerializeField] private int gemCapacity;
-    private int gemCount = 3;
+    private int[] ingredients = new int[4]; //flour,sugar,oatmeal,chocolate
+    [SerializeField] private int ingredientCapacity;
+    private int ingredientCount = 4;
 
     public GameObject[] shopShard;
     public GameObject[] inventoryShard;
@@ -61,49 +59,36 @@ public class CharacterController : MonoBehaviour
         charSpeed -= speedIncrease;
     }
 
-    public int[] UpdateShards(int []r)
+    public int[] UpdateIngredients(int []r)
     {
-        for (int i = 0; i < gemCount; i++)
-            if (shards[i] + r[i] <= shardCapacity)
+        for (int i = 0; i < ingredientCount; i++)
+            if (ingredients[i] + r[i] <= ingredientCapacity)
             {
-                shards[i] += r[i];
+                ingredients[i] += r[i];
                 r[i] = 0;
             }
             else
             {
-                shards[i] = shardCapacity;
-                r[i] -= shardCapacity;
+                ingredients[i] = ingredientCapacity;
+                r[i] -= ingredientCapacity;
             }
         UpdateInventoryUI();
         return r;
     }
 
-    public int[] UpdateGems(int []r)
-    {
-        for (int i = 0; i < gemCount; i++)
-            if (gems[i] + r[i] <= gemCapacity)
-            {
-                gems[i] += r[i];
-                r[i] = 0;
-            }
-            else
-            {
-                gems[i] = gemCapacity;
-                r[i] -= gemCapacity;
-            }
-        UpdateInventoryUI();
-        return r;
-    }
+   
 
     void UpdateInventoryUI()
     {
         //Debug.Log(GameObject.Find("Player Inventory").transform.Find("Red"));
-        shopShard[2].gameObject.GetComponent<TextMeshProUGUI>().text = shards[0].ToString();
-        shopShard[0].gameObject.GetComponent<TextMeshProUGUI>().text = shards[1].ToString();
-        shopShard[1].gameObject.GetComponent<TextMeshProUGUI>().text = shards[2].ToString();
+        shopShard[2].gameObject.GetComponent<TextMeshProUGUI>().text = ingredients[0].ToString();
+        shopShard[0].gameObject.GetComponent<TextMeshProUGUI>().text = ingredients[1].ToString();
+        shopShard[1].gameObject.GetComponent<TextMeshProUGUI>().text = ingredients[2].ToString();
+        
+    }
 
-        inventoryShard[2].gameObject.GetComponent<TextMeshProUGUI>().text = gems[0].ToString();
-        inventoryShard[0].gameObject.GetComponent<TextMeshProUGUI>().text = gems[1].ToString();
-        inventoryShard[1].gameObject.GetComponent<TextMeshProUGUI>().text = gems[2].ToString();
+    public int[] ReturnInventory()
+    {
+        return ingredients;
     }
 }

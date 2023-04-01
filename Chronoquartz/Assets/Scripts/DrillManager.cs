@@ -98,7 +98,7 @@ public class DrillManager : MonoBehaviour
     {
         DrillsAvailable++;
         int[] ores = { drill.OresGathered,drill.OresGathered, drill.OresGathered}; 
-        player.UpdateShards(ores);
+        player.UpdateIngredients(ores);
         activeDrills.Remove(drill);
         alerts.AddAlert("Drill removed!");
         Destroy(drill.gameObject);
