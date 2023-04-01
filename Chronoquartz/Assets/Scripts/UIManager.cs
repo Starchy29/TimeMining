@@ -264,11 +264,24 @@ public class UIManager : MonoBehaviour
 
         // Go through all the unlocked shapes and add them to the list
 
+        PopulateShapes(cookieType);
+
+    }
+
+    /// <summary>
+    /// Adds the potential for a shape if it doesn't exist yet for that cookie type.
+    /// </summary>
+    /// <param name="cookieType"></param>
+    void PopulateShapes(string cookieType)
+    {
         foreach (string shapes in unlockedShapes)
         {
+            if(!cookieSupply.ContainsKey(cookieType + shapes))
+            {
                 cookieSupply.Add(cookieType + shapes, 0);
-        }
+            }
 
+        }
     }
 
     void CreateAllCookies()
