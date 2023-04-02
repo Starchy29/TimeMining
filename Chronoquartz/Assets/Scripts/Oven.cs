@@ -17,7 +17,7 @@ public class Oven : MonoBehaviour
         collision.gameObject.transform.parent.gameObject.GetComponent<CharacterController>().NearOven(false);
     }
 
-    public void ButtonClicked(this GameObject button)
+    public void ButtonClicked(GameObject button)
     {
         Debug.Log("Button name is " + button.name);
     }
