@@ -8,19 +8,20 @@ public class CharacterController : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    [SerializeField]
-    private float charSpeed;
-    [SerializeField]
-    private float decelRate;
+    [SerializeField]private float charSpeed;
+    [SerializeField] private float decelRate;
     private Rigidbody2D rgb;
-    [SerializeField]
-    private float speedIncrease;
+    [SerializeField] private float speedIncrease;
     private int[] ingredients = new int[4]; //flour,sugar,oatmeal,chocolate
     [SerializeField] private int ingredientCapacity;
     private int ingredientCount = 4;
+   
+
+    private bool nearOven = false;
 
     public GameObject[] shopShard;
     public GameObject[] inventoryShard;
+    public GameObject CookieManager;
 
     void Start()
     {
@@ -46,6 +47,10 @@ public class CharacterController : MonoBehaviour
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 180.0f * Time.deltaTime);
         }
+
+        if (nearOven)
+            if (Input.GetKeyDown(KeyCode.E))
+                CookieManager.SetActive(true);
         
     }
 
@@ -91,4 +96,10 @@ public class CharacterController : MonoBehaviour
     {
         return ingredients;
     }
+
+    public void NearOven(bool b)
+    {
+        nearOven = b;
+    }
+    
 }
