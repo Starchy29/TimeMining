@@ -215,7 +215,7 @@ public class DrillManager : MonoBehaviour
         activeDrills.Add(drill.GetComponent<DrillBehavior>());
     }
 
-    public void removeDrill(DrillBehavior drill)
+    public void removeDrill(DrillBehavior drill, WallType walltype)
     {
         DrillsAvailable++;
         int[] ores = new int[3];

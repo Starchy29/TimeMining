@@ -59,19 +59,19 @@ public class CookieMenu : MonoBehaviour
 
     public void UpdateButtons()
     {
-        //int[] playerIngredients = player.GetComponent<CharacterController>().ReturnInventory();
-        //int index = 0;
-        //foreach(Recipe r in recipes)
-        //{
-        //    if (r.isEnough(playerIngredients))
-        //        ActivateRecipeButton(index, true);
-        //    else
-        //    {
+        int[] playerIngredients = player.GetComponent<CharacterController>().ReturnInventory();
+        int index = 0;
+        foreach(Recipe r in recipes)
+        {
+            if (r.isEnough(playerIngredients))
+                ActivateRecipeButton(index, true);
+            else
+            {
                 
-        //        ActivateRecipeButton(index, false);
-        //    }
-        //    index++;
-        //}
+                ActivateRecipeButton(index, false);
+            }
+            index++;
+        }
     }
 
     

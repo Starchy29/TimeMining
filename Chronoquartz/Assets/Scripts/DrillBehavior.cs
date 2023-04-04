@@ -33,6 +33,7 @@ public class DrillBehavior : MonoBehaviour
     [SerializeField] private float boostedDestroyTime;
     [SerializeField] private Vector2Int oreRange;
     [SerializeField] private DrillManager drillManager;
+    [HideInInspector] public WallType upcomingWall;
 
     [HideInInspector] public float DrillingTime { get; set; }
     [HideInInspector] public float MiningTime { get; set; }
@@ -125,7 +126,7 @@ public class DrillBehavior : MonoBehaviour
     public void WallDetection()
     {
         currentWallIndex = GridRef.GetTilemapPos(movePoint.position);
-        WallType upcomingWall = GridRef.GetWallType(currentWallIndex);
+        upcomingWall = GridRef.GetWallType(currentWallIndex);
         switch (upcomingWall)
         {
 
@@ -247,7 +248,7 @@ public class DrillBehavior : MonoBehaviour
         if (collision.gameObject.tag == "Player" && (drillState == DrillState.Idle || drillState == DrillState.Inactive))
         {
             movePoint.parent = this.gameObject.transform;
-            drillManager.removeDrill(this);
+            drillManager.removeDrill(this, upcomingWall);
         }
         
         if (collision.gameObject.tag == "Robot")

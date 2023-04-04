@@ -10,7 +10,7 @@ public class CharacterController : MonoBehaviour
 
     [SerializeField] private float charSpeed;
     [SerializeField] private float decelRate;
-    private Rigidbody2D rgb;
+    public Rigidbody2D rgb;
     [SerializeField] private float speedIncrease;
     [SerializeField] private int[] ingredients = new int[3] { 0, 0, 0 }; //sugar,oatmeal,chocolate
     [SerializeField] private int ingredientCapacity;
@@ -23,10 +23,15 @@ public class CharacterController : MonoBehaviour
 
     public GameObject[] shopShard;
     public GameObject[] inventoryShard;
+    public GameObject CookieManager;
+    
 
     void Start()
     {
+        CookieManager = GameObject.Find("BakingMenu");
+        CookieManager.SetActive(false);
         rgb = gameObject.GetComponent<Rigidbody2D>();
+        Debug.Log(rgb);
         UIManager = GameObject.Find("UIManager");
         Premium = false;
 
@@ -36,22 +41,43 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+        if (canMove)
         {
-            rgb.velocity = Vector2.Lerp(rgb.velocity, Vector2.zero, decelRate);
+            if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+            {
+                rgb.velocity = Vector2.Lerp(rgb.velocity, Vector2.zero, decelRate);
+            }
+            else
+            {
+                rgb.velocity = new Vector2(charSpeed * Input.GetAxis("Horizontal"), charSpeed * Input.GetAxis("Vertical"));
+
+            }
+
+            if (new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) != Vector2.zero)
+            {
+                Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 180.0f * Time.deltaTime);
+            }
+
+            if (nearOven)
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    canMove = false;
+                    rgb.velocity = Vector2.zero;
+                   
+                    CookieManager.SetActive(true);
+                    CookieManager.GetComponent<CookieMenu>().UpdateButtons();
+                }
         }
         else
         {
-            rgb.velocity = new Vector2(charSpeed * Input.GetAxis("Horizontal"), charSpeed * Input.GetAxis("Vertical"));
-            
+            if (nearOven)
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    canMove = true;
+                    CookieManager.SetActive(false);
+                }
         }
-
-        if (new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) != Vector2.zero)
-        {
-            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 270.0f * Time.deltaTime);
-        }
-        
     }
 
     void IncreaseSpeed()
@@ -64,48 +90,31 @@ public class CharacterController : MonoBehaviour
         charSpeed -= speedIncrease;
     }
 
-    public int[] UpdateShards(int []r)
+    public int[] UpdateIngredients(int []r)
     {
-        for (int i = 0; i < gemCount; i++)
-            if (shards[i] + r[i] <= shardCapacity)
+        for (int i = 0; i < ingredientCount; i++)
+            if (ingredients[i] + r[i] <= ingredientCapacity)
             {
-                shards[i] += r[i];
+                ingredients[i] += r[i];
                 r[i] = 0;
             }
             else
             {
-                shards[i] = shardCapacity;
-                r[i] -= shardCapacity;
+                ingredients[i] = ingredientCapacity;
+                r[i] -= ingredientCapacity;
             }
         UpdateInventoryUI();
+        Debug.Log("Inventory is now: " + ingredients[0] + " " + ingredients[1] + " " + ingredients[2]);
         return r;
     }
 
-    public int[] UpdateGems(int []r)
-    {
-        for (int i = 0; i < gemCount; i++)
-            if (gems[i] + r[i] <= gemCapacity)
-            {
-                gems[i] += r[i];
-                r[i] = 0;
-            }
-            else
-            {
-                gems[i] = gemCapacity;
-                r[i] -= gemCapacity;
-            }
-        UpdateInventoryUI();
-        return r;
-    }
+   
 
     void UpdateInventoryUI()
     {
         UIManager.GetComponent<UIManager>().UpdatePantry(ingredients);
         
     }
-
-
-        
 
     public int[] ReturnInventory()
     {
@@ -117,9 +126,6 @@ public class CharacterController : MonoBehaviour
         nearOven = b;
     }
     
-
-    
-
     public void IngredientsUsed(int s, int o, int c)
     {
         ingredients[0] -= s;
@@ -127,6 +133,7 @@ public class CharacterController : MonoBehaviour
         ingredients[2] -= c;
         UpdateInventoryUI();
     }
+
 
     public void SetPlayerMoveable(bool moveable)
     {

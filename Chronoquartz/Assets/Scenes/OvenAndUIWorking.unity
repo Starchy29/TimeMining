@@ -1937,6 +1937,8 @@ MonoBehaviour:
   bedrockTile: {fileID: 11400000, guid: 3033258cedefdee4c95e422ae07732c7, type: 2}
   lightCracks: {fileID: 2327840451920673087, guid: 23742eac53dbb154b9fa0e7cf6dba4e3, type: 3}
   heavyCracks: {fileID: 3534761598737168589, guid: e5633f91f2954164cbf95de0f3337802, type: 3}
+  timeLimitIndicator: {fileID: 0}
+  goalIndicator: {fileID: 0}
 --- !u!1 &327052791
 GameObject:
   m_ObjectHideFlags: 0
@@ -6040,6 +6042,9 @@ MonoBehaviour:
   defaultDrillingTimes: 1
   defaultMiningTimes: 2
   <DrillsAvailable>k__BackingField: 4
+  sugarTimer: 0
+  chocolateTimer: 0
+  oatmealTimer: 0
 --- !u!4 &943541244
 Transform:
   m_ObjectHideFlags: 0
