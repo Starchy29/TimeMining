@@ -5,6 +5,7 @@ using System.Diagnostics;
 using UnityEngine;
 using Random = UnityEngine.Random;
 using Debug = UnityEngine.Debug;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class DrillBehavior : MonoBehaviour
 {
@@ -14,42 +15,66 @@ public class DrillBehavior : MonoBehaviour
         Idle,
         Drilling,
         Moving,
-        Mining
+        Mining,
+        Inactive
     }
 
     public DrillState drillState;   // Drills current behavior
     public Transform movePoint;     // Space in front
     private float currentTimer;
+    private float inacctiveTimer;
+    private bool alertInactive;
     private Vector2Int currentWallIndex;
     [HideInInspector] public Animator Animator { get; private set; }
 
     [SerializeField] private float moveSpeed;
+
+    [SerializeField] private float destroyTime;
+    [SerializeField] private float boostedDestroyTime;
     [SerializeField] private Vector2Int oreRange;
-     
+    [SerializeField] private DrillManager drillManager;
+
     [HideInInspector] public float DrillingTime { get; set; }
     [HideInInspector] public float MiningTime { get; set; }
     [HideInInspector] public int OresGathered { get; private set; }
     [HideInInspector] public CaveGenerator GridRef { get; set; }
+
+    [HideInInspector] public bool isResourceBoosted { get; set; }
+    [HideInInspector] public bool isSpeedBoosted { get; set; }
+
+    [HideInInspector] public bool isHealthBoosted { get; set; }
     // Start is called before the first frame update
     void Start()
     {
+        DeployDrill();
+    }
+
+    public void DeployDrill()
+    {
+        drillManager = GameObject.Find("DrillManager").GetComponent<DrillManager>();
         movePoint.parent = null;
         currentTimer = 0;
         OresGathered = 0;
+        inacctiveTimer = 0;
         Animator = GetComponent<Animator>();
+        isResourceBoosted = false;
+        isSpeedBoosted = false;
+        alertInactive = false;
         Animator.SetBool("IsDrilling", true);
+        Animator.SetBool("IsInactive", false);
+        Animator.SetBool("IsDestroyed", false);
     }
 
     // Update is called once per frame
-    void Update()   
+    void Update()
     {
-        
+
     }
 
     // Move on open walkable tile
     public void Move()
     {
-       
+
 
         // Move towards the move position
         transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
@@ -62,6 +87,31 @@ public class DrillBehavior : MonoBehaviour
             WallDetection();
 
         }
+    }
+
+    
+
+    public void InactiveTimer()
+    {
+        inacctiveTimer += Time.deltaTime;
+        if (inacctiveTimer >= destroyTime / 2.0f && !alertInactive)
+        {
+            alertInactive = true;
+            drillManager.Alerts.AddAlert("An inactive drill is about to lose its resources!");
+
+        }
+
+        // Drill loses its resources
+        if (inacctiveTimer >= destroyTime && alertInactive)
+        {
+            drillManager.Alerts.AddAlert("A drill lost its resources!");
+            Animator.SetBool("IsDrilling", false);
+            Animator.SetBool("IsInactive", false);
+            Animator.SetBool("IsDestroyed", true);
+            OresGathered = 0;
+            drillState = DrillState.Inactive;
+        }
+
     }
 
     // Helper Function for detecting the wall closes to the player
@@ -80,14 +130,17 @@ public class DrillBehavior : MonoBehaviour
             // Mine the ore
             case WallType.Sugar:
             case WallType.Chocolate:
+            case WallType.Oatmeal:
                 drillState = DrillState.Mining;
                 movePoint.position = transform.position;
-           
+
 
                 break;
 
             case WallType.Bedrock:
                 Animator.SetBool("IsDrilling", false);
+                Animator.SetBool("IsInactive", true);
+                Animator.SetBool("IsDestroyed", false);
                 drillState = DrillState.Idle;
                 break;
             // Keep moving
@@ -100,53 +153,110 @@ public class DrillBehavior : MonoBehaviour
     public void DrillingWall()
     {
         currentTimer += Time.deltaTime;
-        GridRef.DamageTile(currentWallIndex.x, currentWallIndex.y, DrillingTime * Time.deltaTime);
+        GridRef.DamageTile(currentWallIndex.x, currentWallIndex.y, Time.deltaTime);
 
-        if (currentTimer >= DrillingTime)
+        if (GridRef.GetWallHealth(currentWallIndex) <= 0.0f) 
         {
             // Destroy the grid
             currentTimer = 0;
-            
+
             // Continue Moving 
             drillState = DrillState.Moving;
             Animator.SetBool("IsDrilling", true);
+            Animator.SetBool("IsInactive", false);
+            Animator.SetBool("IsDestroyed", false);
         }
     }
 
     public void MiningOre()
     {
         currentTimer += Time.deltaTime;
-        GridRef.DamageTile(currentWallIndex.x, currentWallIndex.y, MiningTime * Time.deltaTime);
-        if (currentTimer >= DrillingTime)
+        GridRef.DamageTile(currentWallIndex.x, currentWallIndex.y, Time.deltaTime);
+        if (currentTimer >= MiningTime)
         {
             // Destroy the grid
             OresGathered = Random.Range(oreRange.x, oreRange.y);
-            
+
+
+            drillManager.Alerts.AddAlert("Drill mined " + OresGathered + " ingredients");
             currentTimer = 0;
             drillState = DrillState.Idle;
             Animator.SetBool("IsDrilling", false);
+            Animator.SetBool("IsInactive", true);
+            Animator.SetBool("IsDestroyed", false);
+
+        }
+    }
+    public void BoostedInactiveTimer(bool toggle)
+    {
+        if(toggle)
+        {
+            destroyTime = boostedDestroyTime; 
+        }
+        else
+        {
+            destroyTime = destroyTime;
+        }
+        
+    }
+
+    public void ToggleSpeedBoost(bool toggle)
+    {
+        if (isSpeedBoosted == false && toggle == true)
+        {
+            isSpeedBoosted = true;
+            moveSpeed *= 1.5f;
+            DrillingTime /= 1.5f;
+            MiningTime /= 1.5f;
+        }
+
+        if (isSpeedBoosted == true && toggle == false)
+        {
+            isSpeedBoosted = false;
+            moveSpeed /= 1.5f;
+            DrillingTime *= 1.5f;
+            MiningTime *= 1.5f;
         }
     }
 
-   
+    public void ToggleResourceBoost(bool toggle)
+    {
+        if (isResourceBoosted == false && toggle == true)
+        {
+            isResourceBoosted = true;
+            oreRange = new Vector2Int(oreRange.x * 2, oreRange.y * 2);
+        }
+
+        if (isResourceBoosted == true && toggle == false)
+        {
+            isResourceBoosted = false;
+            oreRange = new Vector2Int(oreRange.x / 2, oreRange.y / 2);
+        }
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.tag == "Player" && drillState == DrillState.Idle)
+        if (collision.gameObject.tag == "Player" && (drillState == DrillState.Idle || drillState == DrillState.Inactive))
         {
             movePoint.parent = this.gameObject.transform;
-            GameObject.Find("DrillManager").GetComponent<DrillManager>().removeDrill(this);
+            drillManager.removeDrill(this);
         }
         
         if (collision.gameObject.tag == "Robot")
         {
+
+            
             drillState = DrillState.Idle;
             Animator.SetBool("IsDrilling", false);
+            Animator.SetBool("IsInactive", true);
+            Animator.SetBool("IsDestroyed", false);
 
             DrillBehavior otherRobot = collision.gameObject.GetComponent<DrillBehavior>();
             otherRobot.drillState = DrillState.Idle;
             otherRobot.Animator.SetBool("IsDrilling", false);
+            otherRobot.Animator.SetBool("IsInactive", true);
+            otherRobot.Animator.SetBool("IsDestroyed", false);
 
             Vector2 roundedRobot1 = new Vector2(RoundToNearestHalf(transform.position.x), RoundToNearestHalf(transform.position.y));
             Vector2 roundedRobot2 = new Vector2(RoundToNearestHalf(otherRobot.transform.position.x), RoundToNearestHalf(otherRobot.transform.position.y));

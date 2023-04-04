@@ -153,6 +153,11 @@ public class CaveGenerator : MonoBehaviour
 
     }
 
+    public float GetWallHealth(Vector2Int tilePos)
+    {
+        return dataGrid[tilePos.x, tilePos.y].Health;
+    }
+
     // determines which type of wall is located at the input tilemap coordinate. Returns WallType.None if there is no wall
     public WallType GetWallType(Vector2Int tilePos) {
         

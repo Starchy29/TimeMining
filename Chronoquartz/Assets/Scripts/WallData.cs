@@ -35,6 +35,7 @@ public class WallData
                 break;
             case WallType.Sugar:
             case WallType.Chocolate:
+            case WallType.Oatmeal:
                 Health = 2.0f;
                 break;
         }
