@@ -59,6 +59,7 @@ public class DrillBehavior : MonoBehaviour
         Animator = GetComponent<Animator>();
         isResourceBoosted = false;
         isSpeedBoosted = false;
+        isHealthBoosted = false;
         alertInactive = false;
         Animator.SetBool("IsDrilling", true);
         Animator.SetBool("IsInactive", false);
@@ -93,25 +94,31 @@ public class DrillBehavior : MonoBehaviour
 
     public void InactiveTimer()
     {
-        inacctiveTimer += Time.deltaTime;
-        if (inacctiveTimer >= destroyTime / 2.0f && !alertInactive)
+        if (drillState == DrillState.Idle)
         {
-            alertInactive = true;
-            drillManager.Alerts.AddAlert("An inactive drill is about to lose its resources!");
 
+
+
+            inacctiveTimer += Time.deltaTime;
+            if (inacctiveTimer >= destroyTime / 2.0f && !alertInactive)
+            {
+                alertInactive = true;
+                drillManager.Alerts.AddAlert("An inactive drill is about to lose its resources!");
+
+            }
+
+            // Drill loses its resources
+            if (inacctiveTimer >= destroyTime && alertInactive)
+            {
+                drillState = DrillState.Inactive;
+                drillManager.Alerts.AddAlert("A drill lost its resources!");
+                Animator.SetBool("IsDrilling", false);
+                Animator.SetBool("IsInactive", false);
+                Animator.SetBool("IsDestroyed", true);
+                OresGathered = 0;
+
+            }
         }
-
-        // Drill loses its resources
-        if (inacctiveTimer >= destroyTime && alertInactive)
-        {
-            drillManager.Alerts.AddAlert("A drill lost its resources!");
-            Animator.SetBool("IsDrilling", false);
-            Animator.SetBool("IsInactive", false);
-            Animator.SetBool("IsDestroyed", true);
-            OresGathered = 0;
-            drillState = DrillState.Inactive;
-        }
-
     }
 
     // Helper Function for detecting the wall closes to the player
@@ -172,7 +179,7 @@ public class DrillBehavior : MonoBehaviour
     {
         currentTimer += Time.deltaTime;
         GridRef.DamageTile(currentWallIndex.x, currentWallIndex.y, Time.deltaTime);
-        if (currentTimer >= MiningTime)
+        if (GridRef.GetWallHealth(currentWallIndex) <= 0.0f)
         {
             // Destroy the grid
             OresGathered = Random.Range(oreRange.x, oreRange.y);

@@ -87,6 +87,11 @@ public class DrillManager : MonoBehaviour
 
     }
 
+    public void IncrimentBotBuild()
+    {
+        DrillsAvailable++;
+    }
+
     public void ActivateSugarCookie()
     {
         Alerts.AddAlert("Sugar Boost Activate!");
@@ -95,6 +100,7 @@ public class DrillManager : MonoBehaviour
             drill.ToggleSpeedBoost(true);
         }
     }
+
 
     public void ActivateChocolateCookie()
     {

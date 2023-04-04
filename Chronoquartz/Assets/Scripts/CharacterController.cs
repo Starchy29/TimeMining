@@ -46,7 +46,7 @@ public class CharacterController : MonoBehaviour
         if (new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) != Vector2.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 180.0f * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 270.0f * Time.deltaTime);
         }
         
     }
