@@ -180,13 +180,29 @@ public class DrillManager : MonoBehaviour
         activeDrills.Add(drill.GetComponent<DrillBehavior>());
     }
 
-    public void removeDrill(DrillBehavior drill)
+    public void removeDrill(DrillBehavior drill, WallType walltype)
     {
         DrillsAvailable++;
-        int[] ores = { drill.OresGathered,drill.OresGathered, drill.OresGathered}; 
-        player.UpdateShards(ores);
-        //activeDrills.Remove(drill);
-        Alerts.AddAlert("Drill removed!");
+        int[] ores = new int[3];
+        switch(walltype)
+        {
+            case WallType.Sugar:
+                ores = new int[]{drill.OresGathered, 0, 0};
+                break;
+            case WallType.Oatmeal:
+                ores = new int[]{ 0, drill.OresGathered, 0 };
+                break;
+            case WallType.Chocolate:
+                ores = new int[]{ 0, 0, drill.OresGathered};
+                break;
+            default:
+                ores = new int[] { 0, 0, 0};
+                break;
+        }
+        
+        player.UpdateIngredients(ores);
+        activeDrills.Remove(drill);
+        alerts.AddAlert("Drill removed!");
         Destroy(drill.gameObject);
     }
 

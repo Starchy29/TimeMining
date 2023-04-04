@@ -43,6 +43,7 @@ public class DrillBehavior : MonoBehaviour
     [HideInInspector] public bool isSpeedBoosted { get; set; }
 
     [HideInInspector] public bool isHealthBoosted { get; set; }
+    [HideInInspector] public WallType upcomingWall;
     // Start is called before the first frame update
     void Start()
     {
@@ -118,7 +119,7 @@ public class DrillBehavior : MonoBehaviour
     public void WallDetection()
     {
         currentWallIndex = GridRef.GetTilemapPos(movePoint.position);
-        WallType upcomingWall = GridRef.GetWallType(currentWallIndex);
+        upcomingWall = GridRef.GetWallType(currentWallIndex);
         switch (upcomingWall)
         {
 
@@ -239,7 +240,7 @@ public class DrillBehavior : MonoBehaviour
         if (collision.gameObject.tag == "Player" && (drillState == DrillState.Idle || drillState == DrillState.Inactive))
         {
             movePoint.parent = this.gameObject.transform;
-            drillManager.removeDrill(this);
+            drillManager.removeDrill(this, upcomingWall);
         }
         
         if (collision.gameObject.tag == "Robot")
