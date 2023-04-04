@@ -26,6 +26,7 @@ public class SideQuest : MonoBehaviour
     public bool completed = false;
     public bool isSideQuest = false;
     public GameObject buttonConfirm;
+    public bool isinrange = false;
 
 
     // key is name, output is list of ingredients
@@ -48,6 +49,15 @@ public class SideQuest : MonoBehaviour
         {
 
         }
+
+        if(isinrange)
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                taskMenu.SetActive(true);
+                PopulateQuestUI(nameOfChar);
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -55,6 +65,7 @@ public class SideQuest : MonoBehaviour
         if (collision.gameObject.name == "Player")
         {
             interactText.SetActive(true);
+            isinrange = true;
         }
     }
 
@@ -64,16 +75,13 @@ public class SideQuest : MonoBehaviour
         {
             interactText.SetActive(false);
             taskMenu.SetActive(false);
+            isinrange = false;
         }
     }
 
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D collision)
     {
-            if(Input.GetKeyDown(KeyCode.E))
-            {
-                taskMenu.SetActive(true);
-                PopulateQuestUI(nameOfChar);
-            }
+
     }
 
     void PopulateQuests()
@@ -133,7 +141,9 @@ public class SideQuest : MonoBehaviour
         uiman.cookieSupply.TryGetValue("chocolatechipCircle", out cookiesupply1);
         uiman.cookieSupply.TryGetValue("sugarcookieCircle", out cookiesupply2);
 
-        if(cookiesupply1 == 5 && cookiesupply2 == 5)
+        Debug.Log(cookiesupply1 + " " + cookiesupply2);
+
+        if(cookiesupply1 >= 5 && cookiesupply2 >= 5)
         {
             completed = true;
         }

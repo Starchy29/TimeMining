@@ -2769,6 +2769,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 428885646}
   m_CullTransparentMesh: 1
+--- !u!1 &435615696 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4114415861297713883, guid: a1e5e836667b73944bd98239021f18d8, type: 3}
+  m_PrefabInstance: {fileID: 1650938750}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &453157997
 GameObject:
   m_ObjectHideFlags: 0
@@ -10127,6 +10132,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4114415861037085662, guid: a1e5e836667b73944bd98239021f18d8, type: 3}
+      propertyPath: buttonConfirm
+      value: 
+      objectReference: {fileID: 435615696}
+    - target: {fileID: 4114415861037085662, guid: a1e5e836667b73944bd98239021f18d8, type: 3}
       propertyPath: personImgs.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -13374,10 +13383,10 @@ MonoBehaviour:
       - m_Target: {fileID: 248073475}
         m_TargetAssemblyTypeName: CharacterController, Assembly-CSharp
         m_MethodName: SetPremium
-        m_Mode: 1
+        m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_ObjectArgument: {fileID: 986824147}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
