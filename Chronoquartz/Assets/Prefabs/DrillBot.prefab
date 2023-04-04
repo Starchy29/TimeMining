@@ -104,7 +104,10 @@ MonoBehaviour:
   drillState: 2
   movePoint: {fileID: 7973441476187857768}
   moveSpeed: 1.5
-  oreRange: {x: 5, y: 8}
+  destroyTime: 10
+  boostedDestroyTime: 30
+  oreRange: {x: 4, y: 8}
+  drillManager: {fileID: 0}
 --- !u!61 &5376575316013141852
 BoxCollider2D:
   m_ObjectHideFlags: 0
