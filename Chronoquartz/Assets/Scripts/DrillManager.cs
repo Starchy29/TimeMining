@@ -87,30 +87,49 @@ public class DrillManager : MonoBehaviour
 
     }
 
+    public void ActivateSugarCookie()
+    {
+        Alerts.AddAlert("Sugar Boost Activate!");
+        foreach (var drill in activeDrills)
+        {
+            drill.ToggleSpeedBoost(true);
+        }
+    }
+
+    public void ActivateChocolateCookie()
+    {
+        Alerts.AddAlert("Chocolate Chunk Boost Activate!");
+        foreach (var drill in activeDrills)
+        {
+            drill.ToggleResourceBoost(true);
+        }
+    }
+
+    public void ActivateOatmealCookie()
+    {
+        Alerts.AddAlert("Healthy Oatmeal Boost Activate!");
+        foreach (var drill in activeDrills)
+        {
+            drill.BoostedInactiveTimer(true);
+        }
+    }
+
+
     void UseCookie()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1) && !sugarBoost)
         {
-            foreach (var drill in activeDrills)
-            {
-                drill.ToggleSpeedBoost(true);
-            }
+            ActivateSugarCookie();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2) && !chocolateBoost)
         {
-            foreach (var drill in activeDrills)
-            {
-                drill.ToggleResourceBoost(true);
-            }
+            ActivateChocolateCookie();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3) && !oatmealBoost)
         {
-            foreach (var drill in activeDrills)
-            {
-                drill.BoostedInactiveTimer(true);
-            }
+            ActivateOatmealCookie();
         }
     }
 
@@ -122,6 +141,7 @@ public class DrillManager : MonoBehaviour
             if (sugarTimer <= currentSugarTimer)
             {
                 sugarBoost = false;
+                Alerts.AddAlert("Sugar Boost Deactivate!");
                 foreach (var drill in activeDrills)
                 {
                     drill.ToggleSpeedBoost(false);
@@ -134,6 +154,7 @@ public class DrillManager : MonoBehaviour
             if (chocolateTimer <= currentChocolateTimer)
             {
                 chocolateBoost = false;
+                Alerts.AddAlert("Chocolate Chunk Deactivate!");
                 foreach (var drill in activeDrills)
                 {
                     drill.ToggleResourceBoost(false);
@@ -146,6 +167,7 @@ public class DrillManager : MonoBehaviour
             if (oatmealTimer <= currentOatmealTimer)
             {
                 oatmealBoost = false;
+                Alerts.AddAlert("Healthy Oatmeal Deactivate!");
                 foreach (var drill in activeDrills)
                 {
                     drill.BoostedInactiveTimer(false);
