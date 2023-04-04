@@ -101,12 +101,15 @@ public class DrillManager : MonoBehaviour
         switch(walltype)
         {
             case WallType.Sugar:
+                Debug.Log("Sugar collected : " + drill.OresGathered);
                 ores = new int[]{drill.OresGathered, 0, 0};
                 break;
             case WallType.Oatmeal:
+                Debug.Log("Oatmeal collected : " + drill.OresGathered);
                 ores = new int[]{ 0, drill.OresGathered, 0 };
                 break;
             case WallType.Chocolate:
+                Debug.Log("Chocolate collected : " + drill.OresGathered);
                 ores = new int[]{ 0, 0, drill.OresGathered};
                 break;
             default:

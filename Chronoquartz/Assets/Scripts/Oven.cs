@@ -10,7 +10,9 @@ public class Oven : MonoBehaviour
     {
         if(collision.gameObject.tag == "Player")
         {
-            collision.gameObject.GetComponent<CharacterController>().NearOven(true);
+            
+            if (collision.gameObject.GetComponent<CharacterController>() != null)
+                collision.gameObject.GetComponent<CharacterController>().NearOven(true);
             transform.GetChild(0).gameObject.SetActive(true);
         }
     }
@@ -18,6 +20,7 @@ public class Oven : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
+            if(collision.gameObject.GetComponent<CharacterController>()!= null)
             collision.gameObject.GetComponent<CharacterController>().NearOven(false);
             transform.GetChild(0).gameObject.SetActive(false);
         }

@@ -8,17 +8,18 @@ public class CharacterController : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    [SerializeField]private float charSpeed;
+    [SerializeField] private float charSpeed;
     [SerializeField] private float decelRate;
     private Rigidbody2D rgb;
     [SerializeField] private float speedIncrease;
-    [SerializeField] private int[] ingredients = new int[3] { 0,0,0}; //sugar,oatmeal,chocolate
+    [SerializeField] private int[] ingredients = new int[3] { 0, 0, 0 }; //sugar,oatmeal,chocolate
     [SerializeField] private int ingredientCapacity;
     private int ingredientCount = 3;
     private GameObject UIManager;
 
     private bool nearOven = false;
     private bool canMove = true;
+    public bool Premium { get; private set; }
 
     public GameObject[] shopShard;
     public GameObject[] inventoryShard;
@@ -31,7 +32,9 @@ public class CharacterController : MonoBehaviour
         CookieManager.SetActive(false);
         rgb = gameObject.GetComponent<Rigidbody2D>();
         UIManager = GameObject.Find("UIManager");
-        
+        Premium = false;
+
+
     }
 
     // Update is called once per frame
@@ -125,5 +128,17 @@ public class CharacterController : MonoBehaviour
     public void IngredientsUsed()
     {
 
+    }
+
+    public void SetPlayerMoveable(bool moveable)
+    {
+        canMove = moveable;
+    }
+
+    public void SetPremium(GameObject successText)
+    {
+        Debug.Log("premium now");
+        successText.SetActive(true);
+        Premium = true;
     }
 }
