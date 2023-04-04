@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.SceneManagement;
 
 // attaches the grid object with a floor child and a wall child
 public class CaveGenerator : MonoBehaviour
@@ -17,12 +18,18 @@ public class CaveGenerator : MonoBehaviour
     [SerializeField] private Tile bedrockTile;
     [SerializeField] private GameObject lightCracks;
     [SerializeField] private GameObject heavyCracks;
+    [SerializeField] private TMPro.TextMeshProUGUI timeLimitIndicator;
+    [SerializeField] private TMPro.TextMeshProUGUI goalIndicator;
 
     private Tilemap floorTiles;
     private Tilemap wallTiles;
     private WallData[,] dataGrid;
     private Dictionary<Sprite, WallType> spriteToWallType;
     private int difficulty;
+
+    private float timeLeftSecs; // time left in the day
+    private Dictionary<string, int> requiredCookies;
+    public Dictionary<string, int> RequiredCookies { get { return requiredCookies; } }
 
     void Start()
     {
@@ -38,8 +45,23 @@ public class CaveGenerator : MonoBehaviour
 
         transform.position = new Vector3(-caveWidth / 2.0f, -caveWidth / 2.0f, 0); // shift the grid so the base is centered
 
-        difficulty = 0;
-        Generate();
+        requiredCookies = new Dictionary<string, int>();
+        difficulty = -1; // difficulty increments at the start of NextDay()
+        NextDay();
+    }
+
+    void Update()
+    {
+        timeLeftSecs -= Time.deltaTime;
+        if(timeLeftSecs <= 0) {
+            // lose game, TEMP: go to main menu
+            SceneManager.LoadScene("Titlescreen");
+        }
+
+        // update time UI
+        int minsLeft = (int)timeLeftSecs / 60;
+        int partialMinuteLeft = (int)timeLeftSecs % 60;
+        timeLimitIndicator.text = "Time Left: " + minsLeft + ":" + partialMinuteLeft;
     }
 
     private void Generate()
@@ -165,5 +187,28 @@ public class CaveGenerator : MonoBehaviour
     public Vector2Int GetTilemapPos(Vector3 worldPosition) {
         Vector3Int cell = floorTiles.WorldToCell(worldPosition);
         return new Vector2Int(cell.x, cell.y);
+    }
+
+    public void NextDay() {
+        difficulty++;
+        timeLeftSecs = 60f * 5f;
+
+        // randomize cookie goal
+        int totCookies = 6 + difficulty * 2;
+        int numSugar = Random.Range(1, totCookies / 2 + 1);
+        int numChoc = Random.Range(1, totCookies - numSugar);
+        int numOat = totCookies - numSugar - numChoc;
+
+        requiredCookies["Sugar"] = numSugar;
+        requiredCookies["Chocolate"] = numChoc;
+        requiredCookies["Oatmeal"] = numOat;
+
+        goalIndicator.text = $"Goal: {numSugar} sugar, {numChoc} chocolate, {numOat} oatmeal";
+
+        // create cave
+        Generate();
+
+        // place player back in the middle
+        GameObject.Find("Player").transform.position = Vector3.zero;
     }
 }
