@@ -55,8 +55,7 @@ public class CaveGenerator : MonoBehaviour
         timeLeftSecs -= Time.deltaTime;
         if(timeLeftSecs <= 0) {
             // lose game, TEMP: go to main menu
-            //SceneManager.LoadScene("Titlescreen");
-            NextDay();
+            SceneManager.LoadScene("Titlescreen");
         }
 
         // update time UI
@@ -193,7 +192,6 @@ public class CaveGenerator : MonoBehaviour
     public void NextDay() {
         difficulty++;
         timeLeftSecs = 60f * 5f;
-        timeLeftSecs = 5;
 
         // randomize cookie goal
         int totCookies = 6 + difficulty * 2;
