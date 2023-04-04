@@ -20,18 +20,6 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private int shardCapacity;
     [SerializeField] private int gemCapacity;
     private int gemCount = 3;
-    [SerializeField] private float charSpeed;
-    [SerializeField] private float decelRate;
-    private Rigidbody2D rgb;
-    [SerializeField] private float speedIncrease;
-    [SerializeField] private int[] ingredients = new int[3] { 0, 0, 0 }; //sugar,oatmeal,chocolate
-    [SerializeField] private int ingredientCapacity;
-    private int ingredientCount = 3;
-    private GameObject UIManager;
-
-    private bool nearOven = false;
-    private bool canMove = true;
-    public bool Premium { get; private set; }
 
     public GameObject[] shopShard;
     public GameObject[] inventoryShard;
@@ -39,9 +27,6 @@ public class CharacterController : MonoBehaviour
     void Start()
     {
         rgb = gameObject.GetComponent<Rigidbody2D>();
-        UIManager = GameObject.Find("UIManager");
-        Premium = false;
-
 
     }
 
@@ -120,17 +105,5 @@ public class CharacterController : MonoBehaviour
         inventoryShard[2].gameObject.GetComponent<TextMeshProUGUI>().text = gems[0].ToString();
         inventoryShard[0].gameObject.GetComponent<TextMeshProUGUI>().text = gems[1].ToString();
         inventoryShard[1].gameObject.GetComponent<TextMeshProUGUI>().text = gems[2].ToString();
-    }
-
-    public void SetPlayerMoveable(bool moveable)
-    {
-        canMove = moveable;
-    }
-
-    public void SetPremium(GameObject successText)
-    {
-        Debug.Log("premium now");
-        successText.SetActive(true);
-        Premium = true;
     }
 }

@@ -29,7 +29,7 @@ public class UIManager : MonoBehaviour
     //cookieType + ingredient
     private Dictionary<string, int> cookieIngredients = new Dictionary<string, int>();
     //cookieType + shape for key
-    public Dictionary<string, int> cookieSupply = new Dictionary<string, int>();
+    private Dictionary<string, int> cookieSupply = new Dictionary<string, int>();
 
     private GameObject titlescreen, inventory, cookieinfo, shop;
 
