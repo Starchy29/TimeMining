@@ -130,6 +130,7 @@ public class DrillBehavior : MonoBehaviour
             // Mine the ore
             case WallType.Sugar:
             case WallType.Chocolate:
+            case WallType.Oatmeal:
                 drillState = DrillState.Mining;
                 movePoint.position = transform.position;
 

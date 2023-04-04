@@ -375,12 +375,12 @@ MonoBehaviour:
   caveWidth: 60
   baseWidth: 11
   baseHeight: 7
-  groundTile: {fileID: 11400000, guid: 1c00d4e827676ab4bab56a67319952c0, type: 2}
-  wallTile: {fileID: 11400000, guid: a78f7ac06852d99499fa5d98a3a95a9a, type: 2}
+  groundTile: {fileID: 11400000, guid: 32bdbfc071d12ba44a4fefa022e4e6df, type: 2}
+  wallTile: {fileID: 11400000, guid: 6f0385ea7e84ee24f85b85a1aaf36dec, type: 2}
   sugarTile: {fileID: 11400000, guid: 01c86565e092fa84ca80d9732fb6c7c3, type: 2}
-  chocolateTile: {fileID: 11400000, guid: b8fe4c1ff89a9de4b928a59e3cc7d506, type: 2}
-  oatmealTile: {fileID: 11400000, guid: a9ce0c0832a94e945924f3bdb5f9316f, type: 2}
-  bedrockTile: {fileID: 11400000, guid: 3033258cedefdee4c95e422ae07732c7, type: 2}
+  chocolateTile: {fileID: 11400000, guid: bc92c598a97349142ad0c4724e0f2bb7, type: 2}
+  oatmealTile: {fileID: 11400000, guid: 4d33cfe5b25e19a42bb8d924a72afe8e, type: 2}
+  bedrockTile: {fileID: 11400000, guid: 767f82970b405494187616a2f7b7d597, type: 2}
   lightCracks: {fileID: 2327840451920673087, guid: 23742eac53dbb154b9fa0e7cf6dba4e3, type: 3}
   heavyCracks: {fileID: 3534761598737168589, guid: e5633f91f2954164cbf95de0f3337802, type: 3}
 --- !u!1 &381939679
@@ -1648,6 +1648,9 @@ MonoBehaviour:
   defaultDrillingTimes: 1
   defaultMiningTimes: 2
   <DrillsAvailable>k__BackingField: 4
+  sugarTimer: 10
+  chocolateTimer: 10
+  oatmealTimer: 20
 --- !u!4 &943541244
 Transform:
   m_ObjectHideFlags: 0
