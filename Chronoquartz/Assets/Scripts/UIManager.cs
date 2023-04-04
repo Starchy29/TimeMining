@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
     public Sprite defaultImg;
 
     [SerializeField] public Sprite[] cookieImg;
+    [SerializeField] public GameObject[] cookieCounts;
+
     private Dictionary<string, string> cookieFacts = new Dictionary<string, string>();
     //cookieType + ingredient
     private Dictionary<string, int> cookieIngredients = new Dictionary<string, int>();
@@ -353,8 +355,17 @@ public class UIManager : MonoBehaviour
         ingredientNumbers[i].GetComponent<TextMeshProUGUI>().text = ingredients[i].ToString();
     }
 
-    public void UpdateCookieCount(string cookieShapeAndType, int cookieCount)
+    public void UpdateCookieCount(string cookietype, string cookieshape, int cookieCount)
     {
-        cookieSupply[cookieShapeAndType] += cookieCount;
+        Debug.Log("Cookie count: " + cookieCount);
+        cookieSupply[cookietype + cookieshape] += cookieCount;
+        foreach(GameObject cookieNums in cookieCounts)
+        {
+            if(cookieNums.name.ToLower() == cookietype + "num")
+            {
+                int cookieTotals = int.Parse(cookieNums.GetComponent<TextMeshProUGUI>().text) + cookieCount;
+                cookieNums.GetComponent<TextMeshProUGUI>().text = cookieTotals.ToString();
+            }
+        }
     }
 }

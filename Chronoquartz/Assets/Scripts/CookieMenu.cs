@@ -21,7 +21,7 @@ public class Recipe
 
     public bool isEnough(int [] ing)
     {
-        Debug.Log(ing[1] + " " + sugarcubes);
+        //Debug.Log(ing[1] + " " + sugarcubes);
         if (ing[0] >= sugarcubes && ing[1] >= oatmeal && ing[2] >= chocolate)
             return true;
         else
@@ -92,7 +92,7 @@ public class CookieMenu : MonoBehaviour
     {
         Dictionary<string, int>[] recipeDictionary = new Dictionary<string, int>[3];
         int index = 0;
-        Debug.Log(recipes[0].sugarcubes);
+        //Debug.Log(recipes[0].sugarcubes);
         foreach(Recipe r in recipes)
         {
             recipeDictionary[index] = new Dictionary<string, int>();
@@ -111,7 +111,7 @@ public class CookieMenu : MonoBehaviour
     public void ButtonClicked(GameObject button)
     {
         Debug.Log("Button name is " + button.name);
-        UIManager.GetComponent<UIManager>().UpdateCookieCount(button.name+shapes[0],1);
+        UIManager.GetComponent<UIManager>().UpdateCookieCount(button.name, shapes[0], 1);
         player.GetComponent<CharacterController>().IngredientsUsed();
     }
 }

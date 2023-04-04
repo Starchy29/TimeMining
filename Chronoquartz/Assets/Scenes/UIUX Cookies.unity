@@ -4869,6 +4869,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 228328211853780113, guid: 207004c8bf35aed44a70f1ad409fc8d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 228328212237007089, guid: 207004c8bf35aed44a70f1ad409fc8d5, type: 3}
       propertyPath: m_Name
       value: Oven
@@ -10137,6 +10141,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: BakingMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 7012939545004944557, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1977680549}
+    - target: {fileID: 7012939545004944557, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ButtonClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545168129904, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1977680549}
+    - target: {fileID: 7012939545168129904, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ButtonClicked
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939546159202194, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1977680549}
+    - target: {fileID: 7012939546159202194, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ButtonClicked
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
 --- !u!1 &1347468331
@@ -12450,6 +12478,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 444e9ec0d8547ee47b46e012bde707b7, type: 3}
   - {fileID: 21300000, guid: df2091ae1bdd9c549a0861bdc6421979, type: 3}
   - {fileID: 21300000, guid: 31959245f343534428970af5949a096a, type: 3}
+  cookieCounts: []
   isPremium: 0
 --- !u!4 &1686725575
 Transform:
@@ -13525,6 +13554,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7012939544492641138, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
   m_PrefabInstance: {fileID: 1342204943}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1977680549 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7012939544492641137, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+  m_PrefabInstance: {fileID: 1342204943}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1977680546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a36f87b24c0926549b9af257307dcf3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2004720529
 GameObject:
   m_ObjectHideFlags: 0
