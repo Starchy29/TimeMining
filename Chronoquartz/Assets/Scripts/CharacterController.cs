@@ -12,7 +12,7 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float decelRate;
     private Rigidbody2D rgb;
     [SerializeField] private float speedIncrease;
-    private int[] ingredients = new int[3] { 0,0,0}; //sugar,oatmeal,chocolate
+    [SerializeField] private int[] ingredients = new int[3] { 0,0,0}; //sugar,oatmeal,chocolate
     [SerializeField] private int ingredientCapacity;
     private int ingredientCount = 3;
     private GameObject UIManager;
@@ -27,8 +27,11 @@ public class CharacterController : MonoBehaviour
 
     void Start()
     {
+        CookieManager = GameObject.Find("BakingMenu");
+        CookieManager.SetActive(false);
         rgb = gameObject.GetComponent<Rigidbody2D>();
         UIManager = GameObject.Find("UIManager");
+        
     }
 
     // Update is called once per frame
@@ -56,13 +59,16 @@ public class CharacterController : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.E))
                 {
                     canMove = false;
+                    rgb.velocity = Vector2.zero;
+                   
                     CookieManager.SetActive(true);
+                    CookieManager.GetComponent<CookieMenu>().UpdateButtons();
                 }
         }
         else
         {
             if (nearOven)
-                if (Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     canMove = true;
                     CookieManager.SetActive(false);
@@ -116,4 +122,8 @@ public class CharacterController : MonoBehaviour
         nearOven = b;
     }
     
+    public void IngredientsUsed()
+    {
+
+    }
 }

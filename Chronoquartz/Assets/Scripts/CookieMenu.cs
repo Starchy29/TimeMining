@@ -21,7 +21,8 @@ public class Recipe
 
     public bool isEnough(int [] ing)
     {
-        if (ing[1] >= sugarcubes && ing[2] >= oatmeal && ing[3] >= chocolate)
+        Debug.Log(ing[1] + " " + sugarcubes);
+        if (ing[0] >= sugarcubes && ing[1] >= oatmeal && ing[2] >= chocolate)
             return true;
         else
             return false;
@@ -63,9 +64,13 @@ public class CookieMenu : MonoBehaviour
         foreach(Recipe r in recipes)
         {
             if (r.isEnough(playerIngredients))
-                ActivateRecipeButton(index,true);
+                ActivateRecipeButton(index, true);
             else
-                index++;
+            {
+                
+                ActivateRecipeButton(index, false);
+            }
+            index++;
         }
     }
 
@@ -106,6 +111,7 @@ public class CookieMenu : MonoBehaviour
     public void ButtonClicked(GameObject button)
     {
         Debug.Log("Button name is " + button.name);
-        UIManager.GetComponent<UIManager>().UpdateCookieCount(shapes[0]+button.name,1);
+        UIManager.GetComponent<UIManager>().UpdateCookieCount(button.name+shapes[0],1);
+        player.GetComponent<CharacterController>().IngredientsUsed();
     }
 }

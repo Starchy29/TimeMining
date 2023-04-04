@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 4240787056677588771}
   m_Layer: 0
   m_Name: RobotTriggerCollider
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
