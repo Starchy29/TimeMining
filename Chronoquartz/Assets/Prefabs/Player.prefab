@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7054276640496612716}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -104,10 +104,10 @@ MonoBehaviour:
   charSpeed: 6
   decelRate: 0.75
   speedIncrease: 0
-  shardCapacity: 100
-  gemCapacity: 100
+  ingredientCapacity: 0
   shopShard: []
   inventoryShard: []
+  CookieManager: {fileID: 0}
 --- !u!50 &636886701828528030
 Rigidbody2D:
   serializedVersion: 4
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 4240787056677588771}
   m_Layer: 0
   m_Name: RobotTriggerCollider
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

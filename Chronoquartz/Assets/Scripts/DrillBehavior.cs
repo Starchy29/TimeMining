@@ -30,6 +30,7 @@ public class DrillBehavior : MonoBehaviour
     [HideInInspector] public float MiningTime { get; set; }
     [HideInInspector] public int OresGathered { get; private set; }
     [HideInInspector] public CaveGenerator GridRef { get; set; }
+    [HideInInspector] public WallType upcomingWall;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,7 +69,7 @@ public class DrillBehavior : MonoBehaviour
     public void WallDetection()
     {
         currentWallIndex = GridRef.GetTilemapPos(movePoint.position);
-        WallType upcomingWall = GridRef.GetWallType(currentWallIndex);
+        upcomingWall = GridRef.GetWallType(currentWallIndex);
         switch (upcomingWall)
         {
 
@@ -78,8 +79,8 @@ public class DrillBehavior : MonoBehaviour
                 break;
 
             // Mine the ore
-            case WallType.SpeedCrystal:
-            case WallType.ReverseCrystal:
+            case WallType.Sugar:
+            case WallType.Chocolate:
                 drillState = DrillState.Mining;
                 movePoint.position = transform.position;
            
@@ -136,7 +137,7 @@ public class DrillBehavior : MonoBehaviour
         if (collision.gameObject.tag == "Player" && drillState == DrillState.Idle)
         {
             movePoint.parent = this.gameObject.transform;
-            GameObject.Find("DrillManager").GetComponent<DrillManager>().removeDrill(this);
+            GameObject.Find("DrillManager").GetComponent<DrillManager>().removeDrill(this,upcomingWall);
         }
         
         if (collision.gameObject.tag == "Robot")

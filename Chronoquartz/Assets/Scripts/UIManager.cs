@@ -18,15 +18,16 @@ public class UIManager : MonoBehaviour
     public GameObject ingredientContainer;
     public GameObject shapeBase;
     public GameObject shapeContainer;
+    public GameObject[] ingredientNumbers;
 
     public Sprite defaultImg;
 
     [SerializeField] public Sprite[] cookieImg;
-    private Dictionary<string, string> cookieFacts = new Dictionary<string, string>();
+    [SerializeField] public GameObject[] cookieCounts;
 
+    private Dictionary<string, string> cookieFacts = new Dictionary<string, string>();
     //cookieType + ingredient
     private Dictionary<string, int> cookieIngredients = new Dictionary<string, int>();
-
     //cookieType + shape for key
     private Dictionary<string, int> cookieSupply = new Dictionary<string, int>();
 
@@ -39,13 +40,13 @@ public class UIManager : MonoBehaviour
     /// </summary>
     void Start()
     {
-        unlockedShapes.Add("Circle");
+        
 
         ingredients.Add("chocolate");
+        ingredients.Add("flour");
         ingredients.Add("sugar");
         ingredients.Add("oatmeal");
-
-        CreateAllCookies();
+        
 
         foreach (GameObject window in windows)
         {
@@ -318,29 +319,53 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void CreateAllCookies()
-    {
+    public void CreateAllCookies(Dictionary<string,int>[] cookieRecipes)
+    {/*
         Dictionary<string, int> CCCookie = new Dictionary<string, int>();
         CCCookie.Add("chocolate", 10);
         CCCookie.Add("sugar", 5);
-
-        CreateCookie("chocolatechip", CCCookie, "Indulge in a heavenly blend of warm, gooey cookie dough and rich, creamy chocolate chips with every bite of a chocolate chip cookie.");
-
+        CCCookie.Add("flour", 5);
+        */
+        unlockedShapes.Add("Circle");
+        CreateCookie("chocolatechip", cookieRecipes[0], "Indulge in a heavenly blend of warm, gooey cookie dough and rich, creamy chocolate chips with every bite of a chocolate chip cookie.");
+        /*
         Dictionary<string, int> SugerCookie = new Dictionary<string, int>();
         SugerCookie.Add("sugar", 10);
-
-        CreateCookie("sugarcookie", SugerCookie, "The modern sugar cookie was originally called the Nazareth Sugar Cookie, after German Protestants who settled in Nazareth, Pennsylvania, and improved the recipe.");
-
+        SugerCookie.Add("flour", 5);
+        */
+        CreateCookie("sugarcookie", cookieRecipes[1], "The modern sugar cookie was originally called the Nazareth Sugar Cookie, after German Protestants who settled in Nazareth, Pennsylvania, and improved the recipe.");
+        /*
         Dictionary<string, int> OatmealCookie = new Dictionary<string, int>();
         OatmealCookie.Add("oatmeal", 10);
         OatmealCookie.Add("sugar", 5);
-
-        CreateCookie("oatmealcookie", OatmealCookie, "Oatmeal cookies are the #1 non-cereal usage for oatmeal, followed by meatloaf and fruit crisp. Oatmeal is heart healthy and March 19th is National Oatmeal Cookie Day.");
+        OatmealCookie.Add("flour", 5);
+        */
+        CreateCookie("oatmealcookie", cookieRecipes[2], "Oatmeal cookies are the #1 non-cereal usage for oatmeal, followed by meatloaf and fruit crisp. Oatmeal is heart healthy and March 19th is National Oatmeal Cookie Day.");
     }
 
     public void purchasePremium(GameObject successText)
     {
         isPremium = true;
         successText.SetActive(true);
+    }
+
+    public void UpdatePantry(int[] ingredients)
+    {
+        for(int i = 0; i < 3; i++)
+        ingredientNumbers[i].GetComponent<TextMeshProUGUI>().text = ingredients[i].ToString();
+    }
+
+    public void UpdateCookieCount(string cookietype, string cookieshape, int cookieCount)
+    {
+        Debug.Log("Cookie count: " + cookieCount);
+        cookieSupply[cookietype + cookieshape] += cookieCount;
+        foreach(GameObject cookieNums in cookieCounts)
+        {
+            if(cookieNums.name.ToLower() == cookietype + "num")
+            {
+                int cookieTotals = int.Parse(cookieNums.GetComponent<TextMeshProUGUI>().text) + cookieCount;
+                cookieNums.GetComponent<TextMeshProUGUI>().text = cookieTotals.ToString();
+            }
+        }
     }
 }
