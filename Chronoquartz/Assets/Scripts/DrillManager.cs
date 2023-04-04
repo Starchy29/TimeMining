@@ -95,6 +95,7 @@ public class DrillManager : MonoBehaviour
     public void ActivateSugarCookie()
     {
         Alerts.AddAlert("Sugar Boost Activate!");
+        sugarBoost = true;
         foreach (var drill in activeDrills)
         {
             drill.ToggleSpeedBoost(true);
@@ -105,6 +106,7 @@ public class DrillManager : MonoBehaviour
     public void ActivateChocolateCookie()
     {
         Alerts.AddAlert("Chocolate Chunk Boost Activate!");
+        chocolateBoost = true;
         foreach (var drill in activeDrills)
         {
             drill.ToggleResourceBoost(true);
@@ -114,6 +116,7 @@ public class DrillManager : MonoBehaviour
     public void ActivateOatmealCookie()
     {
         Alerts.AddAlert("Healthy Oatmeal Boost Activate!");
+        oatmealBoost = true;
         foreach (var drill in activeDrills)
         {
             drill.BoostedInactiveTimer(true);
@@ -195,15 +198,19 @@ public class DrillManager : MonoBehaviour
         drill.transform.position = pos;
         drill.transform.Rotate(new Vector3(0,0,dir));
         DrillBehavior drillBehaviord = drill.GetComponent<DrillBehavior>();
-        if (sugarBoost) { drillBehaviord.ToggleSpeedBoost(true); }
-        if (chocolateBoost) { drillBehaviord.ToggleResourceBoost(true); }
-        if (oatmealBoost) { drillBehaviord.BoostedInactiveTimer(true); }
+
 
         // Set it's defaluts
+        drillBehaviord.DeployDrill();
         drillBehaviord.drillState = DrillBehavior.DrillState.Moving;
         drillBehaviord.MiningTime = defaultMiningTimes;
         drillBehaviord.DrillingTime = defaultDrillingTimes;
         drillBehaviord.GridRef = GameObject.Find("Grid").GetComponent<CaveGenerator>();
+
+       
+        if (sugarBoost) { drillBehaviord.ToggleSpeedBoost(true); }
+        if (chocolateBoost) { drillBehaviord.ToggleResourceBoost(true); }
+        if (oatmealBoost) { drillBehaviord.BoostedInactiveTimer(true); }
 
         activeDrills.Add(drill.GetComponent<DrillBehavior>());
     }
@@ -213,7 +220,7 @@ public class DrillManager : MonoBehaviour
         DrillsAvailable++;
         int[] ores = { drill.OresGathered,drill.OresGathered, drill.OresGathered}; 
         player.UpdateShards(ores);
-        //activeDrills.Remove(drill);
+        activeDrills.Remove(drill);
         Alerts.AddAlert("Drill removed!");
         Destroy(drill.gameObject);
     }
@@ -236,7 +243,7 @@ public class DrillManager : MonoBehaviour
                     break;
 
                 case DrillBehavior.DrillState.Idle:
-                    drill.InactiveTimer();
+                    if(drill != null) drill.InactiveTimer();
                     break;
 
                 case DrillBehavior.DrillState.Inactive:
