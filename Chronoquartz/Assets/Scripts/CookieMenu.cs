@@ -112,6 +112,10 @@ public class CookieMenu : MonoBehaviour
     {
         Debug.Log("Button name is " + button.name);
         UIManager.GetComponent<UIManager>().UpdateCookieCount(button.name, shapes[0], 1);
-        player.GetComponent<CharacterController>().IngredientsUsed();
+        foreach(Recipe r in recipes)
+            if(r.name == button.name)
+                player.GetComponent<CharacterController>().IngredientsUsed(r.sugarcubes,r.oatmeal, r.chocolate);
+        UpdateButtons();
+
     }
 }

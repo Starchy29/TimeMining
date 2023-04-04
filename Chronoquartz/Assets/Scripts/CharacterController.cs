@@ -115,6 +115,9 @@ public class CharacterController : MonoBehaviour
         
     }
 
+
+        
+
     public int[] ReturnInventory()
     {
         return ingredients;
@@ -125,9 +128,15 @@ public class CharacterController : MonoBehaviour
         nearOven = b;
     }
     
-    public void IngredientsUsed()
-    {
 
+    
+
+    public void IngredientsUsed(int s, int o, int c)
+    {
+        ingredients[0] -= s;
+        ingredients[1] -= o;
+        ingredients[2] -= c;
+        UpdateInventoryUI();
     }
 
     public void SetPlayerMoveable(bool moveable)
