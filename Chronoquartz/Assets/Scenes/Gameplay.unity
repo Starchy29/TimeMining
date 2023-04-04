@@ -377,8 +377,9 @@ MonoBehaviour:
   baseHeight: 7
   groundTile: {fileID: 11400000, guid: 1c00d4e827676ab4bab56a67319952c0, type: 2}
   wallTile: {fileID: 11400000, guid: a78f7ac06852d99499fa5d98a3a95a9a, type: 2}
-  speedCrystalTile: {fileID: 11400000, guid: 01c86565e092fa84ca80d9732fb6c7c3, type: 2}
-  reverseCrystalTile: {fileID: 11400000, guid: b8fe4c1ff89a9de4b928a59e3cc7d506, type: 2}
+  sugarTile: {fileID: 11400000, guid: 01c86565e092fa84ca80d9732fb6c7c3, type: 2}
+  chocolateTile: {fileID: 11400000, guid: b8fe4c1ff89a9de4b928a59e3cc7d506, type: 2}
+  oatmealTile: {fileID: 11400000, guid: a9ce0c0832a94e945924f3bdb5f9316f, type: 2}
   bedrockTile: {fileID: 11400000, guid: 3033258cedefdee4c95e422ae07732c7, type: 2}
   lightCracks: {fileID: 2327840451920673087, guid: 23742eac53dbb154b9fa0e7cf6dba4e3, type: 3}
   heavyCracks: {fileID: 3534761598737168589, guid: e5633f91f2954164cbf95de0f3337802, type: 3}
@@ -1741,6 +1742,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 636886701828528029, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
       propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 636886701828528030, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
+      propertyPath: m_Constraints
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}

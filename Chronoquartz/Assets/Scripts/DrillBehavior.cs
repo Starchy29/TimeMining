@@ -128,8 +128,8 @@ public class DrillBehavior : MonoBehaviour
                 break;
 
             // Mine the ore
-            case WallType.SpeedCrystal:
-            case WallType.ReverseCrystal:
+            case WallType.Sugar:
+            case WallType.Chocolate:
                 drillState = DrillState.Mining;
                 movePoint.position = transform.position;
 

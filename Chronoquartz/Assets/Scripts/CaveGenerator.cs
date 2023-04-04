@@ -11,8 +11,9 @@ public class CaveGenerator : MonoBehaviour
     [SerializeField] private int baseHeight;
     [SerializeField] private Tile groundTile;
     [SerializeField] private Tile wallTile;
-    [SerializeField] private Tile speedCrystalTile;
-    [SerializeField] private Tile reverseCrystalTile;
+    [SerializeField] private Tile sugarTile;
+    [SerializeField] private Tile chocolateTile;
+    [SerializeField] private Tile oatmealTile;
     [SerializeField] private Tile bedrockTile;
     [SerializeField] private GameObject lightCracks;
     [SerializeField] private GameObject heavyCracks;
@@ -20,19 +21,34 @@ public class CaveGenerator : MonoBehaviour
     private Tilemap floorTiles;
     private Tilemap wallTiles;
     private WallData[,] dataGrid;
+    private Dictionary<Sprite, WallType> spriteToWallType;
+    private int difficulty;
 
     void Start()
     {
-        transform.position = new Vector3(-caveWidth / 2.0f, -caveWidth / 2.0f, 0); // shift the grid so the base is centered
-
-        Dictionary<Sprite, WallType> spriteToWallType = new Dictionary<Sprite, WallType>();
+        spriteToWallType = new Dictionary<Sprite, WallType>();
         spriteToWallType[wallTile.sprite] = WallType.Rock;
-        spriteToWallType[speedCrystalTile.sprite] = WallType.SpeedCrystal;
-        spriteToWallType[reverseCrystalTile.sprite] = WallType.ReverseCrystal;
+        spriteToWallType[sugarTile.sprite] = WallType.Sugar;
+        spriteToWallType[chocolateTile.sprite] = WallType.Chocolate;
+        spriteToWallType[oatmealTile.sprite] = WallType.Oatmeal;
         spriteToWallType[bedrockTile.sprite] = WallType.Bedrock;
 
         floorTiles = transform.GetChild(0).GetComponent<Tilemap>();
         wallTiles = transform.GetChild(1).GetComponent<Tilemap>();
+
+        transform.position = new Vector3(-caveWidth / 2.0f, -caveWidth / 2.0f, 0); // shift the grid so the base is centered
+
+        difficulty = 0;
+        Generate();
+    }
+
+    private void Generate()
+    {
+        float chanceStep = 0.04f;
+        float ingredientChance = 0.2f - difficulty * chanceStep;
+        if(ingredientChance < chanceStep) {
+            ingredientChance = chanceStep;
+        }
 
         dataGrid = new WallData[caveWidth, caveWidth];
         for(int y = 0; y < caveWidth; y++) {
@@ -50,9 +66,21 @@ public class CaveGenerator : MonoBehaviour
                     // bedrock border
                     chosenTile = bedrockTile;
                 }
-                else if(Random.value < 0.1f) {
-                    // crystal
-                    chosenTile = (Random.value < 0.5f ? speedCrystalTile : reverseCrystalTile);
+                else if(Random.value < ingredientChance) {
+                    // cooking ingredient
+                    float rand = Random.value;
+                    if(rand < 0.5f) {
+                        // 50% chance sugar
+                        chosenTile = sugarTile;
+                    }
+                    else if(rand > 0.75) {
+                        // 25% chance chocolate
+                        chosenTile = chocolateTile;
+                    }
+                    else {
+                        // 25% chance oatmeal
+                        chosenTile = oatmealTile;
+                    }
                 } 
                 else {
                     // rock wall

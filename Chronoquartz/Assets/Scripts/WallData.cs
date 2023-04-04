@@ -5,8 +5,9 @@ using UnityEngine;
 public enum WallType {
     None,
     Rock,
-    SpeedCrystal,
-    ReverseCrystal,
+    Sugar,
+    Chocolate,
+    Oatmeal,
     Bedrock
 }
 
@@ -32,8 +33,8 @@ public class WallData
             case WallType.Rock:
                 Health = 1.0f;
                 break;
-            case WallType.SpeedCrystal:
-            case WallType.ReverseCrystal:
+            case WallType.Sugar:
+            case WallType.Chocolate:
                 Health = 2.0f;
                 break;
         }
