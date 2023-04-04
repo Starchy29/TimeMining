@@ -79,11 +79,11 @@ public class CookieMenu : MonoBehaviour
     {
         if (b)
         {
-            recipeButtons[i].GetComponent<Button>().enabled = true;
+            recipeButtons[i].GetComponent<Button>().interactable = true;
         }
         else
         {
-            recipeButtons[i].GetComponent<Button>().enabled = false;
+            recipeButtons[i].GetComponent<Button>().interactable = false;
         }
 
     }
