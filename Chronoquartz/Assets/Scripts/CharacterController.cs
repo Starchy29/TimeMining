@@ -15,43 +15,59 @@ public class CharacterController : MonoBehaviour
     private int[] ingredients = new int[3] { 0,0,0}; //sugar,oatmeal,chocolate
     [SerializeField] private int ingredientCapacity;
     private int ingredientCount = 3;
-    
+    private GameObject UIManager;
 
     private bool nearOven = false;
+    private bool canMove = true;
 
     public GameObject[] shopShard;
     public GameObject[] inventoryShard;
     public GameObject CookieManager;
+    
 
     void Start()
     {
         rgb = gameObject.GetComponent<Rigidbody2D>();
-
+        UIManager = GameObject.Find("UIManager");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+        if (canMove)
         {
-            rgb.velocity = Vector2.Lerp(rgb.velocity, Vector2.zero, decelRate);
+            if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
+            {
+                rgb.velocity = Vector2.Lerp(rgb.velocity, Vector2.zero, decelRate);
+            }
+            else
+            {
+                rgb.velocity = new Vector2(charSpeed * Input.GetAxis("Horizontal"), charSpeed * Input.GetAxis("Vertical"));
+
+            }
+
+            if (new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) != Vector2.zero)
+            {
+                Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 180.0f * Time.deltaTime);
+            }
+
+            if (nearOven)
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    canMove = false;
+                    CookieManager.SetActive(true);
+                }
         }
         else
         {
-            rgb.velocity = new Vector2(charSpeed * Input.GetAxis("Horizontal"), charSpeed * Input.GetAxis("Vertical"));
-            
+            if (nearOven)
+                if (Input.GetKeyDown(KeyCode.Escape))
+                {
+                    canMove = true;
+                    CookieManager.SetActive(false);
+                }
         }
-
-        if (new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) != Vector2.zero)
-        {
-            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 180.0f * Time.deltaTime);
-        }
-
-        if (nearOven)
-            if (Input.GetKeyDown(KeyCode.E))
-                CookieManager.SetActive(true);
-        
     }
 
     void IncreaseSpeed()
@@ -78,6 +94,7 @@ public class CharacterController : MonoBehaviour
                 r[i] -= ingredientCapacity;
             }
         UpdateInventoryUI();
+        Debug.Log("Inventory is now: " + ingredients[0] + " " + ingredients[1] + " " + ingredients[2]);
         return r;
     }
 
@@ -85,10 +102,7 @@ public class CharacterController : MonoBehaviour
 
     void UpdateInventoryUI()
     {
-        //Debug.Log(GameObject.Find("Player Inventory").transform.Find("Red"));
-        shopShard[2].gameObject.GetComponent<TextMeshProUGUI>().text = ingredients[0].ToString();
-        shopShard[0].gameObject.GetComponent<TextMeshProUGUI>().text = ingredients[1].ToString();
-        shopShard[1].gameObject.GetComponent<TextMeshProUGUI>().text = ingredients[2].ToString();
+        UIManager.GetComponent<UIManager>().UpdatePantry(ingredients);
         
     }
 

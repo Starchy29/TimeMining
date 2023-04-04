@@ -18,6 +18,7 @@ public class UIManager : MonoBehaviour
     public GameObject ingredientContainer;
     public GameObject shapeBase;
     public GameObject shapeContainer;
+    public GameObject[] ingredientNumbers;
 
     public Sprite defaultImg;
 
@@ -37,7 +38,7 @@ public class UIManager : MonoBehaviour
     /// </summary>
     void Start()
     {
-        unlockedShapes.Add("Circle");
+        
 
         ingredients.Add("chocolate");
         ingredients.Add("flour");
@@ -323,7 +324,7 @@ public class UIManager : MonoBehaviour
         CCCookie.Add("sugar", 5);
         CCCookie.Add("flour", 5);
         */
-        
+        unlockedShapes.Add("Circle");
         CreateCookie("chocolatechip", cookieRecipes[0], "Indulge in a heavenly blend of warm, gooey cookie dough and rich, creamy chocolate chips with every bite of a chocolate chip cookie.");
         /*
         Dictionary<string, int> SugerCookie = new Dictionary<string, int>();
@@ -344,5 +345,16 @@ public class UIManager : MonoBehaviour
     {
         isPremium = true;
         successText.SetActive(true);
+    }
+
+    public void UpdatePantry(int[] ingredients)
+    {
+        for(int i = 0; i < 3; i++)
+        ingredientNumbers[i].GetComponent<TextMeshProUGUI>().text = ingredients[i].ToString();
+    }
+
+    public void UpdateCookieCount(string cookieShapeAndType, int cookieCount)
+    {
+        cookieSupply[cookieShapeAndType] += cookieCount;
     }
 }

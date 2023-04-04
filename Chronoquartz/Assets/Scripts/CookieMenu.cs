@@ -37,6 +37,8 @@ public class CookieMenu : MonoBehaviour
     [SerializeField]
     private Recipe[] recipes;
 
+    [SerializeField]
+    private string[] shapes;
     
     public GameObject[] recipeButtons;
     // Start is called before the first frame update
@@ -63,8 +65,7 @@ public class CookieMenu : MonoBehaviour
             if (r.isEnough(playerIngredients))
                 ActivateRecipeButton(index,true);
             else
-
-            index++;
+                index++;
         }
     }
 
@@ -100,5 +101,11 @@ public class CookieMenu : MonoBehaviour
         }
         index = 0;
         UIManager.GetComponent<UIManager>().CreateAllCookies(recipeDictionary);
+    }
+
+    public void ButtonClicked(GameObject button)
+    {
+        Debug.Log("Button name is " + button.name);
+        UIManager.GetComponent<UIManager>().UpdateCookieCount(shapes[0]+button.name,1);
     }
 }

@@ -12273,6 +12273,10 @@ MonoBehaviour:
   ingredientContainer: {fileID: 44814335}
   shapeBase: {fileID: 812908682810918207, guid: 7e4321785865c9743ad67c8070153ad4, type: 3}
   shapeContainer: {fileID: 739605998}
+  ingredientNumbers:
+  - {fileID: 596892692}
+  - {fileID: 112961925}
+  - {fileID: 65007452}
   defaultImg: {fileID: 21300000, guid: 444e9ec0d8547ee47b46e012bde707b7, type: 3}
   cookieImg:
   - {fileID: 21300000, guid: 444e9ec0d8547ee47b46e012bde707b7, type: 3}

@@ -4,21 +4,24 @@ using UnityEngine;
 
 public class Oven : MonoBehaviour
 {
-    // Start is called before the first frame update
+    
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {
-            collision.gameObject.transform.parent.gameObject.GetComponent<CharacterController>().NearOven(true);
+            collision.gameObject.GetComponent<CharacterController>().NearOven(true);
+            transform.GetChild(0).gameObject.SetActive(true);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        collision.gameObject.transform.parent.gameObject.GetComponent<CharacterController>().NearOven(false);
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<CharacterController>().NearOven(false);
+            transform.GetChild(0).gameObject.SetActive(false);
+        }
     }
 
-    public void ButtonClicked(GameObject button)
-    {
-        Debug.Log("Button name is " + button.name);
-    }
+   
 }
