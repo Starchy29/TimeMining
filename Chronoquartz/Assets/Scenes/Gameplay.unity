@@ -375,12 +375,12 @@ MonoBehaviour:
   caveWidth: 60
   baseWidth: 11
   baseHeight: 7
-  groundTile: {fileID: 11400000, guid: 1c00d4e827676ab4bab56a67319952c0, type: 2}
-  wallTile: {fileID: 11400000, guid: a78f7ac06852d99499fa5d98a3a95a9a, type: 2}
-  sugarTile: {fileID: 11400000, guid: 01c86565e092fa84ca80d9732fb6c7c3, type: 2}
-  chocolateTile: {fileID: 11400000, guid: b8fe4c1ff89a9de4b928a59e3cc7d506, type: 2}
-  oatmealTile: {fileID: 11400000, guid: a9ce0c0832a94e945924f3bdb5f9316f, type: 2}
-  bedrockTile: {fileID: 11400000, guid: 3033258cedefdee4c95e422ae07732c7, type: 2}
+  groundTile: {fileID: 11400000, guid: 406b16cdad5e4e34d99b5dac6f0423f4, type: 2}
+  wallTile: {fileID: 11400000, guid: 3ac7e5a2c28837442930a263f4e65e21, type: 2}
+  sugarTile: {fileID: 11400000, guid: c3a0ace4194d776499ed05bbbfe5c33c, type: 2}
+  chocolateTile: {fileID: 11400000, guid: 31189ce30355c9b4b81316591cfa6620, type: 2}
+  oatmealTile: {fileID: 11400000, guid: c1656cc8a10fb154f815fbe885df5aa0, type: 2}
+  bedrockTile: {fileID: 11400000, guid: 7b0e7d2412a12bf498501e074e77a272, type: 2}
   lightCracks: {fileID: 2327840451920673087, guid: 23742eac53dbb154b9fa0e7cf6dba4e3, type: 3}
   heavyCracks: {fileID: 3534761598737168589, guid: e5633f91f2954164cbf95de0f3337802, type: 3}
 --- !u!1 &381939679
@@ -872,22 +872,22 @@ Tilemap:
   m_TileMatrixArray:
   - m_RefCount: 0
     m_Data:
-      e00: -1.3860202e-13
+      e00: 0.13897395
       e01: 0
-      e02: -1.3959018e-38
-      e03: -1.3959018e-38
-      e10: 6.8e-43
+      e02: 2.5749843e-19
+      e03: 2.5749843e-19
+      e10: 8.53e-43
       e11: 0
-      e12: 6.8e-43
-      e13: 6.8e-43
-      e20: -2.6875935e-14
+      e12: 8.5e-43
+      e13: 8.5e-43
+      e20: -1.052844e+28
       e21: 1e-45
-      e22: 1.125915e-28
-      e23: -3.798262e+11
-      e30: 4.5904e-41
+      e22: -4.7142167e-29
+      e23: -4.6594817e-10
+      e30: 4.5905e-41
       e31: 0
-      e32: 6.81e-43
-      e33: 6.81e-43
+      e32: 8.5e-43
+      e33: 8.53e-43
   m_TileColorArray:
   - m_RefCount: 0
     m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
@@ -1281,7 +1281,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -2120,6 +2120,90 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 342df339ab7a9f44da7cfa9b2c1038b2, type: 3}
+--- !u!1 &1934834584
+GameObject:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1934834586}
+  - component: {fileID: 1934834585}
+  m_Layer: 0
+  m_Name: choco_rock
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!212 &1934834585
+SpriteRenderer:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934834584}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: eed9edadd7767034bbcebdd01ab2c4dc, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1.28, y: 1.28}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!4 &1934834586
+Transform:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1934834584}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 17.299719, y: -3.5012293, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2033889942 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5607855101374519835, guid: 81c58cd2c35955b4f9fd3d332e981280, type: 3}

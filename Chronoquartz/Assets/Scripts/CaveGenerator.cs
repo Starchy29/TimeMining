@@ -24,6 +24,9 @@ public class CaveGenerator : MonoBehaviour
     private Dictionary<Sprite, WallType> spriteToWallType;
     private int difficulty;
 
+    private float timeLeftSecs; // time left in the day
+    //private Dictionary<>
+
     void Start()
     {
         spriteToWallType = new Dictionary<Sprite, WallType>();
@@ -38,8 +41,8 @@ public class CaveGenerator : MonoBehaviour
 
         transform.position = new Vector3(-caveWidth / 2.0f, -caveWidth / 2.0f, 0); // shift the grid so the base is centered
 
-        difficulty = 0;
-        Generate();
+        difficulty = -1;
+        NextDay();
     }
 
     private void Generate()
@@ -160,5 +163,15 @@ public class CaveGenerator : MonoBehaviour
     public Vector2Int GetTilemapPos(Vector3 worldPosition) {
         Vector3Int cell = floorTiles.WorldToCell(worldPosition);
         return new Vector2Int(cell.x, cell.y);
+    }
+
+    public void NextDay() {
+        difficulty++;
+        timeLeftSecs = 60f * 5f;
+
+
+
+        // create cave
+        Generate();
     }
 }
