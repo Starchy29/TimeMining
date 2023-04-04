@@ -14,16 +14,26 @@ public class DrillManager : MonoBehaviour
     [SerializeField] float defaultDrillingTimes;
     [SerializeField] float defaultMiningTimes;
     CharacterController player;
-    AlertManager alerts;
+    public AlertManager Alerts { get; set; }
     [field: SerializeField]
     public int DrillsAvailable { get; set; }
+
+    private bool sugarBoost;
+    [SerializeField] float sugarTimer;
+    private float currentSugarTimer;
+    private bool chocolateBoost;
+    [SerializeField] float chocolateTimer;
+    private float currentChocolateTimer;
+    private bool oatmealBoost;
+    [SerializeField] float oatmealTimer;
+    private float currentOatmealTimer;
 
     // Start is called before the first frame update
     void Start()
     {
         activeDrills= new List<DrillBehavior>();
         player = GameObject.Find("Player").GetComponent<CharacterController>();
-        alerts = GameObject.Find("UIManager").GetComponent<AlertManager>();
+        Alerts = GameObject.Find("UIManager").GetComponent<AlertManager>();
     }
 
     // Update is called once per frame
@@ -68,10 +78,112 @@ public class DrillManager : MonoBehaviour
             
             // Summon it to the nearest 90% angle
             SummonDrill(drillSpawn, (Mathf.Round(player.transform.eulerAngles.z / 90) * 90));
-            alerts.AddAlert("Deploying Drill!");
+            
         }
 
         MoveActiveDrills();
+        UseCookie();
+        BoostedTimer();
+
+    }
+
+    public void IncrimentBotBuild()
+    {
+        DrillsAvailable++;
+    }
+
+    public void ActivateSugarCookie()
+    {
+        Alerts.AddAlert("Sugar Boost Activate!");
+        sugarBoost = true;
+        foreach (var drill in activeDrills)
+        {
+            drill.ToggleSpeedBoost(true);
+        }
+    }
+
+
+    public void ActivateChocolateCookie()
+    {
+        Alerts.AddAlert("Chocolate Chunk Boost Activate!");
+        chocolateBoost = true;
+        foreach (var drill in activeDrills)
+        {
+            drill.ToggleResourceBoost(true);
+        }
+    }
+
+    public void ActivateOatmealCookie()
+    {
+        Alerts.AddAlert("Healthy Oatmeal Boost Activate!");
+        oatmealBoost = true;
+        foreach (var drill in activeDrills)
+        {
+            drill.BoostedInactiveTimer(true);
+        }
+    }
+
+
+    void UseCookie()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1) && !sugarBoost)
+        {
+            ActivateSugarCookie();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2) && !chocolateBoost)
+        {
+            ActivateChocolateCookie();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3) && !oatmealBoost)
+        {
+            ActivateOatmealCookie();
+        }
+    }
+
+    void BoostedTimer()
+    {
+        if (sugarBoost)
+        {
+            currentSugarTimer += Time.deltaTime;
+            if (sugarTimer <= currentSugarTimer)
+            {
+                sugarBoost = false;
+                Alerts.AddAlert("Sugar Boost Deactivate!");
+                foreach (var drill in activeDrills)
+                {
+                    drill.ToggleSpeedBoost(false);
+                }
+            }
+        }
+        if (chocolateBoost)
+        {
+            currentChocolateTimer += Time.deltaTime;
+            if (chocolateTimer <= currentChocolateTimer)
+            {
+                chocolateBoost = false;
+                Alerts.AddAlert("Chocolate Chunk Deactivate!");
+                foreach (var drill in activeDrills)
+                {
+                    drill.ToggleResourceBoost(false);
+                }
+            }
+        }
+        if (oatmealBoost)
+        {
+            currentOatmealTimer += Time.deltaTime;
+            if (oatmealTimer <= currentOatmealTimer)
+            {
+                oatmealBoost = false;
+                Alerts.AddAlert("Healthy Oatmeal Deactivate!");
+                foreach (var drill in activeDrills)
+                {
+                    drill.BoostedInactiveTimer(false);
+                }
+            }
+        }
+
     }
 
     // Summon a drill based on position and direction
@@ -80,21 +192,30 @@ public class DrillManager : MonoBehaviour
         if (DrillsAvailable == 0) return;
         DrillsAvailable--;
 
+        Alerts.AddAlert("Deploying Drill!");
+
         GameObject drill = Instantiate(drillPrefab);
         drill.transform.position = pos;
         drill.transform.Rotate(new Vector3(0,0,dir));
         DrillBehavior drillBehaviord = drill.GetComponent<DrillBehavior>();
-        
+
+
         // Set it's defaluts
+        drillBehaviord.DeployDrill();
         drillBehaviord.drillState = DrillBehavior.DrillState.Moving;
         drillBehaviord.MiningTime = defaultMiningTimes;
         drillBehaviord.DrillingTime = defaultDrillingTimes;
         drillBehaviord.GridRef = GameObject.Find("Grid").GetComponent<CaveGenerator>();
 
+       
+        if (sugarBoost) { drillBehaviord.ToggleSpeedBoost(true); }
+        if (chocolateBoost) { drillBehaviord.ToggleResourceBoost(true); }
+        if (oatmealBoost) { drillBehaviord.BoostedInactiveTimer(true); }
+
         activeDrills.Add(drill.GetComponent<DrillBehavior>());
     }
 
-    public void removeDrill(DrillBehavior drill, WallType walltype)
+    public void removeDrill(DrillBehavior drill)
     {
         DrillsAvailable++;
         int[] ores = new int[3];
@@ -119,7 +240,7 @@ public class DrillManager : MonoBehaviour
         
         player.UpdateIngredients(ores);
         activeDrills.Remove(drill);
-        alerts.AddAlert("Drill removed!");
+        Alerts.AddAlert("Drill removed!");
         Destroy(drill.gameObject);
     }
 
@@ -140,8 +261,11 @@ public class DrillManager : MonoBehaviour
                     drill.Move();
                     break;
 
-                // Do nothing
                 case DrillBehavior.DrillState.Idle:
+                    if(drill != null) drill.InactiveTimer();
+                    break;
+
+                case DrillBehavior.DrillState.Inactive:
                     break;
             }
         }

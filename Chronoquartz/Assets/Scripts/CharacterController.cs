@@ -23,13 +23,9 @@ public class CharacterController : MonoBehaviour
 
     public GameObject[] shopShard;
     public GameObject[] inventoryShard;
-    public GameObject CookieManager;
-    
 
     void Start()
     {
-        CookieManager = GameObject.Find("BakingMenu");
-        CookieManager.SetActive(false);
         rgb = gameObject.GetComponent<Rigidbody2D>();
         UIManager = GameObject.Find("UIManager");
         Premium = false;
@@ -40,43 +36,22 @@ public class CharacterController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canMove)
+        if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
         {
-            if (Input.GetAxis("Horizontal") == 0 && Input.GetAxis("Vertical") == 0)
-            {
-                rgb.velocity = Vector2.Lerp(rgb.velocity, Vector2.zero, decelRate);
-            }
-            else
-            {
-                rgb.velocity = new Vector2(charSpeed * Input.GetAxis("Horizontal"), charSpeed * Input.GetAxis("Vertical"));
-
-            }
-
-            if (new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) != Vector2.zero)
-            {
-                Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
-                transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 180.0f * Time.deltaTime);
-            }
-
-            if (nearOven)
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    canMove = false;
-                    rgb.velocity = Vector2.zero;
-                   
-                    CookieManager.SetActive(true);
-                    CookieManager.GetComponent<CookieMenu>().UpdateButtons();
-                }
+            rgb.velocity = Vector2.Lerp(rgb.velocity, Vector2.zero, decelRate);
         }
         else
         {
-            if (nearOven)
-                if (Input.GetKeyDown(KeyCode.E))
-                {
-                    canMove = true;
-                    CookieManager.SetActive(false);
-                }
+            rgb.velocity = new Vector2(charSpeed * Input.GetAxis("Horizontal"), charSpeed * Input.GetAxis("Vertical"));
+            
         }
+
+        if (new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")) != Vector2.zero)
+        {
+            Quaternion toRotation = Quaternion.LookRotation(Vector3.forward, new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical")));
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, 270.0f * Time.deltaTime);
+        }
+        
     }
 
     void IncreaseSpeed()
@@ -89,25 +64,39 @@ public class CharacterController : MonoBehaviour
         charSpeed -= speedIncrease;
     }
 
-    public int[] UpdateIngredients(int []r)
+    public int[] UpdateShards(int []r)
     {
-        for (int i = 0; i < ingredientCount; i++)
-            if (ingredients[i] + r[i] <= ingredientCapacity)
+        for (int i = 0; i < gemCount; i++)
+            if (shards[i] + r[i] <= shardCapacity)
             {
-                ingredients[i] += r[i];
+                shards[i] += r[i];
                 r[i] = 0;
             }
             else
             {
-                ingredients[i] = ingredientCapacity;
-                r[i] -= ingredientCapacity;
+                shards[i] = shardCapacity;
+                r[i] -= shardCapacity;
             }
         UpdateInventoryUI();
-        Debug.Log("Inventory is now: " + ingredients[0] + " " + ingredients[1] + " " + ingredients[2]);
         return r;
     }
 
-   
+    public int[] UpdateGems(int []r)
+    {
+        for (int i = 0; i < gemCount; i++)
+            if (gems[i] + r[i] <= gemCapacity)
+            {
+                gems[i] += r[i];
+                r[i] = 0;
+            }
+            else
+            {
+                gems[i] = gemCapacity;
+                r[i] -= gemCapacity;
+            }
+        UpdateInventoryUI();
+        return r;
+    }
 
     void UpdateInventoryUI()
     {
