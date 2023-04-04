@@ -30,6 +30,8 @@ public class UIManager : MonoBehaviour
 
     private GameObject titlescreen, inventory, cookieinfo, shop;
 
+    public bool isPremium = false;
+
     /// <summary>
     /// On start, close all scenes unless titlescreen
     /// </summary>
@@ -116,6 +118,37 @@ public class UIManager : MonoBehaviour
             } else
             {
                 window.SetActive(false);
+            }
+        }
+    }
+
+    public void openWindow(GameObject windowToOpen)
+    {
+        Console.WriteLine(windows);
+
+        foreach (GameObject window in windows)
+        {
+            if (window.Equals(windowToOpen))
+            {
+                // open said window
+                window.SetActive(true);
+            }
+        }
+    }
+
+    public void closeWindow(GameObject windowToClose)
+    {
+
+        foreach (GameObject window in windows)
+        {
+            if (window.Equals(windowToClose))
+            {
+                //close the window
+                window.SetActive(false);
+            }
+            else
+            {
+                //do nothingf
             }
         }
     }
@@ -305,5 +338,11 @@ public class UIManager : MonoBehaviour
         OatmealCookie.Add("flour", 5);
 
         CreateCookie("oatmealcookie", OatmealCookie, "Oatmeal cookies are the #1 non-cereal usage for oatmeal, followed by meatloaf and fruit crisp. Oatmeal is heart healthy and March 19th is National Oatmeal Cookie Day.");
+    }
+
+    public void purchasePremium(GameObject successText)
+    {
+        isPremium = true;
+        successText.SetActive(true);
     }
 }
