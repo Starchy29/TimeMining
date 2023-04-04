@@ -7,15 +7,13 @@ using UnityEngine.UI;
 public class Recipe
 {
     public string name;
-    public int flour;
     public int sugarcubes;
     public int oatmeal;
     public int chocolate;
 
-    public Recipe(string n, int f, int s, int o, int c)
+    public Recipe(string n, int s, int o, int c)
     {
         this.name = n;
-        flour = f;
         sugarcubes = s;
         oatmeal = o;
         chocolate = c;
@@ -23,7 +21,7 @@ public class Recipe
 
     public bool isEnough(int [] ing)
     {
-        if (ing[0] >= flour && ing[1] >= sugarcubes && ing[2] >= oatmeal && ing[3] >= chocolate)
+        if (ing[1] >= sugarcubes && ing[2] >= oatmeal && ing[3] >= chocolate)
             return true;
         else
             return false;
@@ -34,6 +32,7 @@ public class Recipe
 public class CookieMenu : MonoBehaviour
 {
     private GameObject player;
+    private GameObject UIManager;
 
     [SerializeField]
     private Recipe[] recipes;
@@ -43,8 +42,10 @@ public class CookieMenu : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        UpdateButtons();
+        UIManager = GameObject.Find("UIManager");
+        UpdateRecipeInfo();
         player = GameObject.FindGameObjectWithTag("Player");
+        UpdateButtons();
     }
 
     // Update is called once per frame
@@ -79,5 +80,25 @@ public class CookieMenu : MonoBehaviour
             recipeButtons[i].GetComponent<Button>().enabled = false;
         }
 
+    }
+
+    public void UpdateRecipeInfo()
+    {
+        Dictionary<string, int>[] recipeDictionary = new Dictionary<string, int>[3];
+        int index = 0;
+        Debug.Log(recipes[0].sugarcubes);
+        foreach(Recipe r in recipes)
+        {
+            recipeDictionary[index] = new Dictionary<string, int>();
+            if(r.sugarcubes>0)
+            recipeDictionary[index].Add("sugar", r.sugarcubes);
+            if(r.chocolate>0)
+            recipeDictionary[index].Add("chocolate", r.chocolate);
+            if(r.oatmeal>0)
+            recipeDictionary[index].Add("oatmeal", r.oatmeal);
+            index++;
+        }
+        index = 0;
+        UIManager.GetComponent<UIManager>().CreateAllCookies(recipeDictionary);
     }
 }

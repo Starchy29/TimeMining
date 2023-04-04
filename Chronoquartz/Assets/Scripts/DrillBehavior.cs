@@ -137,7 +137,7 @@ public class DrillBehavior : MonoBehaviour
         if (collision.gameObject.tag == "Player" && drillState == DrillState.Idle)
         {
             movePoint.parent = this.gameObject.transform;
-            GameObject.Find("DrillManager").GetComponent<DrillManager>().removeDrill(this);
+            GameObject.Find("DrillManager").GetComponent<DrillManager>().removeDrill(this,upcomingWall);
         }
         
         if (collision.gameObject.tag == "Robot")

@@ -12,10 +12,10 @@ public class CharacterController : MonoBehaviour
     [SerializeField] private float decelRate;
     private Rigidbody2D rgb;
     [SerializeField] private float speedIncrease;
-    private int[] ingredients = new int[4]; //flour,sugar,oatmeal,chocolate
+    private int[] ingredients = new int[3] { 0,0,0}; //sugar,oatmeal,chocolate
     [SerializeField] private int ingredientCapacity;
-    private int ingredientCount = 4;
-   
+    private int ingredientCount = 3;
+    
 
     private bool nearOven = false;
 

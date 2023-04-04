@@ -43,8 +43,7 @@ public class UIManager : MonoBehaviour
         ingredients.Add("flour");
         ingredients.Add("sugar");
         ingredients.Add("oatmeal");
-
-        CreateAllCookies();
+        
 
         foreach (GameObject window in windows)
         {
@@ -317,27 +316,28 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void CreateAllCookies()
-    {
+    public void CreateAllCookies(Dictionary<string,int>[] cookieRecipes)
+    {/*
         Dictionary<string, int> CCCookie = new Dictionary<string, int>();
         CCCookie.Add("chocolate", 10);
         CCCookie.Add("sugar", 5);
         CCCookie.Add("flour", 5);
-
-        CreateCookie("chocolatechip", CCCookie, "Indulge in a heavenly blend of warm, gooey cookie dough and rich, creamy chocolate chips with every bite of a chocolate chip cookie.");
-
+        */
+        
+        CreateCookie("chocolatechip", cookieRecipes[0], "Indulge in a heavenly blend of warm, gooey cookie dough and rich, creamy chocolate chips with every bite of a chocolate chip cookie.");
+        /*
         Dictionary<string, int> SugerCookie = new Dictionary<string, int>();
         SugerCookie.Add("sugar", 10);
         SugerCookie.Add("flour", 5);
-
-        CreateCookie("sugarcookie", SugerCookie, "The modern sugar cookie was originally called the Nazareth Sugar Cookie, after German Protestants who settled in Nazareth, Pennsylvania, and improved the recipe.");
-
+        */
+        CreateCookie("sugarcookie", cookieRecipes[1], "The modern sugar cookie was originally called the Nazareth Sugar Cookie, after German Protestants who settled in Nazareth, Pennsylvania, and improved the recipe.");
+        /*
         Dictionary<string, int> OatmealCookie = new Dictionary<string, int>();
         OatmealCookie.Add("oatmeal", 10);
         OatmealCookie.Add("sugar", 5);
         OatmealCookie.Add("flour", 5);
-
-        CreateCookie("oatmealcookie", OatmealCookie, "Oatmeal cookies are the #1 non-cereal usage for oatmeal, followed by meatloaf and fruit crisp. Oatmeal is heart healthy and March 19th is National Oatmeal Cookie Day.");
+        */
+        CreateCookie("oatmealcookie", cookieRecipes[2], "Oatmeal cookies are the #1 non-cereal usage for oatmeal, followed by meatloaf and fruit crisp. Oatmeal is heart healthy and March 19th is National Oatmeal Cookie Day.");
     }
 
     public void purchasePremium(GameObject successText)
