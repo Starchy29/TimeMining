@@ -6112,6 +6112,7 @@ MonoBehaviour:
   - {fileID: 615397389}
   - {fileID: 1141935390}
   - {fileID: 358474449}
+  character: {fileID: 1444032380}
   ingredientBase: {fileID: 4202464047812958168, guid: 43d22cf023c085b4aa5ff46c31264c56, type: 3}
   ingredientContainer: {fileID: 66709647}
   shapeBase: {fileID: 812908682810918207, guid: 7e4321785865c9743ad67c8070153ad4, type: 3}
@@ -6126,7 +6127,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: df2091ae1bdd9c549a0861bdc6421979, type: 3}
   - {fileID: 21300000, guid: 31959245f343534428970af5949a096a, type: 3}
   cookieCounts: []
-  isPremium: 0
 --- !u!4 &1001963146
 Transform:
   m_ObjectHideFlags: 0

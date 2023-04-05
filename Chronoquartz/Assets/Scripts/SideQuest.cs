@@ -94,6 +94,8 @@ public class SideQuest : MonoBehaviour
 
     void PopulateQuestUI(string name)
     {
+        Debug.Log(character.GetComponent<CharacterController>().Premium);
+
         if (!character.GetComponent<CharacterController>().Premium)
         {
             switch (name)

@@ -14,6 +14,9 @@ public class UIManager : MonoBehaviour
     private List<String> unlockedShapes = new List<String>();
     private List<String> ingredients = new List<String>();
 
+    public GameObject character;
+    private CharacterController charController;
+
     public GameObject ingredientBase;
     public GameObject ingredientContainer;
     public GameObject shapeBase;
@@ -33,14 +36,12 @@ public class UIManager : MonoBehaviour
 
     private GameObject titlescreen, inventory, cookieinfo, shop;
 
-    public bool isPremium = false;
-
     /// <summary>
     /// On start, close all scenes unless titlescreen
     /// </summary>
     void Start()
     {
-        
+        charController = character.GetComponent<CharacterController>();
 
         ingredients.Add("chocolate");
         ingredients.Add("flour");
@@ -345,7 +346,7 @@ public class UIManager : MonoBehaviour
 
     public void purchasePremium(GameObject successText)
     {
-        isPremium = true;
+        charController.SetPremium(successText);
         successText.SetActive(true);
     }
 
