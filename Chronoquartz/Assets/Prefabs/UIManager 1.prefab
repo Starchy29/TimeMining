@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2217864777093280822
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2217864777093280820}
+  - component: {fileID: 2217864777093280823}
+  - component: {fileID: 2217864777093280821}
+  m_Layer: 0
+  m_Name: UIManager 1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2217864777093280820
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2217864777093280822}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 477.9668, y: 240.019, z: 3.3974302}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2217864777093280823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2217864777093280822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83fe5807b46e91e46b67f1207a220459, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  windows:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  character: {fileID: 0}
+  ingredientBase: {fileID: 4202464047812958168, guid: 43d22cf023c085b4aa5ff46c31264c56, type: 3}
+  ingredientContainer: {fileID: 0}
+  shapeBase: {fileID: 812908682810918207, guid: 7e4321785865c9743ad67c8070153ad4, type: 3}
+  shapeContainer: {fileID: 0}
+  ingredientNumbers:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  defaultImg: {fileID: 21300000, guid: 444e9ec0d8547ee47b46e012bde707b7, type: 3}
+  cookieImg:
+  - {fileID: 21300000, guid: 444e9ec0d8547ee47b46e012bde707b7, type: 3}
+  - {fileID: 21300000, guid: df2091ae1bdd9c549a0861bdc6421979, type: 3}
+  - {fileID: 21300000, guid: 31959245f343534428970af5949a096a, type: 3}
+  cookieCounts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &2217864777093280821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2217864777093280822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd69d4120be04b4fb609ea484e53526, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alertContainer: {fileID: 0}
+  alertPopup: {fileID: 7265952310067682252, guid: f0fa78b48a03f67458a49679add3e43b, type: 3}
+  icons: []
+  defaultIcon: {fileID: 21300000, guid: f696373084ad72f459fb28b5e013f557, type: 3}
