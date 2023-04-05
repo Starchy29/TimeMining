@@ -28,6 +28,10 @@ public class SideQuest : MonoBehaviour
     public GameObject buttonConfirm;
     public bool isinrange = false;
 
+    public string quota;
+
+    // Quest
+    public Dictionary<string, int> cookieMainReq = new Dictionary<string, int>();
 
     // key is name, output is list of ingredients
     private Dictionary<string, Dictionary<string, int>> cookieRequest = new Dictionary<string, Dictionary<string, int>>();
@@ -37,19 +41,15 @@ public class SideQuest : MonoBehaviour
         charController = character.GetComponent<CharacterController>();
         nameOfChar = this.gameObject.name;
         PopulateQuests();
+        if(!isSideQuest)
+        {
+            GenerateRanRequest();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!isSideQuest)
-        {
-        }
-        else if(isSideQuest)
-        {
-
-        }
-
         if(isinrange)
         {
             if (Input.GetKeyDown(KeyCode.E))
@@ -87,8 +87,8 @@ public class SideQuest : MonoBehaviour
     void PopulateQuests()
     {
         Dictionary<string, int> daisyRequest = new Dictionary<string, int>();
-        daisyRequest.Add("chocolatechipcircle", 5);
-        daisyRequest.Add("sugarcookiecircle", 5);
+        daisyRequest.Add("chocolatechipCircle", 5);
+        daisyRequest.Add("sugarcookieCircle", 5);
         cookieRequest.Add("Daisy", daisyRequest);
     }
 
@@ -96,7 +96,14 @@ public class SideQuest : MonoBehaviour
     {
         Debug.Log(character.GetComponent<CharacterController>().Premium);
 
-        if (!character.GetComponent<CharacterController>().Premium)
+        if (!isSideQuest)
+        {
+            ReplaceUI(nameOfChar, "The company has given you it's daily quota: " + quota + " Get on it!", 
+               personImgs[0], "Glad to keep working with you. See you tomorrow.");
+        }
+
+
+        if (!character.GetComponent<CharacterController>().Premium && isSideQuest)
         {
             switch (name)
             {
@@ -106,7 +113,7 @@ public class SideQuest : MonoBehaviour
                     break;
             }
         }
-        else
+        else if (isSideQuest)
         {
             switch (name)
             {
@@ -138,27 +145,83 @@ public class SideQuest : MonoBehaviour
 
     public void CheckIfMeetingRequirements(string notYet)
     {
-        int cookiesupply1 = 0;
-        int cookiesupply2 = 0;
-        uiman.cookieSupply.TryGetValue("chocolatechipCircle", out cookiesupply1);
-        uiman.cookieSupply.TryGetValue("sugarcookieCircle", out cookiesupply2);
-
-        Debug.Log(cookiesupply1 + " " + cookiesupply2);
-
-        if(cookiesupply1 >= 5 && cookiesupply2 >= 5)
+        if(isSideQuest)
         {
-            completed = true;
+            int cookiesupply1 = 0;
+            int cookiesupply2 = 0;
+            uiman.cookieSupply.TryGetValue("chocolatechipCircle", out cookiesupply1);
+            uiman.cookieSupply.TryGetValue("sugarcookieCircle", out cookiesupply2);
+
+            Debug.Log(cookiesupply1 + " " + cookiesupply2);
+
+            if (cookiesupply1 >= 5 && cookiesupply2 >= 5)
+            {
+                completed = true;
+            }
+
+            if (!completed)
+            {
+                description.GetComponent<TextMeshProUGUI>().text = notYet;
+
+            }
+            else
+            {
+                PopulateQuestUI(nameOfChar);
+                uiman.cookieSupply["chocolatechipCircle"] -= 5;
+                uiman.cookieSupply["sugarcookieCircle"] -= 5;
+            }
+        } else
+        {
+            CheckIfMeetingRequirementsMain(notYet);
+        }
+
+    }
+
+    public void CheckIfMeetingRequirementsMain(string notYet)
+    {
+        completed = true;
+        int cookiesupply = 0;
+
+        uiman.cookieSupply.TryGetValue("chocolatechipCircle", out cookiesupply);
+
+        foreach(string cookie in cookieMainReq.Keys)
+        {
+            if (!(cookieMainReq[cookie] <= uiman.cookieSupply[cookie]))
+            {
+                completed = false;
+            }
         }
 
         if (!completed)
         {
             description.GetComponent<TextMeshProUGUI>().text = notYet;
 
-        } else
+        }
+        else
         {
             PopulateQuestUI(nameOfChar);
-            uiman.cookieSupply["chocolatechipCircle"] -= 5;
-            uiman.cookieSupply["sugarcookieCircle"] -= 5;
+            foreach (string cookie in cookieMainReq.Keys)
+            {
+                uiman.cookieSupply[cookie] -= cookieMainReq[cookie];
+            }
         }
+    }
+
+    public void GenerateRanRequest()
+    {
+        cookieMainReq.Clear();
+        quota = "";
+
+        int ran = Mathf.FloorToInt(Random.Range(1, 8));
+        cookieMainReq.Add("chocolatechipCircle", ran);
+        quota += ran.ToString() + " Chocolate Chip (Circle), ";
+
+        ran = Mathf.FloorToInt(Random.Range(1, 8));
+        cookieMainReq.Add("sugarcookieCircle", ran);
+        quota += ran.ToString() + " Sugar Cookie (Circle), ";
+
+        ran = Mathf.FloorToInt(Random.Range(1, 8));
+        cookieMainReq.Add("oatmealcookieCircle", ran);
+        quota += ran.ToString() + " Oatmeal Cookie (Circle)";
     }
 }

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.SceneManagement;
+using TMPro;
+
 
 // attaches the grid object with a floor child and a wall child
 public class CaveGenerator : MonoBehaviour
@@ -19,13 +21,15 @@ public class CaveGenerator : MonoBehaviour
     [SerializeField] private GameObject lightCracks;
     [SerializeField] private GameObject heavyCracks;
     [SerializeField] private TMPro.TextMeshProUGUI timeLimitIndicator;
-    [SerializeField] private TMPro.TextMeshProUGUI goalIndicator;
+    [SerializeField] private GameObject goalIndicator;
 
     private Tilemap floorTiles;
     private Tilemap wallTiles;
     private WallData[,] dataGrid;
     private Dictionary<Sprite, WallType> spriteToWallType;
     private int difficulty;
+
+    public SideQuest mainQuest;
 
     private float timeLeftSecs; // time left in the day
     private Dictionary<string, int> requiredCookies;
@@ -45,7 +49,7 @@ public class CaveGenerator : MonoBehaviour
 
         transform.position = new Vector3(-caveWidth / 2.0f, -caveWidth / 2.0f, 0); // shift the grid so the base is centered
 
-        requiredCookies = new Dictionary<string, int>();
+        //requiredCookies = new Dictionary<string, int>();
         difficulty = -1; // difficulty increments at the start of NextDay()
         NextDay();
     }
@@ -194,16 +198,24 @@ public class CaveGenerator : MonoBehaviour
         timeLeftSecs = 60f * 5f;
 
         // randomize cookie goal
-        int totCookies = 6 + difficulty * 2;
-        int numSugar = Random.Range(1, totCookies / 2 + 1);
-        int numChoc = Random.Range(1, totCookies - numSugar);
-        int numOat = totCookies - numSugar - numChoc;
+        //int totCookies = 6 + difficulty * 2;
+        //int numSugar = Random.Range(1, totCookies / 2 + 1);
+        //int numChoc = Random.Range(1, totCookies - numSugar);
+        //int numOat = totCookies - numSugar - numChoc;
 
-        requiredCookies["Sugar"] = numSugar;
-        requiredCookies["Chocolate"] = numChoc;
-        requiredCookies["Oatmeal"] = numOat;
+        //requiredCookies["Sugar"] = numSugar;
+        //requiredCookies["Chocolate"] = numChoc;
+        //requiredCookies["Oatmeal"] = numOat;
 
-        goalIndicator.text = $"Goal: {numSugar} sugar, {numChoc} chocolate, {numOat} oatmeal";
+        mainQuest.GenerateRanRequest();
+        string[] quotaSplit = mainQuest.quota.Split(",");
+        //goalIndicator.
+        //goalIndicator.text = "Quota:  \n" + quotaSplit[0] + "\n" +
+        //     quotaSplit[1] + "\n" +
+        //    quotaSplit[2];
+        goalIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = quotaSplit[0];
+        goalIndicator.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = quotaSplit[1];
+        goalIndicator.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = quotaSplit[2];
 
         // create cave
         Generate();
