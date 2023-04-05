@@ -47,7 +47,6 @@ public class UIManager : MonoBehaviour
         ingredients.Add("flour");
         ingredients.Add("sugar");
         ingredients.Add("oatmeal");
-        
 
         foreach (GameObject window in windows)
         {
