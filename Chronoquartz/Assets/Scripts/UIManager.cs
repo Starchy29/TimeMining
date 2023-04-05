@@ -35,6 +35,7 @@ public class UIManager : MonoBehaviour
     public Dictionary<string, int> cookieSupply = new Dictionary<string, int>();
 
     private GameObject titlescreen, inventory, cookieinfo, shop;
+    public GameObject ingredientsOnInventory;
 
     /// <summary>
     /// On start, close all scenes unless titlescreen
@@ -93,6 +94,7 @@ public class UIManager : MonoBehaviour
             //closeAllWindows(windows[0]);
             closeAllWindows();
             inventory.SetActive(!inventory.activeSelf);
+            UpdateInventoryFromPlayer();
         }
 
         // Shop is pressed
@@ -367,5 +369,13 @@ public class UIManager : MonoBehaviour
                 cookieNums.GetComponent<TextMeshProUGUI>().text = cookieTotals.ToString();
             }
         }
+    }
+
+    public void UpdateInventoryFromPlayer()
+    {
+        int[] inv = character.GetComponent<CharacterController>().ReturnInventory();
+        ingredientsOnInventory.transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = inv[0].ToString();
+        ingredientsOnInventory.transform.GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = inv[2].ToString();
+        ingredientsOnInventory.transform.GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = inv[1].ToString();
     }
 }
