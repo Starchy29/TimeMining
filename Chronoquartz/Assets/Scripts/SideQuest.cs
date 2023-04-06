@@ -41,10 +41,6 @@ public class SideQuest : MonoBehaviour
         charController = character.GetComponent<CharacterController>();
         nameOfChar = this.gameObject.name;
         PopulateQuests();
-        if(!isSideQuest)
-        {
-            GenerateRanRequest();
-        }
     }
 
     // Update is called once per frame
@@ -207,21 +203,26 @@ public class SideQuest : MonoBehaviour
         }
     }
 
-    public void GenerateRanRequest()
+    public void GenerateRanRequest(int difficulty)
     {
         cookieMainReq.Clear();
         quota = "";
 
-        int ran = Mathf.FloorToInt(Random.Range(1, 8));
-        cookieMainReq.Add("chocolatechipCircle", ran);
-        quota += ran.ToString() + " Chocolate Chip (Circle), ";
+        int totCookies = 6 + difficulty * 2;
+        int numSugar = Random.Range(1, totCookies / 2 + 1);
+        int numChoc = Random.Range(1, totCookies - numSugar);
+        int numOat = totCookies - numSugar - numChoc;
 
-        ran = Mathf.FloorToInt(Random.Range(1, 8));
-        cookieMainReq.Add("sugarcookieCircle", ran);
-        quota += ran.ToString() + " Sugar Cookie (Circle), ";
+        //int ran = Mathf.FloorToInt(Random.Range(1, 8));
+        cookieMainReq.Add("chocolatechipCircle", numChoc);
+        quota += numChoc.ToString() + " Chocolate Chip (Circle), ";
 
-        ran = Mathf.FloorToInt(Random.Range(1, 8));
-        cookieMainReq.Add("oatmealcookieCircle", ran);
-        quota += ran.ToString() + " Oatmeal Cookie (Circle)";
+        //ran = Mathf.FloorToInt(Random.Range(1, 8));
+        cookieMainReq.Add("sugarcookieCircle", numSugar);
+        quota += numSugar.ToString() + " Sugar Cookie (Circle), ";
+
+        //ran = Mathf.FloorToInt(Random.Range(1, 8));
+        cookieMainReq.Add("oatmealcookieCircle", numOat);
+        quota += numOat.ToString() + " Oatmeal Cookie (Circle)";
     }
 }

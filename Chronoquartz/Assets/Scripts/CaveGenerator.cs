@@ -32,8 +32,6 @@ public class CaveGenerator : MonoBehaviour
     public SideQuest mainQuest;
 
     private float timeLeftSecs; // time left in the day
-    private Dictionary<string, int> requiredCookies;
-    public Dictionary<string, int> RequiredCookies { get { return requiredCookies; } }
 
     void Start()
     {
@@ -49,7 +47,6 @@ public class CaveGenerator : MonoBehaviour
 
         transform.position = new Vector3(-caveWidth / 2.0f, -caveWidth / 2.0f, 0); // shift the grid so the base is centered
 
-        //requiredCookies = new Dictionary<string, int>();
         difficulty = -1; // difficulty increments at the start of NextDay()
         NextDay();
     }
@@ -58,18 +55,33 @@ public class CaveGenerator : MonoBehaviour
     {
         timeLeftSecs -= Time.deltaTime;
         if(timeLeftSecs <= 0) {
-            // lose game, TEMP: go to main menu
-            SceneManager.LoadScene("Titlescreen");
+            // check if quota was met
+            mainQuest.CheckIfMeetingRequirementsMain("");
+            if(mainQuest.completed) {
+                NextDay();
+            } else {
+                // lose game: go to main menu
+                SceneManager.LoadScene("Titlescreen");
+            }
         }
 
         // update time UI
         int minsLeft = (int)timeLeftSecs / 60;
         int partialMinuteLeft = (int)timeLeftSecs % 60;
-        timeLimitIndicator.text = "Time Left: " + minsLeft + ":" + partialMinuteLeft;
+        timeLimitIndicator.text = "Time Left: " + minsLeft + ":" + (partialMinuteLeft < 10 ? "0" : "") + partialMinuteLeft;
     }
 
     private void Generate()
     {
+        // clear old cracks
+        if(dataGrid != null) {
+            foreach(WallData data in dataGrid) {
+                if(data.Cracks != null) {
+                    Destroy(data.Cracks);
+                }
+            }
+        }
+
         float chanceStep = 0.04f;
         float ingredientChance = 0.2f - difficulty * chanceStep;
         if(ingredientChance < chanceStep) {
@@ -193,26 +205,13 @@ public class CaveGenerator : MonoBehaviour
         return new Vector2Int(cell.x, cell.y);
     }
 
+    // sets up the level for the start of a day and increases the difficulty. Note: this is called at the start of the game
     public void NextDay() {
         difficulty++;
         timeLeftSecs = 60f * 5f;
 
-        // randomize cookie goal
-        //int totCookies = 6 + difficulty * 2;
-        //int numSugar = Random.Range(1, totCookies / 2 + 1);
-        //int numChoc = Random.Range(1, totCookies - numSugar);
-        //int numOat = totCookies - numSugar - numChoc;
-
-        //requiredCookies["Sugar"] = numSugar;
-        //requiredCookies["Chocolate"] = numChoc;
-        //requiredCookies["Oatmeal"] = numOat;
-
-        mainQuest.GenerateRanRequest();
+        mainQuest.GenerateRanRequest(difficulty);
         string[] quotaSplit = mainQuest.quota.Split(",");
-        //goalIndicator.
-        //goalIndicator.text = "Quota:  \n" + quotaSplit[0] + "\n" +
-        //     quotaSplit[1] + "\n" +
-        //    quotaSplit[2];
         goalIndicator.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = quotaSplit[0];
         goalIndicator.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = quotaSplit[1];
         goalIndicator.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = quotaSplit[2];
@@ -222,5 +221,7 @@ public class CaveGenerator : MonoBehaviour
 
         // place player back in the middle
         GameObject.Find("Player").transform.position = Vector3.zero;
+
+        // TODO: reset all bots
     }
 }
