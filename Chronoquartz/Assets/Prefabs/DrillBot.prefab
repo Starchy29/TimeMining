@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -162359935, guid: 407c37f0746d4db4196c38826aac93a2, type: 3}
+  m_Sprite: {fileID: 589991850, guid: 98cdb630536f9e34daa28d5d21396f19, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -108,6 +108,7 @@ MonoBehaviour:
   boostedDestroyTime: 30
   oreRange: {x: 4, y: 8}
   drillManager: {fileID: 0}
+  upcomingWall: 0
 --- !u!61 &5376575316013141852
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -132,7 +133,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 4, y: 4}
+  m_Size: {x: 3, y: 3}
   m_EdgeRadius: 0
 --- !u!95 &3012902811997443089
 Animator:
