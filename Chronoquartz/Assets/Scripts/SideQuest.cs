@@ -195,17 +195,19 @@ public class SideQuest : MonoBehaviour
         }
         else
         {
-            PopulateQuestUI(nameOfChar);
             foreach (string cookie in cookieMainReq.Keys)
             {
                 uiman.cookieSupply[cookie] -= cookieMainReq[cookie];
             }
+            GameObject.Find("Grid").GetComponent<CaveGenerator>().NextDay();
+            PopulateQuestUI(nameOfChar);
         }
     }
 
     public void GenerateRanRequest(int difficulty)
     {
         cookieMainReq.Clear();
+        completed = false;
         quota = "";
 
         int totCookies = 6 + difficulty * 2;

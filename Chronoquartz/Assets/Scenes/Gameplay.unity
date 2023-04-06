@@ -1255,23 +1255,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7593730662599499574, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
       propertyPath: recipes.Array.data[2].oatmeal
-      value: 20
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7593730662599499574, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
       propertyPath: recipes.Array.data[0].chocolate
-      value: 20
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7593730662599499574, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
       propertyPath: recipes.Array.data[0].sugarcubes
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7593730662599499574, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
       propertyPath: recipes.Array.data[1].sugarcubes
-      value: 30
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7593730662599499574, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
       propertyPath: recipes.Array.data[2].sugarcubes
-      value: 10
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
