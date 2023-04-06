@@ -292,6 +292,16 @@ public class DrillManager : MonoBehaviour
         Destroy(drill.gameObject);
     }
 
+    public void ResetAllDrills()
+    {
+        DrillsAvailable += activeDrills.Count;
+        foreach (DrillBehavior drill in activeDrills)
+        {
+            Destroy(drill.gameObject);
+        }
+        activeDrills.Clear();
+    }
+
     void MoveActiveDrills()
     {
         foreach (var drill in activeDrills)

@@ -222,6 +222,7 @@ public class CaveGenerator : MonoBehaviour
         // place player back in the middle
         GameObject.Find("Player").transform.position = Vector3.zero;
 
-        // TODO: reset all bots
+        // reset all bots
+        GameObject.Find("DrillManager").GetComponent<DrillManager>().ResetAllDrills();
     }
 }
