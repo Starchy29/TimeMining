@@ -14,6 +14,9 @@ public class UIManager : MonoBehaviour
     private List<String> unlockedShapes = new List<String>();
     private List<String> ingredients = new List<String>();
 
+    public GameObject character;
+    private CharacterController charController;
+
     public GameObject ingredientBase;
     public GameObject ingredientContainer;
     public GameObject shapeBase;
@@ -29,24 +32,22 @@ public class UIManager : MonoBehaviour
     //cookieType + ingredient
     private Dictionary<string, int> cookieIngredients = new Dictionary<string, int>();
     //cookieType + shape for key
-    private Dictionary<string, int> cookieSupply = new Dictionary<string, int>();
+    public Dictionary<string, int> cookieSupply = new Dictionary<string, int>();
 
     private GameObject titlescreen, inventory, cookieinfo, shop;
-
-    public bool isPremium = false;
+    public GameObject ingredientsOnInventory;
 
     /// <summary>
     /// On start, close all scenes unless titlescreen
     /// </summary>
     void Start()
     {
-        
+        charController = character.GetComponent<CharacterController>();
 
         ingredients.Add("chocolate");
         ingredients.Add("flour");
         ingredients.Add("sugar");
         ingredients.Add("oatmeal");
-        
 
         foreach (GameObject window in windows)
         {
@@ -93,6 +94,7 @@ public class UIManager : MonoBehaviour
             //closeAllWindows(windows[0]);
             closeAllWindows();
             inventory.SetActive(!inventory.activeSelf);
+            UpdateInventoryFromPlayer();
         }
 
         // Shop is pressed
@@ -345,7 +347,7 @@ public class UIManager : MonoBehaviour
 
     public void purchasePremium(GameObject successText)
     {
-        isPremium = true;
+        charController.SetPremium(successText);
         successText.SetActive(true);
     }
 
@@ -367,5 +369,13 @@ public class UIManager : MonoBehaviour
                 cookieNums.GetComponent<TextMeshProUGUI>().text = cookieTotals.ToString();
             }
         }
+    }
+
+    public void UpdateInventoryFromPlayer()
+    {
+        int[] inv = character.GetComponent<CharacterController>().ReturnInventory();
+        ingredientsOnInventory.transform.GetChild(1).GetChild(1).GetComponent<TextMeshProUGUI>().text = inv[0].ToString();
+        ingredientsOnInventory.transform.GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>().text = inv[2].ToString();
+        ingredientsOnInventory.transform.GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>().text = inv[1].ToString();
     }
 }

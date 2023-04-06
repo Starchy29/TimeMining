@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 3a8707c47a145ec4a9e39276b8c30f1c
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - GO Pinch
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 7fda860a287aeed44ae1058f572d5e36, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

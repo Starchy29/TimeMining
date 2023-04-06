@@ -59,19 +59,19 @@ public class CookieMenu : MonoBehaviour
 
     public void UpdateButtons()
     {
-        //int[] playerIngredients = player.GetComponent<CharacterController>().ReturnInventory();
-        //int index = 0;
-        //foreach(Recipe r in recipes)
-        //{
-        //    if (r.isEnough(playerIngredients))
-        //        ActivateRecipeButton(index, true);
-        //    else
-        //    {
+        int[] playerIngredients = player.GetComponent<CharacterController>().ReturnInventory();
+        int index = 0;
+        foreach(Recipe r in recipes)
+        {
+            if (r.isEnough(playerIngredients))
+                ActivateRecipeButton(index, true);
+            else
+            {
                 
-        //        ActivateRecipeButton(index, false);
-        //    }
-        //    index++;
-        //}
+                ActivateRecipeButton(index, false);
+            }
+            index++;
+        }
     }
 
     
@@ -79,11 +79,11 @@ public class CookieMenu : MonoBehaviour
     {
         if (b)
         {
-            recipeButtons[i].GetComponent<Button>().enabled = true;
+            recipeButtons[i].GetComponent<Button>().interactable = true;
         }
         else
         {
-            recipeButtons[i].GetComponent<Button>().enabled = false;
+            recipeButtons[i].GetComponent<Button>().interactable = false;
         }
 
     }
@@ -112,6 +112,10 @@ public class CookieMenu : MonoBehaviour
     {
         Debug.Log("Button name is " + button.name);
         UIManager.GetComponent<UIManager>().UpdateCookieCount(button.name, shapes[0], 1);
-        //player.GetComponent<CharacterController>().IngredientsUsed();
+        foreach(Recipe r in recipes)
+            if(r.name == button.name)
+                player.GetComponent<CharacterController>().IngredientsUsed(r.sugarcubes,r.oatmeal, r.chocolate);
+        UpdateButtons();
+
     }
 }

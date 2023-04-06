@@ -385,8 +385,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: audio volume
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8511f530555711d40ba36c2bc62c034a, type: 2}
-  m_sharedMaterial: {fileID: 3205994293425824161, guid: 8511f530555711d40ba36c2bc62c034a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 779259f2e81e1404790c830f930c85b9, type: 2}
+  m_sharedMaterial: {fileID: 3537915023950791594, guid: 779259f2e81e1404790c830f930c85b9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -911,8 +911,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Settings
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8511f530555711d40ba36c2bc62c034a, type: 2}
-  m_sharedMaterial: {fileID: 3205994293425824161, guid: 8511f530555711d40ba36c2bc62c034a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 779259f2e81e1404790c830f930c85b9, type: 2}
+  m_sharedMaterial: {fileID: 3537915023950791594, guid: 779259f2e81e1404790c830f930c85b9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -936,7 +936,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 136.25
+  m_fontSize: 132.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -972,7 +972,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 106.535614, y: 0, z: 91.784424, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1046,8 +1046,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: titlescreen
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8511f530555711d40ba36c2bc62c034a, type: 2}
-  m_sharedMaterial: {fileID: 3205994293425824161, guid: 8511f530555711d40ba36c2bc62c034a, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 779259f2e81e1404790c830f930c85b9, type: 2}
+  m_sharedMaterial: {fileID: 3537915023950791594, guid: 779259f2e81e1404790c830f930c85b9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1071,7 +1071,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 31.8
+  m_fontSize: 26.15
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
