@@ -56,10 +56,8 @@ public class CaveGenerator : MonoBehaviour
         timeLeftSecs -= Time.deltaTime;
         if(timeLeftSecs <= 0) {
             // check if quota was met
-            mainQuest.CheckIfMeetingRequirementsMain("");
-            if(mainQuest.completed) {
-                NextDay();
-            } else {
+            mainQuest.CheckIfMeetingRequirementsMain(""); // calls NextDay() if successfull
+            if(!mainQuest.completed) {
                 // lose game: go to main menu
                 SceneManager.LoadScene("Titlescreen");
             }
