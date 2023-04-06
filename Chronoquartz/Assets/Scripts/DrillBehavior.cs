@@ -277,7 +277,17 @@ public class DrillBehavior : MonoBehaviour
                 // if point 1 is futher  
                 if (absolutePos1.sqrMagnitude > absolutePos2.sqrMagnitude)
                 {
+                    
+
                     movePoint.position += transform.up;
+                    currentWallIndex = GridRef.GetTilemapPos(movePoint.position);
+                    upcomingWall = GridRef.GetWallType(currentWallIndex);
+                    if (upcomingWall != WallType.None)
+                    {
+                        drillManager.removeDrill(this, upcomingWall);
+                        return;
+                    }
+
                     Debug.Log(transform.up);
 
                 }
@@ -291,6 +301,27 @@ public class DrillBehavior : MonoBehaviour
             }
             else
             {
+
+                movePoint.position = roundedRobot1;
+                currentWallIndex = GridRef.GetTilemapPos(movePoint.position);
+                upcomingWall = GridRef.GetWallType(currentWallIndex);
+                bool removedDrill = false;
+                if (upcomingWall != WallType.None)
+                {
+                    drillManager.removeDrill(this, upcomingWall);
+                    removedDrill = true;
+                }
+                otherRobot.movePoint.position = roundedRobot2;
+                otherRobot.currentWallIndex = GridRef.GetTilemapPos(otherRobot.movePoint.position);
+                otherRobot.upcomingWall = GridRef.GetWallType(otherRobot.currentWallIndex);
+                if (otherRobot.upcomingWall != WallType.None)
+                {
+                    drillManager.removeDrill(otherRobot, upcomingWall);
+                    removedDrill = true;
+                }
+
+                if (removedDrill) { return; }
+
                 transform.position = roundedRobot1;
                 collision.gameObject.transform.position = roundedRobot2;
             }
