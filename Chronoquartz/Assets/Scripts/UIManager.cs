@@ -3,8 +3,10 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class UIManager : MonoBehaviour
 {
@@ -25,7 +27,17 @@ public class UIManager : MonoBehaviour
 
     public Sprite defaultImg;
 
+    public GameObject[] MoneyAmmount;
+    // Shop Fields
+
+    public GameObject botCost;
+    public GameObject botBuyButton;
+    public GameObject[] shopButtons;
+    private int botAmmount;
+
+
     [SerializeField] public Sprite[] cookieImg;
+    
     [SerializeField] public GameObject[] cookieCounts;
 
     private Dictionary<string, string> cookieFacts = new Dictionary<string, string>();
@@ -36,18 +48,28 @@ public class UIManager : MonoBehaviour
 
     private GameObject titlescreen, inventory, cookieinfo, shop;
     public GameObject ingredientsOnInventory;
+    private DrillManager drillManager;
+
+    
 
     /// <summary>
     /// On start, close all scenes unless titlescreen
     /// </summary>
     void Start()
     {
+        drillManager = GameObject.Find("DrillManager").GetComponent<DrillManager>();
         charController = character.GetComponent<CharacterController>();
 
         ingredients.Add("chocolate");
         ingredients.Add("flour");
         ingredients.Add("sugar");
         ingredients.Add("oatmeal");
+
+        botAmmount = 100 * ((drillManager.DrillsTotal + 1) - 4);
+        botCost.GetComponent<TextMeshProUGUI>().text = botAmmount.ToString();
+        UpdateMonneyAmmount(0);
+        
+        
 
         foreach (GameObject window in windows)
         {
@@ -200,7 +222,7 @@ public class UIManager : MonoBehaviour
         {
             if(pic.name.ToLower() == cookieType)
             {
-                GetChildWithName(cookieinfo, "CookieImg").GetComponent<Image>().sprite = pic;
+                GetChildWithName(cookieinfo, "CookieImg").GetComponent<UnityEngine.UI.Image>().sprite = pic;
             }
         }
         
@@ -361,15 +383,94 @@ public class UIManager : MonoBehaviour
     {
         Debug.Log("Cookie count: " + cookieCount);
         cookieSupply[cookietype + cookieshape] += cookieCount;
-        foreach(GameObject cookieNums in cookieCounts)
+        int shopItteration = 0;
+        foreach (GameObject cookieNums in cookieCounts)
         {
             if(cookieNums.name.ToLower() == cookietype + "num")
             {
-                int cookieTotals = int.Parse(cookieNums.GetComponent<TextMeshProUGUI>().text) + cookieCount;
+                int cookieTotals = cookieSupply[cookietype + cookieshape];
                 cookieNums.GetComponent<TextMeshProUGUI>().text = cookieTotals.ToString();
             }
+            // Shop ui buttons
+            
+            if (cookieNums.name.ToLower() == "shop" + cookietype + "num")
+            {
+                int cookieTotals = cookieSupply[cookietype + cookieshape];
+                cookieTotals  /= 5;
+                cookieNums.GetComponent<TextMeshProUGUI>().text = cookieTotals.ToString();
+                shopButtons[shopItteration].GetComponent<UnityEngine.UI.Button>().interactable = (cookieTotals > 0); 
+
+            }
+            shopItteration++;
+            if (shopItteration >= 3) shopItteration -= 3;
         }
     }
+
+    public void BuySugarCookie()
+    {
+        BuySellCookie("sugarcookie", 25, -5);
+    }
+
+    public void BuyChocolateCookie()
+    {
+        BuySellCookie("chocolatechip", 25, -5);
+    }
+
+    public void BuyOatmealCookie()
+    {
+        BuySellCookie("oatmealcookie", 25, -5);
+    }
+
+    public void BuySellCookie(string cookieType, int currencyGain, int ammount)
+    {
+        // TODO: Add error message
+        if (cookieSupply[cookieType + "Circle"] + ammount < 0) return;
+
+        // "chocolatechip", "sugarcookie", "oatmealcookie"
+
+        
+        UpdateMonneyAmmount(currencyGain);
+        UpdateCookieCount(cookieType, "Circle", ammount);
+    }
+
+    public void BuyBot()
+    {
+        // botAmmount = 100 * ((drillManager.DrillsTotal + 1) - 4);
+
+        // TODO: Add error message
+        //if (botAmmount > charController.GoldCurrency) return;
+
+        UpdateMonneyAmmount(-botAmmount);
+
+        // Add bot
+        drillManager.DrillsTotal++;
+        drillManager.DrillsAvailable++;
+
+        botAmmount = 100 * ((drillManager.DrillsTotal + 1) - 4);
+        botCost.GetComponent<TextMeshProUGUI>().text = botAmmount.ToString();
+        // Subtract Currency
+        
+        
+    }
+    
+    public void UpdateMonneyAmmount(int currencyChange)
+    {
+       charController.GoldCurrency += currencyChange;
+        foreach (GameObject money in MoneyAmmount)
+        {
+            money.GetComponent<TextMeshProUGUI>().text = "$" + charController.GoldCurrency.ToString();
+        }
+      
+       CanAffordBot();
+    }
+
+    public void CanAffordBot() 
+    {
+        bool canAfford = botAmmount <= charController.GoldCurrency;
+
+        botBuyButton.GetComponent<UnityEngine.UI.Button>().interactable = canAfford;
+    }
+   
 
     public void UpdateInventoryFromPlayer()
     {

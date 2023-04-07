@@ -133,6 +133,16 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5056477963307126838, guid: fd3c0ad23d444fb46979c9898135d026, type: 3}
   m_PrefabInstance: {fileID: 5056477963294514952}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &37378186 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8120414668891210606, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+  m_PrefabInstance: {fileID: 5764239341189310430}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &59109698 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5764239339629699681, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+  m_PrefabInstance: {fileID: 5764239341189310430}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &66709647 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5423798788084926396, guid: e2dd52995c09b2841bb8759bf0fbea4f, type: 3}
@@ -233,6 +243,11 @@ CanvasRenderer:
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5056477963460539749, guid: fd3c0ad23d444fb46979c9898135d026, type: 3}
   m_PrefabInstance: {fileID: 5056477963294514952}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &190314690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5764239340093821838, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+  m_PrefabInstance: {fileID: 5764239341189310430}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &226250023
 PrefabInstance:
@@ -760,10 +775,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d17a70ee2be136447aca25f7a15e4639, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &433433537 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2350394529629944861, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+  m_PrefabInstance: {fileID: 5764239341189310430}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &529885772 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5056477963270747460, guid: fd3c0ad23d444fb46979c9898135d026, type: 3}
   m_PrefabInstance: {fileID: 5056477963294514952}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &579674117 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2692534311971013365, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+  m_PrefabInstance: {fileID: 5764239341189310430}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &615120065
 GameObject:
@@ -1169,6 +1194,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: OvenCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7593730662475198506, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7593730662475198510, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1275,6 +1304,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
+--- !u!1 &790557671 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5764239340227379336, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+  m_PrefabInstance: {fileID: 5764239341189310430}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &869277983
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,6 +1583,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83fe5807b46e91e46b67f1207a220459, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1123779588 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5764239339263969786, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+  m_PrefabInstance: {fileID: 5764239341189310430}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1141935390 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5764239340183694016, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
@@ -1689,6 +1728,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1235188993}
   m_CullTransparentMesh: 1
+--- !u!1 &1250197322 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2940615167014618418, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+  m_PrefabInstance: {fileID: 5764239341189310430}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1339677727 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5056477962853034176, guid: fd3c0ad23d444fb46979c9898135d026, type: 3}
@@ -1863,6 +1907,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Agent
       objectReference: {fileID: 0}
+    - target: {fileID: 4114415861037085663, guid: a1e5e836667b73944bd98239021f18d8, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4114415861347516302, guid: a1e5e836667b73944bd98239021f18d8, type: 3}
       propertyPath: m_LocalScale.x
       value: 1.2386
@@ -2023,6 +2071,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
+      propertyPath: ingredients.Array.data[0]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
+      propertyPath: ingredients.Array.data[1]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
+      propertyPath: ingredients.Array.data[2]
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
       propertyPath: inventoryShard.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -2049,6 +2109,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 5056477962529022722, guid: fd3c0ad23d444fb46979c9898135d026, type: 3}
   m_PrefabInstance: {fileID: 5056477963294514952}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2052245572 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5764239340974613846, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+  m_PrefabInstance: {fileID: 5764239341189310430}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2085436168 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5056477962593418763, guid: fd3c0ad23d444fb46979c9898135d026, type: 3}
@@ -2064,6 +2129,10 @@ PrefabInstance:
     - target: {fileID: 228328212237007089, guid: 207004c8bf35aed44a70f1ad409fc8d5, type: 3}
       propertyPath: m_Name
       value: Oven
+      objectReference: {fileID: 0}
+    - target: {fileID: 228328212237007089, guid: 207004c8bf35aed44a70f1ad409fc8d5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 228328212237007091, guid: 207004c8bf35aed44a70f1ad409fc8d5, type: 3}
       propertyPath: m_RootOrder
@@ -2171,9 +2240,21 @@ PrefabInstance:
       value: UIManager
       objectReference: {fileID: 0}
     - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
+      propertyPath: botCost
+      value: 
+      objectReference: {fileID: 433433537}
+    - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
       propertyPath: character
       value: 
       objectReference: {fileID: 1444032380}
+    - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
+      propertyPath: MoneyAmmount
+      value: 
+      objectReference: {fileID: 1123779588}
+    - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
+      propertyPath: botBuyButton
+      value: 
+      objectReference: {fileID: 190314690}
     - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
       propertyPath: shapeContainer
       value: 
@@ -2203,6 +2284,26 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1339677727}
     - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
+      propertyPath: shopButtons.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
+      propertyPath: cookieCounts.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
+      propertyPath: shopButtons.Array.data[0]
+      value: 
+      objectReference: {fileID: 59109698}
+    - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
+      propertyPath: shopButtons.Array.data[1]
+      value: 
+      objectReference: {fileID: 2052245572}
+    - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
+      propertyPath: shopButtons.Array.data[2]
+      value: 
+      objectReference: {fileID: 790557671}
+    - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
       propertyPath: cookieCounts.Array.data[0]
       value: 
       objectReference: {fileID: 174418541}
@@ -2214,6 +2315,18 @@ PrefabInstance:
       propertyPath: cookieCounts.Array.data[2]
       value: 
       objectReference: {fileID: 529885772}
+    - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
+      propertyPath: cookieCounts.Array.data[3]
+      value: 
+      objectReference: {fileID: 579674117}
+    - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
+      propertyPath: cookieCounts.Array.data[4]
+      value: 
+      objectReference: {fileID: 1250197322}
+    - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
+      propertyPath: cookieCounts.Array.data[5]
+      value: 
+      objectReference: {fileID: 37378186}
     - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
       propertyPath: ingredientNumbers.Array.data[0]
       value: 
@@ -2371,6 +2484,10 @@ PrefabInstance:
     - target: {fileID: 5056477963667043378, guid: fd3c0ad23d444fb46979c9898135d026, type: 3}
       propertyPath: m_Name
       value: Inventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 5056477963667043378, guid: fd3c0ad23d444fb46979c9898135d026, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5056477963667043379, guid: fd3c0ad23d444fb46979c9898135d026, type: 3}
       propertyPath: m_Pivot.x
@@ -2581,6 +2698,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CookieInfo
       objectReference: {fileID: 0}
+    - target: {fileID: 5423798787659847486, guid: e2dd52995c09b2841bb8759bf0fbea4f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5423798787868801304, guid: e2dd52995c09b2841bb8759bf0fbea4f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2606,6 +2727,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2692534311971013365, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+      propertyPath: m_Name
+      value: ShopChocolateChipNum
+      objectReference: {fileID: 0}
+    - target: {fileID: 2940615167014618418, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+      propertyPath: m_Name
+      value: ShopSugarCookieNum
+      objectReference: {fileID: 0}
     - target: {fileID: 5764239339348787920, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2615,13 +2744,25 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 358474449}
     - target: {fileID: 5764239339629699615, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764239339629699615, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1001963145}
     - target: {fileID: 5764239339629699615, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyChocolateCookie
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764239339629699615, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 909404986}
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764239339629699615, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5764239340093821836, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2633,6 +2774,10 @@ PrefabInstance:
     - target: {fileID: 5764239340183694016, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
       propertyPath: m_Name
       value: Shop
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764239340183694016, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5764239340183694076, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
       propertyPath: m_Pivot.x
@@ -2719,25 +2864,53 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5764239340227379334, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764239340227379334, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1001963145}
     - target: {fileID: 5764239340227379334, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyOatmealCookie
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764239340227379334, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 909404986}
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764239340227379334, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764239340227379336, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+      propertyPath: m_Name
+      value: OatmealCookieSell
+      objectReference: {fileID: 0}
     - target: {fileID: 5764239340745768603, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1001963145}
     - target: {fileID: 5764239340974613844, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764239340974613844, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1001963145}
     - target: {fileID: 5764239340974613844, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuySugarCookie
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764239340974613844, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 909404986}
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764239340974613844, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5764239341065581272, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2750,6 +2923,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 909404986}
+    - target: {fileID: 8120414668891210606, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+      propertyPath: m_Name
+      value: ShopOatmealCookieNum
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
 --- !u!1001 &5904730365083087297
@@ -2762,6 +2939,10 @@ PrefabInstance:
     - target: {fileID: 5904730365404156688, guid: be066b756e0096e488c5e362bd3a392e, type: 3}
       propertyPath: m_Name
       value: BuyPremium
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904730365404156688, guid: be066b756e0096e488c5e362bd3a392e, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5904730365404156692, guid: be066b756e0096e488c5e362bd3a392e, type: 3}
       propertyPath: m_Pivot.x
