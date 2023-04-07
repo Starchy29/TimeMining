@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.WSA;
 
 public class DrillManager : MonoBehaviour
 {
@@ -29,6 +31,8 @@ public class DrillManager : MonoBehaviour
     private bool oatmealBoost;
     [SerializeField] float oatmealTimer;
     private float currentOatmealTimer;
+
+    public GameObject[] BoostStatusText;
 
     // Start is called before the first frame update
     void Start()
@@ -88,7 +92,15 @@ public class DrillManager : MonoBehaviour
         MoveActiveDrills();
         UseCookie();
         BoostedTimer();
-
+        if (activeDrills.Count > DrillsTotal)
+        {
+            Destroy(activeDrills[activeDrills.Count-1].gameObject);
+            activeDrills.RemoveAt(activeDrills.Count-1);
+        }
+        if(activeDrills.Count == 0)
+        {
+            DrillsAvailable = DrillsTotal;
+        }
     }
 
     public void IncrimentBotBuild()
@@ -175,12 +187,12 @@ public class DrillManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            ActivateSugarCookie();
+            ActivateChocolateCookie();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            ActivateChocolateCookie();
+            ActivateSugarCookie();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
@@ -204,6 +216,7 @@ public class DrillManager : MonoBehaviour
                     drill.ToggleSpeedBoost(false);
                 }
             }
+            BoostStatusUpdate("sugarcookie");
         }
         if (chocolateBoost)
         {
@@ -218,6 +231,7 @@ public class DrillManager : MonoBehaviour
                     drill.ToggleResourceBoost(false);
                 }
             }
+            BoostStatusUpdate("chocolatechip");
         }
         if (oatmealBoost)
         {
@@ -232,14 +246,68 @@ public class DrillManager : MonoBehaviour
                     drill.BoostedInactiveTimer(false);
                 }
             }
+            BoostStatusUpdate("oatmealcookie");
         }
 
     }
 
-    // Summon a drill based on position and direction
-    void SummonDrill (Vector2 pos, float dir) 
+    public void BoostStatusUpdate(string cookieType)
     {
-        if (DrillsAvailable == 0) return;
+        
+        bool currentBoost = false;
+        float timer = 0;
+        int activateButton = 0;
+        GameObject alet = null;
+        switch (cookieType)
+        {
+            case "chocolatechip":
+                currentBoost = chocolateBoost;
+                timer = chocolateTimer - currentChocolateTimer;
+                activateButton = 1;
+                alet = BoostStatusText[0];
+                break;
+            case "sugarcookie":
+                currentBoost = sugarBoost;
+                timer = sugarTimer - currentSugarTimer;
+                activateButton = 2;
+                alet = BoostStatusText[1];
+                break;
+            case "oatmealcookie":
+                currentBoost = oatmealBoost;
+                timer = oatmealTimer - currentOatmealTimer;
+                activateButton = 3;
+                alet = BoostStatusText[2];
+                break;
+            
+        }
+
+        if (currentBoost)
+        {
+            int holder = (int)timer;
+            alet.GetComponent<TextMeshProUGUI>().text = holder.ToString() + "s";
+        }
+        else
+        {
+            if (UICookieCount.cookieSupply[cookieType + "Circle"] > 0)
+            {
+                alet.GetComponent<TextMeshProUGUI>().text = "Press " + activateButton + " to activate!";
+            }
+            else
+            {
+                alet.GetComponent<TextMeshProUGUI>().text = "Need Cookie";
+            }
+        }
+    }
+
+    // Summon a drill based on position and direction
+    void SummonDrill(Vector2 pos, float dir)
+    {
+        if (DrillsAvailable <= 0) { DrillsAvailable = 0; return; };
+        if(DrillsTotal < activeDrills.Count)
+        {
+            DrillsAvailable = 0;
+            return;
+        }
         DrillsAvailable--;
 
         Alerts.AddAlert("Deploying Drill!");
@@ -267,7 +335,16 @@ public class DrillManager : MonoBehaviour
 
     public void removeDrill(DrillBehavior drill, WallType walltype)
     {
-        DrillsAvailable++;
+        Debug.Log(DrillsAvailable);
+        if (DrillsTotal > activeDrills.Count)
+        {
+            DrillsAvailable++;
+        }
+        else
+        {
+            
+        }
+        
         int[] ores = new int[3];
         switch(walltype)
         {

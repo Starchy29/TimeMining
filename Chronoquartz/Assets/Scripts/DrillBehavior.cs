@@ -248,9 +248,10 @@ public class DrillBehavior : MonoBehaviour
         if (collision.gameObject.tag == "Player" && (drillState == DrillState.Idle || drillState == DrillState.Inactive))
         {
             movePoint.parent = this.gameObject.transform;
+            this.GetComponent<BoxCollider2D>().enabled = false;
             drillManager.removeDrill(this, upcomingWall);
         }
-        
+        Debug.Log(collision);
         if (collision.gameObject.tag == "Robot")
         {
 
@@ -284,6 +285,7 @@ public class DrillBehavior : MonoBehaviour
                     upcomingWall = GridRef.GetWallType(currentWallIndex);
                     if (upcomingWall != WallType.None)
                     {
+                        this.GetComponent<BoxCollider2D>().enabled = false;
                         drillManager.removeDrill(this, upcomingWall);
                         return;
                     }
@@ -308,17 +310,21 @@ public class DrillBehavior : MonoBehaviour
                 bool removedDrill = false;
                 if (upcomingWall != WallType.None)
                 {
+                    this.GetComponent<BoxCollider2D>().enabled = false;
                     drillManager.removeDrill(this, upcomingWall);
                     removedDrill = true;
                 }
+               
                 otherRobot.movePoint.position = roundedRobot2;
                 otherRobot.currentWallIndex = GridRef.GetTilemapPos(otherRobot.movePoint.position);
                 otherRobot.upcomingWall = GridRef.GetWallType(otherRobot.currentWallIndex);
                 if (otherRobot.upcomingWall != WallType.None)
                 {
+                    collision.GetComponent<BoxCollider2D>().enabled = false;
                     drillManager.removeDrill(otherRobot, upcomingWall);
                     removedDrill = true;
                 }
+                
 
                 if (removedDrill) { return; }
 

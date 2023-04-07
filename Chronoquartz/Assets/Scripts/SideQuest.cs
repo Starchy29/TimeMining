@@ -163,9 +163,12 @@ public class SideQuest : MonoBehaviour
             else
             {
                 PopulateQuestUI(nameOfChar);
-                uiman.cookieSupply["chocolatechipCircle"] -= 5;
-                uiman.cookieSupply["sugarcookieCircle"] -= 5;
+                //uiman.cookieSupply["chocolatechipCircle"] -= 5;
+                //uiman.cookieSupply["sugarcookieCircle"] -= 5;
+                uiman.UpdateCookieCount("sugarcookie", "Circle", -5);
+                uiman.UpdateCookieCount("chocolatechip", "Circle", -5);
                 uiman.UpdateMonneyAmmount(moneyReward);
+                
             }
         } else
         {
@@ -177,7 +180,7 @@ public class SideQuest : MonoBehaviour
 
     public void CheckIfMeetingRequirementsMain(string notYet)
     {
-       // completed = true;
+       completed = true;
         int cookiesupply = 0;
 
         uiman.cookieSupply.TryGetValue("chocolatechipCircle", out cookiesupply);
@@ -200,7 +203,10 @@ public class SideQuest : MonoBehaviour
             foreach (string cookie in cookieMainReq.Keys)
             {
                 uiman.cookieSupply[cookie] -= cookieMainReq[cookie];
-                
+                uiman.UpdateCookieCount("chocolatechip", "Circle", 0);
+                uiman.UpdateCookieCount("oatmealcookie", "Circle", 0);
+                uiman.UpdateCookieCount("sugarcookie", "Circle", 0);
+
             }
             GameObject.Find("Grid").GetComponent<CaveGenerator>().NextDay();
             PopulateQuestUI(nameOfChar);

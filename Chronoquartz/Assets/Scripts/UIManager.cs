@@ -404,6 +404,8 @@ public class UIManager : MonoBehaviour
             shopItteration++;
             if (shopItteration >= 3) shopItteration -= 3;
         }
+        drillManager.BoostStatusUpdate(cookietype);
+
     }
 
     public void BuySugarCookie()
