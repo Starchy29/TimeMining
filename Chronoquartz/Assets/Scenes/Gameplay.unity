@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1283,6 +1283,18 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7593730662599499574, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
+      propertyPath: recipes.Array.data[0].name
+      value: chocolatechip
+      objectReference: {fileID: 0}
+    - target: {fileID: 7593730662599499574, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
+      propertyPath: recipes.Array.data[1].name
+      value: sugarcookie
+      objectReference: {fileID: 0}
+    - target: {fileID: 7593730662599499574, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
+      propertyPath: recipes.Array.data[2].name
+      value: oatmealcookie
+      objectReference: {fileID: 0}
+    - target: {fileID: 7593730662599499574, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
       propertyPath: recipes.Array.data[2].oatmeal
       value: 2
       objectReference: {fileID: 0}
@@ -1963,6 +1975,11 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 636886701828528030, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
   m_PrefabInstance: {fileID: 1739059083}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1699116877 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5056477962341276855, guid: fd3c0ad23d444fb46979c9898135d026, type: 3}
+  m_PrefabInstance: {fileID: 5056477963294514952}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1739059083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2072,15 +2089,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
       propertyPath: ingredients.Array.data[0]
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
       propertyPath: ingredients.Array.data[1]
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
       propertyPath: ingredients.Array.data[2]
-      value: 100
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 636886701828528031, guid: db6d0015402a3284e8187e4ed0067fe4, type: 3}
       propertyPath: inventoryShard.Array.size
@@ -2288,6 +2305,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
+      propertyPath: MoneyAmmount.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
       propertyPath: cookieCounts.Array.size
       value: 6
       objectReference: {fileID: 0}
@@ -2303,6 +2324,14 @@ PrefabInstance:
       propertyPath: shopButtons.Array.data[2]
       value: 
       objectReference: {fileID: 790557671}
+    - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
+      propertyPath: MoneyAmmount.Array.data[0]
+      value: 
+      objectReference: {fileID: 1699116877}
+    - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
+      propertyPath: MoneyAmmount.Array.data[1]
+      value: 
+      objectReference: {fileID: 1123779588}
     - target: {fileID: 2217864777093280823, guid: 1f818e4b4c3e99a448cb9790066e7c5f, type: 3}
       propertyPath: cookieCounts.Array.data[0]
       value: 
@@ -2764,13 +2793,25 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 5764239340093821836, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764239340093821836, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1001963145}
     - target: {fileID: 5764239340093821836, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BuyBot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764239340093821836, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
-      objectReference: {fileID: 909404986}
+      objectReference: {fileID: 0}
+    - target: {fileID: 5764239340093821836, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5764239340183694016, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
       propertyPath: m_Name
       value: Shop
