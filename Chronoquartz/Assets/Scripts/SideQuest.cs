@@ -169,6 +169,7 @@ public class SideQuest : MonoBehaviour
         } else
         {
             CheckIfMeetingRequirementsMain(notYet);
+            uiman.UpdateMonneyAmmount(moneyReward);
         }
 
     }
@@ -199,6 +200,7 @@ public class SideQuest : MonoBehaviour
             foreach (string cookie in cookieMainReq.Keys)
             {
                 uiman.cookieSupply[cookie] -= cookieMainReq[cookie];
+                uiman.UpdateMonneyAmmount(moneyReward);
             }
         }
     }

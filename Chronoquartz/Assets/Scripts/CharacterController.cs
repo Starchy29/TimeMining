@@ -21,6 +21,9 @@ public class CharacterController : MonoBehaviour
     private bool canMove = true;
     public bool Premium { get; private set; }
 
+    public int GoldCurrency { get; set; }
+
+
     public GameObject[] shopShard;
     public GameObject[] inventoryShard;
     public GameObject CookieManager;

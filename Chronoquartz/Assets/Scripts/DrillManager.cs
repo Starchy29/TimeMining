@@ -18,6 +18,7 @@ public class DrillManager : MonoBehaviour
     public AlertManager Alerts { get; set; }
     [field: SerializeField]
     public int DrillsAvailable { get; set; }
+    [HideInInspector] public int DrillsTotal { get; set; }
 
     private bool sugarBoost;
     [SerializeField] float sugarTimer;
@@ -36,6 +37,7 @@ public class DrillManager : MonoBehaviour
         player = GameObject.Find("Player").GetComponent<CharacterController>();
         Alerts = GameObject.Find("UIManager").GetComponent<AlertManager>();
         UICookieCount = GameObject.Find("UIManager").GetComponent<UIManager>();
+        DrillsTotal = DrillsAvailable;
     }
 
     // Update is called once per frame
