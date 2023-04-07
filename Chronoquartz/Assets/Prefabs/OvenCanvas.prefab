@@ -108,6 +108,50 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7593730662475198510}
     m_Modifications:
+    - target: {fileID: 7012939544492641137, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: recipes.Array.data[0].name
+      value: chocolatechip
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939544492641137, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: recipes.Array.data[1].name
+      value: sugarcookie
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939544492641137, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: recipes.Array.data[2].name
+      value: oatmealcookie
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939544492641137, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: recipes.Array.data[2].oatmeal
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939544492641137, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: recipes.Array.data[0].chocolate
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939544492641137, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: recipes.Array.data[0].sugarcubes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939544492641137, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: recipes.Array.data[1].sugarcubes
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939544492641137, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: recipes.Array.data[2].sugarcubes
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939544492641137, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: recipes.Array.data[0].cookieSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: abc26b28c2525d8428da374d269768b6, type: 3}
+    - target: {fileID: 7012939544492641137, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: recipes.Array.data[1].cookieSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 92ae3d48bcbf33e4caf00511a26195fa, type: 3}
+    - target: {fileID: 7012939544492641137, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: recipes.Array.data[2].cookieSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 428aa8a84bc002b4f939cf17964bd085, type: 3}
     - target: {fileID: 7012939544492641138, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -196,6 +240,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: BakingMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 7012939545004944556, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545004944556, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 92ae3d48bcbf33e4caf00511a26195fa, type: 3}
+    - target: {fileID: 7012939545004944557, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.9245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545004944557, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.9245283
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545004944557, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.8582414
+      objectReference: {fileID: 0}
     - target: {fileID: 7012939545004944557, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -228,6 +292,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7012939545004944558, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545004944558, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 600
+      objectReference: {fileID: 0}
     - target: {fileID: 7012939545004944559, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
       propertyPath: m_Name
       value: sugarcookie
@@ -237,6 +309,50 @@ PrefabInstance:
       value: 'Chocolate Chip Cookie
 
 '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545049193406, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_fontSize
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545049193406, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 779259f2e81e1404790c830f930c85b9, type: 2}
+    - target: {fileID: 7012939545049193406, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545049193406, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 3537915023950791594, guid: 779259f2e81e1404790c830f930c85b9, type: 2}
+    - target: {fileID: 7012939545049193407, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545049193407, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -175
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545168129903, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545168129903, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: abc26b28c2525d8428da374d269768b6, type: 3}
+    - target: {fileID: 7012939545168129904, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.9056604
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545168129904, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.897716
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545168129904, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.8834461
       objectReference: {fileID: 0}
     - target: {fileID: 7012939545168129904, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -274,6 +390,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 7012939545168129905, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545168129905, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 600
+      objectReference: {fileID: 0}
     - target: {fileID: 7012939545168129906, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
       propertyPath: m_Name
       value: chocolatechip
@@ -282,9 +406,77 @@ PrefabInstance:
       propertyPath: m_text
       value: Sugar Cookie
       objectReference: {fileID: 0}
+    - target: {fileID: 7012939545649588540, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_fontSize
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545649588540, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 779259f2e81e1404790c830f930c85b9, type: 2}
+    - target: {fileID: 7012939545649588540, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545649588540, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 3537915023950791594, guid: 779259f2e81e1404790c830f930c85b9, type: 2}
+    - target: {fileID: 7012939545649588541, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545649588541, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -175
+      objectReference: {fileID: 0}
     - target: {fileID: 7012939545769245779, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
       propertyPath: m_text
       value: Oatmeal Cookie
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545769245779, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_fontSize
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545769245779, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 779259f2e81e1404790c830f930c85b9, type: 2}
+    - target: {fileID: 7012939545769245779, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545769245779, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 3537915023950791594, guid: 779259f2e81e1404790c830f930c85b9, type: 2}
+    - target: {fileID: 7012939545769245780, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939545769245780, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -175
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939546159202193, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939546159202193, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 428aa8a84bc002b4f939cf17964bd085, type: 3}
+    - target: {fileID: 7012939546159202194, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.b
+      value: 0.8269881
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939546159202194, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.g
+      value: 0.8396226
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939546159202194, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_Colors.m_HighlightedColor.r
+      value: 0.75566036
       objectReference: {fileID: 0}
     - target: {fileID: 7012939546159202194, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -317,6 +509,14 @@ PrefabInstance:
     - target: {fileID: 7012939546159202194, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.GameObject, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939546159202195, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 7012939546159202195, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 7012939546159202196, guid: e8af139344ee5ed468f92d3a6eccd1df, type: 3}
       propertyPath: m_Name

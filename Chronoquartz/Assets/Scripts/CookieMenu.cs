@@ -10,6 +10,7 @@ public class Recipe
     public int sugarcubes;
     public int oatmeal;
     public int chocolate;
+    public Sprite cookieSprite;
 
     public Recipe(string n, int s, int o, int c)
     {
@@ -42,6 +43,7 @@ public class CookieMenu : MonoBehaviour
     private string[] shapes;
     
     public GameObject[] recipeButtons;
+    public GameObject cookieMadeFeedback;
     // Start is called before the first frame update
     void Awake()
     {
@@ -112,10 +114,22 @@ public class CookieMenu : MonoBehaviour
     {
         Debug.Log("Button name is " + button.name);
         UIManager.GetComponent<UIManager>().UpdateCookieCount(button.name, shapes[0], 1);
-        foreach(Recipe r in recipes)
-            if(r.name == button.name)
-                player.GetComponent<CharacterController>().IngredientsUsed(r.sugarcubes,r.oatmeal, r.chocolate);
+        foreach (Recipe r in recipes)
+            if (r.name == button.name)
+            {
+                player.GetComponent<CharacterController>().IngredientsUsed(r.sugarcubes, r.oatmeal, r.chocolate);
+                cookieMadeFeedback.SetActive(false);
+                PlayFeedback(r.cookieSprite);
+            }
         UpdateButtons();
+        
 
+    }
+
+    public void PlayFeedback(Sprite cookieSprite)
+    {
+
+        cookieMadeFeedback.SetActive(true);
+        cookieMadeFeedback.GetComponent<SpriteRenderer>().sprite = cookieSprite;
     }
 }

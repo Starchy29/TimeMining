@@ -1194,10 +1194,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: OvenCanvas
       objectReference: {fileID: 0}
-    - target: {fileID: 7593730662475198506, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7593730662475198510, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1283,43 +1279,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7593730662599499574, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
-      propertyPath: recipes.Array.data[0].name
-      value: chocolatechip
-      objectReference: {fileID: 0}
-    - target: {fileID: 7593730662599499574, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
-      propertyPath: recipes.Array.data[1].name
-      value: sugarcookie
-      objectReference: {fileID: 0}
-    - target: {fileID: 7593730662599499574, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
-      propertyPath: recipes.Array.data[2].name
-      value: oatmealcookie
-      objectReference: {fileID: 0}
-    - target: {fileID: 7593730662599499574, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
-      propertyPath: recipes.Array.data[2].oatmeal
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7593730662599499574, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
-      propertyPath: recipes.Array.data[0].chocolate
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7593730662599499574, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
-      propertyPath: recipes.Array.data[0].sugarcubes
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7593730662599499574, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
-      propertyPath: recipes.Array.data[1].sugarcubes
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7593730662599499574, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
-      propertyPath: recipes.Array.data[2].sugarcubes
-      value: 1
-      objectReference: {fileID: 0}
+      propertyPath: cookieMadeFeedback
+      value: 
+      objectReference: {fileID: 842610329}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4ee1adc94d71d2944ad87bf706fdd956, type: 3}
 --- !u!1 &790557671 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5764239340227379336, guid: bc8c26a5f09976146aed6d8958525818, type: 3}
   m_PrefabInstance: {fileID: 5764239341189310430}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &842610329 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 842610329, guid: 207004c8bf35aed44a70f1ad409fc8d5, type: 3}
+  m_PrefabInstance: {fileID: 2143911366}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &869277983
 GameObject:
@@ -2143,13 +2116,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 842610329, guid: 207004c8bf35aed44a70f1ad409fc8d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 228328212237007089, guid: 207004c8bf35aed44a70f1ad409fc8d5, type: 3}
       propertyPath: m_Name
       value: Oven
-      objectReference: {fileID: 0}
-    - target: {fileID: 228328212237007089, guid: 207004c8bf35aed44a70f1ad409fc8d5, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 228328212237007091, guid: 207004c8bf35aed44a70f1ad409fc8d5, type: 3}
       propertyPath: m_RootOrder
